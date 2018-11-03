@@ -5,8 +5,13 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="欢迎来到，瑞卿的窝。">
+    <meta name="description" content="
+学习Java
+tags： java##关于，面向对象类用于客观世界里某一类对象的共同特征，而对象则是类的具体存在，Java程序使用类的构造器来创建该类的对象
+构造器用于对类实例进行初始化操作，构造器支持重载。
+
+##对于一个类定义而言，可">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | 欢迎来到，瑞卿的窝。</title>
+    <title>欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -245,13 +250,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        
                     </div>
                 </div>
             </div>
@@ -280,19 +285,46 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <hr>
+<p>学习Java</p>
+<h2 id="tags：-java"><a href="#tags：-java" class="headerlink" title="tags： java"></a>tags： java</h2><p>##关于，面向对象<br>类用于客观世界里某一类对象的共同特征，而对象则是类的具体存在，Java程序使用类的构造器来创建该类的对象</p>
+<p>构造器用于对类实例进行初始化操作，构造器支持重载。</p>
+<hr>
+<p>##对于一个类定义而言，可以包含三种最常见的成员：构造器、成员变量和方法。</p>
+<hr>
+<p>static修饰的成员不能访问没有static修饰的成员</p>
+<hr>
+<p>成员变量用于定义该类或该类的实例所包含的状态数据，方法则用于定义该类或该类的实例的行为特征或者功能实现。构造器用于构造该类的实例，Java语言通过new关键字来调用构造器，从而返回该类的实例。</p>
+<hr>
+<p>##命名<br>成员变量应该由一个或多个有意义的单词连缀而成，第一个单词首字母小写，后面每个单词首字母大写，其他字母全部小写。方法名的命名规则与成员变量的命名规则基本相同。</p>
+<hr>
+<p>static修饰的成员表明它属于这个类本身，而不属于该类的单个实例。因为通常把static修饰的成员变量和方法也称为类变量、类方法。不使用static修饰的普通方法、成员变量则属于该类的单个实例，而不属于该类。通常把不使用static修饰的成员变量和方法也成为实例变量、实例方法。</p>
+<hr>
+<p>构造器是一个特殊的方法，<strong>构造器名必须和类名相同</strong>。<br>构造器既不能定义返回值类型，也不能使用void声明构造器没有返回值。如果为构造器定义了返回值类型，或使用void声明构造器没有返回值，编译时不会出错，但是java会把这个所谓的构造器当成方法来处理—它就不是构造器。</p>
+<p>##<strong>实际构造器是有返回值的，当使用new关键字来调用构造器时，构造器返回该类的实例。</strong>##<br>创建对象的根本途径是构造器</p>
+<hr>
+<pre class=" language-java"><code class="language-java">Person p<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//使用person类定义一个person类型的变量</span>
+p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//通过new关键字调用Person类的构造器，返回一个Person的实例，将Person</span>
+
+或者
+Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//定义p变量的同时为p变量赋值</span>
 </code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>Person p = new Person();<br>这行代码创建了一个Person实例，也被称为Person对象，这个Person对象被赋给p变量。<br>在这行代码实际产生了两个东西，一个是p变量，一个是Person对象。<br>程序中定义的Person类型的变量实际上是一个引用，它存放在栈内存中，指向实际的Person对象。而真正的Person对象则存放在堆（heap）内存中。</p>
+<hr>
+<p>栈内存里的引用变量并未真正存储对象的成员变量，对象的成员变量数据实际存放在堆内存里；而引用变量只是指向该堆内存里的对象。从这个角度看，引用变量与C语言里的指针很像，他们都是存储一个地址值，通过这个地址来引用到实际对象。实际上，Java里的引用就是C里的指针。<br>p引用变量本事只存储了一个地址值，并未包含任何实际数据。但它指向实际的Person对象，当访问p引用变量的成员变量和方法时，实际上是访问p所引用对象的成员变量和方法。</p>
+<hr>
+<p>如果堆内存里的对象没有任何变量指向该对象，那么程序将无法再访问该对象，这个对象也就变成了垃圾，Java的垃圾回收机制将回收该对象，释放该对象所占的内存区。<br>因此，如果希望通知垃圾回收机制回收某个对象，只需切断该对象的所有引用变量和它之间的关系即可。也就是把这些引用变量赋值为null。</p>
+<hr>
+<p>this关键字总是指向调用该方法的对象<br>this关键字最大的作用就是让类中一个方法，访问该类里的另一个方法或实例变量。</p>
+<p>##<strong>没有使用static修饰的成员变量和方法都必须使用对象调用。</strong>##</p>
+<p>this可以代表任何对象，当this出现在某个方法体中时，它所代表的对象是不确定的，但它的类型是确定的：它所代表的只能是当前类的实例，只有当这个方法被调用时，它所代表的对象才被确定下来：谁在调用这个方法，this就代表谁。</p>
+<p>java允许对象的一个成员直接调用另一个成员，可以省略this前缀。</p>
+<p>##<strong>static修饰的方法属于类，而不属于对象。</strong>##<br>Java编程时不要使用对象去调用static修饰的成员变量、方法，而是应该使用类去调用static修饰的成员变量、方法。</p>
+<hr>
+<p>##方法##<br>在结构化编程语言里，函数是一等公民，整个软件由一个个的函数组成；在面向对象编程语言里，类才是一等公民。整个系统由一个个的类组成。因此在Java语言里，方法不能独立村子，方法必须属于类或对象。</p>
+<p>Java语言是静态的。一个类定义完成后，只要不再重新编译这个类文件，该类和该类的对象所拥有的方法是固定的，永远都不会改变。</p>
+<p>同一个类的一个方法调用另外一个方法时，如果被调用方法是普通方法，则默认使用this作为调用者；如果被调方法是静态方法，则默认使用类作为调用者，表面上看起来某些方法可以被独立执行，但实际上还是使用this或者类作为调用者。</p>
+<p>##方法重载##<br>Java程序中确定一个方法需要三个要素：<br>调用者，也就是方法的所属者，既可以是类，也可以是对象。<br>方法名，方法的标识<br>形参列表，当调用方法时，系统将会根据传入的实参列表匹配。</p>
 
             </div>
             <hr>
@@ -431,7 +463,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/03/hello-world/" class="b-link-green">Hello World</a>
+                    <a href="/2018/11/03/Java学习笔记/" class="b-link-green"></a>
                 </p>
             </div>
         </div>
@@ -451,7 +483,7 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/11/03/Java学习笔记/">
                     <div class="card-image">
@@ -470,9 +502,9 @@ tags： java##关于，面向对象类用于客观世界里某一类对象的共
 
 ##对于一个类定义而言，可</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -481,13 +513,14 @@ tags： java##关于，面向对象类用于客观世界里某一类对象的共
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">本篇</div>
+            <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
                 <a href="/2018/11/03/hello-world/">
                     <div class="card-image">
@@ -512,7 +545,6 @@ tags： java##关于，面向对象类用于客观世界里某一类对象的共
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
