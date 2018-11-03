@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="学习VUE, 欢迎来到，瑞卿的窝。">
     <meta name="description" content="2018.10.15  开始学习vue
-###用户输入###在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：
-&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;
-    &amp;lt;p&amp;gt;{{ mes">
+Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
+Vue 只关注视图层， 采用自底向上增量开发的设计。
+Vue 的目标是通过尽可能简单的 API 实现响应的数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -292,7 +292,63 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>2018.10.15  开始学习vue</p>
-<p>###用户输入###<br>在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：</p>
+<p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。</p>
+<p>Vue 只关注视图层， 采用自底向上增量开发的设计。</p>
+<p>Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。</p>
+<p>第一段vue代码示例</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>vue_det<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>site : {{site}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>url : {{url}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>{{details()}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        el<span class="token punctuation">:</span> <span class="token string">'#vue_det'</span><span class="token punctuation">,</span>
+        data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            site<span class="token punctuation">:</span> <span class="token string">"菜鸟教程"</span><span class="token punctuation">,</span>
+            url<span class="token punctuation">:</span> <span class="token string">"www.runoob.com"</span><span class="token punctuation">,</span>
+            alexa<span class="token punctuation">:</span> <span class="token string">"10000"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            details<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span>  <span class="token keyword">this</span><span class="token punctuation">.</span>site <span class="token operator">+</span> <span class="token string">" - 学的不仅是技术，更是梦想！"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>可以看到在 Vue 构造器中有一个el 参数，它是 DOM 元素中的 id。在上面实例中 id 为 vue_det，在 div 元素中：</p>
+<pre><code>&lt;div id = &quot;vue_det&quot;&gt;&lt;/div&gt;
+</code></pre><p>###<b>这意味着我们接下来的改动全部在以上指定的 div 内，div 外部不受影响。</b>###</p>
+<p>接下来我们看看如何定义数据对象。</p>
+<p>data 用于定义属性，实例中有三个属性分别为：site、url、alexa。</p>
+<p>methods 用于定义的函数，可以通过 return 来返回函数值。</p>
+<p>用于输出对象属性和函数返回值。</p>
+<p>###<b>当一个 Vue 实例被创建时，它向 Vue 的响应式系统中加入了其 data 对象中能找到的所有的属性。当这些属性的值发生改变时，html 视图将也会产生相应的变化</b>###</p>
+<pre><code>&lt;div id=&quot;vue_det&quot;&gt;
+    &lt;h1&gt;site : {{site}}&lt;/h1&gt;
+    &lt;h1&gt;url : {{url}}&lt;/h1&gt;
+    &lt;h1&gt;Alexa : {{alexa}}&lt;/h1&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+// 我们的数据对象
+var data = { site: &quot;菜鸟教程&quot;, url: &quot;www.runoob.com&quot;, alexa: 10000}
+var vm = new Vue({
+    el: &#39;#vue_det&#39;,
+    data: data
+})
+// 它们引用相同的对象！
+document.write(vm.site === data.site) // true
+document.write(&quot;&lt;br&gt;&quot;)
+// 设置属性也会影响到原始数据
+vm.site = &quot;Runoob&quot;
+document.write(data.site + &quot;&lt;br&gt;&quot;) // Runoob
+
+// ……反之亦然
+data.alexa = 1234
+document.write(vm.alexa) // 1234
+&lt;/script&gt;
+</code></pre><p>###用户输入###<br>在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：</p>
 <pre><code>&lt;div id=&quot;app&quot;&gt;
     &lt;p&gt;{{ message }}&lt;/p&gt;
     &lt;input v-model=&quot;message&quot;&gt;
@@ -572,9 +628,9 @@ new Vue({
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">2018.10.15  开始学习vue
-###用户输入###在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：
-&lt;div id=&quot;app&quot;&gt;
-    &lt;p&gt;{{ mes</div>
+Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。
+Vue 只关注视图层， 采用自底向上增量开发的设计。
+Vue 的目标是通过尽可能简单的 API 实现响应的数据</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
