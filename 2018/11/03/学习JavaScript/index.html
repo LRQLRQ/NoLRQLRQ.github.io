@@ -5,9 +5,15 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="RPC框架--远程过程调用, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="首先了解什么叫RPC，为什么要RPC，RPC是指远程过程调用，也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。
-比">
+    <meta name="keywords" content="学习JavaScript, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="1.这是我第一天学习JavaScript斜体粗体好吗？
+
+这是引用sss
+
+print(&amp;quot;hello!&amp;quot;);
+return 0;
+
+##1.为什么学习 JavaScript?##JavaScript web 开发人员必须">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RPC框架--远程过程调用 | 欢迎来到，瑞卿的窝。</title>
+    <title>学习JavaScript | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -246,13 +252,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        RPC框架--远程过程调用
+                        学习JavaScript
                     </div>
                 </div>
             </div>
@@ -272,8 +278,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/rpc-netty/" target="_blank">
-                    <span class="chip bg-color">rpc netty</span>
+                <a href="/tags/javascript/" target="_blank">
+                    <span class="chip bg-color">javascript</span>
                 </a>
                 
             </div>
@@ -289,44 +295,125 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>首先了解什么叫RPC，为什么要RPC，RPC是指远程过程调用，也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。</p>
-<p>比如说，一个方法可能是这样定义的：<br>Employee getEmployeeByName(String fullName)那么：<br><ul><li>首先，要解决通讯的问题，主要是通过在客户端和服务器之间建立TCP连接，远程过程调用的所有交换的数据都在这个连接里传输。连接可以是按需连接，调用结束后就断掉，也可以是长连接，多个远程过程调用共享同一个连接。</li><li>第二，要解决寻址的问题，也就是说，A服务器上的应用怎么告诉底层的RPC框架，如何连接到B服务器（如主机或IP地址）以及特定的端口，方法的名称名称是什么，这样才能完成调用。比如基于Web服务协议栈的RPC，就要提供一个endpoint URI，或者是从UDDI服务上查找。如果是RMI调用的话，还需要一个RMI Registry来注册服务的地址。<br></li><li>第三，当A服务器上的应用发起远程过程调用时，方法的参数需要通过底层的网络协议如TCP传递到B服务器，由于网络协议是基于二进制的，内存中的参数的值要序列化成二进制的形式，也就是序列化（Serialize）或编组（marshal），通过寻址和传输将序列化的二进制发送ss给B服务器。</li><li>第四，B服务器收到请求后，需要对参数进行反序列化（序列化的逆操作），恢复为内存中的表达方式，然后找到对应的方法（寻址的一部分）进行本地调用，然后得到返回值。</li><li>第五，返回值还要发送回服务器A上的应用，也要经过序列化的方式发送，服务器A接到后，再反序列化，恢复为内存中的表达方式，交给A服务器上的应用</li></ul></p>
-<hr>
-<p>为什么RPC呢？就是无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如不同的系统间的通讯，甚至不同的组织间的通讯。由于计算能力需要横向扩展，需要在多台机器组成的集群上部署应用.</p>
-<hr>
-<p>##经典回答##<br>本地过程调用</p>
-<p>RPC就是要像调用本地的函数一样去调远程函数。在研究RPC前，我们先看看本地调用是怎么调的。假设我们要调用函数Multiply来计算lvalue * rvalue的结果:</p>
-<pre><code>1 int Multiply(int l, int r) {
-2    int y = l * r;
-3    return y;
-4 }
-5 
-6 int lvalue = 10;
-7 int rvalue = 20;
-8 int l_times_r = Multiply(lvalue, rvalue);
-
-</code></pre><p>那么在第8行时，我们实际上执行了以下操作：</p>
+                <h1 id="1-这是我第一天学习JavaScript"><a href="#1-这是我第一天学习JavaScript" class="headerlink" title="1.这是我第一天学习JavaScript"></a>1.这是我第一天学习JavaScript</h1><p><em>斜体</em><br><strong>粗体</strong><br><del>好吗？</del></p>
+<blockquote>
+<p>这是引用<br>sss</p>
+</blockquote>
+<pre><code>print(&quot;hello!&quot;);
+return 0;
+</code></pre><hr>
+<p>##1.为什么学习 JavaScript?##<br>JavaScript web 开发人员必须学习的 3 门语言中的一门：</p>
+<p>HTML 定义了网页的内容<br>CSS 描述了网页的布局<br>JavaScript 网页的行为</p>
+<p>##2.学习中的要点##</p>
+<p>alert() 函数在 JavaScript 中并不常用，但它对于代码测试非常方便。</p>
+<p>您会经常看到 document.getElementById(“some id”)。这个方法是 HTML DOM 中定义的。<br>DOM (Document Object Model)（文档对象模型）是用于访问 HTML 元素的正式 W3C 标准。</p>
+<p>###JavaScript 用法###<br>HTML 中的脚本必须位于 <script> 与 </script> 标签之间。<br>脚本可被放置在 HTML 页面的 <body> 和 <head><meta name="generator" content="Hexo 3.8.0"> 部分中。<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head></body></p>
+<p>那些老旧的实例可能会在 script 标签中使用 type=”text/javascript”。现在已经不必这样做了。JavaScript 是所有现代浏览器以及 HTML5 中的默认脚本语言</p>
+<h3 id="在-head-或者-body-的JavaScript"><a href="#在-head-或者-body-的JavaScript" class="headerlink" title="在 head 或者 body 的JavaScript"></a>在 head 或者 body 的JavaScript</h3><p>您可以在 HTML 文档中放入不限数量的脚本。<br>脚本可位于 HTML 的 body 或 head 部分中，或者同时存在于两个部分中。</p>
+<p>通常的做法是把函数放入 head 部分中，或者放在页面底部。这样就可以把它们安置到同一处位置，不会干扰页面的内容。</p>
+<p>###外部的 JavaScript###<br>也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。</p>
+<p>外部 JavaScript 文件的文件扩展名是 .js。</p>
+<p>如需使用外部文件，请在 script 标签的 “src” 属性中设置该 .js 文件：</p>
+<p>##JavaScript 输出##</p>
+<p>###JavaScript 没有任何打印或者输出的函数。###</p>
+<p>JavaScript 可以通过不同的方式来输出数据：</p>
 <ol>
-<li>将 lvalue 和 rvalue 的值压栈</li>
-<li>进入Multiply函数，取出栈中的值10 和 20，将其赋予 l 和 r</li>
-<li>执行第2行代码，计算 l * r ，并将结果存在 y</li>
-<li>将 y 的值压栈，然后从Multiply返回</li>
-<li>第8行，从栈中取出返回值 200 ，并赋值给 l_times_r<br>以上5步就是执行本地调用的过程。</li>
+<li>使用 window.alert() 弹出警告框。</li>
+<li>使用 document.write() 方法将内容写到 HTML 文档中。</li>
+<li>使用 innerHTML 写入到 HTML 元素。</li>
+<li>使用 console.log() 写入到浏览器的控制台。</li>
 </ol>
-<p>##<strong>远程过程调用带来的新问题</strong>##</p>
-<p>在远程调用时，我们需要执行的函数体是在远程的机器上的，也就是说，Multiply是在另一个进程中执行的。这就带来了几个新问题：</p>
+<p>2中的操作 HTML 元素<br>如需从 JavaScript 访问某个 HTML 元素，您可以使用 document.getElementById(id) 方法。</p>
+<p>请使用 “id” 属性来标识 HTML 元素，并 innerHTML 来获取或插入元素内容：</p>
+<p>请使用 document.write() 仅仅向文档输出写内容。<br>如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖</p>
+<p>###JavaScript 注释###<br>不是所有的 JavaScript 语句都是”命令”。双斜杠 // 后的内容将会被浏览器忽略：</p>
+<p>###JavaScript 语句###<br>JavaScript 语句是发给浏览器的命令。</p>
+<p>这些命令的作用是告诉浏览器要做的事情。</p>
+<p>###重新声明 JavaScript 变量###<br>如果重新声明 JavaScript 变量，该变量的值不会丢失：</p>
+<p>在以下两条语句执行后，变量 carname 的值依然是 “Volvo”<br>var carname=”Volvo”;<br>var carname;</p>
+<p>#JavaScript变量学习图#<br><img src="https://7n.w3cschool.cn/attachments/image/20160809/1470709822216279.gif" alt="avatar"></p>
+<p>###JavaScript 对象###<br>对象由花括号分隔。在括号内部，对象的属性以名称和值对的形式 (name : value) 来定义。属性由逗号分隔：</p>
+<pre><code>var person={firstname:&quot;John&quot;, lastname:&quot;Doe&quot;, id:5566};
+</code></pre><p> 等价于</p>
+<pre class=" language-javascript"><code class="language-javascript"> <span class="token keyword">var</span> person<span class="token operator">=</span><span class="token punctuation">{</span>
+    firstname <span class="token punctuation">:</span> <span class="token string">"John"</span><span class="token punctuation">,</span>
+    lastname  <span class="token punctuation">:</span> <span class="token string">"Doe"</span><span class="token punctuation">,</span>
+    id        <span class="token punctuation">:</span>  <span class="token number">5566</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>对象属性有两种寻址方式：</p>
 <ol>
-<li><p><strong>Call ID映射。</strong>我们怎么告诉远程机器我们要调用Multiply，而不是Add或者FooBar呢？在本地调用中，函数体是直接通过函数指针来指定的，我们调用Multiply，编译器就自动帮我们调用它相应的函数指针。但是在远程调用中，函数指针是不行的，因为两个进程的地址空间是完全不一样的。所以，在RPC中，所有的函数都必须有自己的一个ID。这个ID在所有进程中都是唯一确定的。客户端在做远程过程调用时，必须附上这个ID。然后我们还需要在客户端和服务端分别维护一个 {函数 <--> Call ID} 的对应表。两者的表不一定需要完全相同，但相同的函数对应的Call ID必须相同。当客户端需要进行远程调用时，它就查一下这个表，找出相应的Call ID，然后把它传给服务端，服务端也通过查表，来确定客户端需要调用的函数，然后执行相应函数的代码。</--></p>
-</li>
-<li><p><strong>序列化和反序列化。</strong>客户端怎么把参数值传给远程的函数呢？在本地调用中，我们只需要把参数压到栈里，然后让函数自己去栈里读就行。但是在远程过程调用时，客户端跟服务端是不同的进程，不能通过内存来传递参数。甚至有时候客户端和服务端使用的都不是同一种语言（比如服务端用C++，客户端用Java或者Python）。这时候就需要客户端把参数先转成一个字节流，传给服务端后，再把字节流转成自己能读取的格式。这个过程叫序列化和反序列化。同理，从服务端返回的值也需要序列化反序列化的过程。</p>
-</li>
-<li><p><strong>网络传输。</strong>远程调用往往用在网络上，客户端和服务端是通过网络连接的。所有的数据都需要通过网络传输，因此就需要有一个网络传输层。网络传输层需要把Call ID和序列化后的参数字节流传给服务端，然后再把序列化后的调用结果传回客户端。只要能完成这两者的，都可以作为传输层使用。因此，它所使用的协议其实是不限的，能完成传输就行。尽管大部分RPC框架都使用TCP协议，但其实UDP也可以，而gRPC干脆就用了HTTP2。Java的Netty也属于这层的东西。</p>
-</li>
+<li>name=person.lastname;</li>
+<li>name=person[“lastname”];</li>
 </ol>
-<p><strong>所以，要实现一个RPC框架，其实只需要把以上三点实现了就基本完成了。Call ID映射可以直接使用函数字符串，也可以使用整数ID。映射表一般就是一个哈希表。序列化反序列化可以自己写，也可以使用Protobuf或者FlatBuffers之类的。网络传输库可以自己写socket，或者用asio，ZeroMQ，Netty之类。</strong></p>
+<p>###提示：JavaScript具有隐含的全局概念，意味着你不声明的任何变量都会成为一个全局对象属性。###</p>
+<p>#JavaScript数据类型学习脑图：#<br><img src="https://7n.w3cschool.cn/attachments/image/20160809/1470710140220491.gif" alt="avatar"></p>
+<p>#JavaScript函数学习脑图#<br><img src="https://7n.w3cschool.cn/attachments/image/20160809/1470709911288582.gif" alt="avatar"></p>
+<p>##JavaScript 全局变量##</p>
+<p>变量在函数外定义，即为全局变量。<br>全局变量有 全局作用域: 网页中所有脚本和函数均可使用。</p>
+<p>如果变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。<br>以下实例中 carName 在函数内，但是为全局变量。<br>// 此处可调用 carName 变量 </p>
+<p>function myFunction() {<br>    carName = “Volvo”;<br>    // 此处可调用 carName 变量<br>}</p>
+<p>##HTML 事件##<br>HTML 事件可以是浏览器行为，也可以是用户行为。</p>
+<p>HTML 网页中的每个元素都可以产生某些可以触发 JavaScript 函数的事件。</p>
+<p>以下是 HTML 事件的实例：</p>
+<ol>
+<li>HTML 页面完成加载</li>
+<li>HTML input 字段改变时</li>
+<li>HTML 按钮被点击<br>通常，当事件发生时，你可以做些事情。</li>
+</ol>
+<p>在事件触发时 JavaScript 可以执行一些代码。</p>
+<p>常见的HTML事件<br>下面是一些常见的HTML事件的列表:</p>
+<p>事件—————-描述<br>onchange———HTML 元素改变<br>onclick    ————用户点击 HTML 元素<br>onmouseover—–用户在一个HTML元素上移动鼠标<br>onmouseout——用户从一个HTML元素上移开鼠标<br>onkeydown——-用户按下键盘按键<br>onload————浏览器已完成页面的加载</p>
+<p>#JavaScript运算符学习脑图#<br><img src="https://7n.w3cschool.cn/attachments/image/20170921/1505989160659350.gif" alt="avatar"></p>
+<p>#JavaScript流程语句学习脑图#</p>
+<p><img src="https://7n.w3cschool.cn/attachments/image/20160809/1470710031660821.gif" alt="avatar"></p>
+<p>##Throw 语句##<br>throw 语句允许我们创建自定义错误。</p>
+<p>正确的技术术语是：创建或抛出异常（exception）。<br>如果把 throw 与 try 和 catch 一起使用，那么您能够控制程序流，并生成自定义的错误消息。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span> 
+        <span class="token keyword">var</span> x<span class="token operator">=</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"demo"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">==</span><span class="token string">""</span><span class="token punctuation">)</span>    <span class="token keyword">throw</span> <span class="token string">"值为空"</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isNaN</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token string">"不是数字"</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">></span><span class="token number">10</span><span class="token punctuation">)</span>     <span class="token keyword">throw</span> <span class="token string">"太大"</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">)</span>      <span class="token keyword">throw</span> <span class="token string">"太小"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> y<span class="token operator">=</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"mess"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        y<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span><span class="token string">"错误："</span> <span class="token operator">+</span> err <span class="token operator">+</span> <span class="token string">"。"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>##JavaScript 调试工具##<br>在程序代码中寻找错误叫做代码调试。</p>
+<p>调试很难，但幸运的是，很多浏览器都内置了调试工具。</p>
+<p>内置的调试工具可以开始或关闭，严重的错误信息会发送给用户。</p>
+<p>有了调试工具，我们就可以设置断点 (代码停止执行的位置), 且可以在代码执行时检测变量。</p>
+<p>浏览器启用调试工具一般是按下 F12 键，并在调试菜单中选择 “Console” 。</p>
+<ol>
+<li>console.log() 方法</li>
+<li>设置断点<br>在调试窗口中，你可以设置 JavaScript 代码的断点。<br>在每个断点上，都会停止执行 JavaScript 代码，以便于我们检查 JavaScript 变量的值。<br>在检查完毕后，可以重新执行代码（如播放按钮）。</li>
+<li>debugger 关键字<br>debugger 关键字用于停止执行 JavaScript，并调用调试函数。<br>这个关键字与在调试工具中设置断点的效果是一样的。<br>如果没有调试可用，debugger 语句将无法工作。<br>开启 debugger ，代码在第三行前停止执行。</li>
+</ol>
+<p>##JavaScript 表单验证##</p>
+<p>###JavaScript 可用来在数据被送往服务器前对 HTML 表单中的这些输入数据进行验证###</p>
+<p>###表单数据经常需要使用 JavaScript 来验证其正确性：###</p>
+<ol>
+<li>验证表单数据是否为空？</li>
+<li>验证输入是否是一个正确的email地址？</li>
+<li>验证日期是否输入正确？</li>
+<li>验证表单输入内容是否为数字型？</li>
+</ol>
+<p>##JavaScript JSON##<br>JSON 是用于存储和传输数据的格式。</p>
+<p>JSON 通常用于服务端向网页传递数据 。</p>
+<p>###什么是 JSON?###</p>
+<ol>
+<li>JSON 英文全称 JavaScript Object Notation</li>
+<li>JSON 是一种轻量级的数据交换格式。</li>
+<li>JSON是独立的语言 </li>
+<li>JSON 易于理解。</li>
+</ol>
 
             </div>
-            <hr>
+            <hr/>
 
             
             <style>
@@ -462,7 +549,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/03/RPC框架--远程过程调用/" class="b-link-green">RPC框架--远程过程调用</a>
+                    <a href="/2018/11/03/学习JavaScript/" class="b-link-green">学习JavaScript</a>
                 </p>
             </div>
         </div>
@@ -482,7 +569,7 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/11/03/学习JavaScript/">
                     <div class="card-image">
@@ -503,9 +590,9 @@ return 0;
 
 ##1.为什么学习 JavaScript?##JavaScript web 开发人员必须</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -514,6 +601,7 @@ return 0;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -530,19 +618,18 @@ return 0;
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/03/Git的简单使用/">
+                <a href="/2018/11/03/RPC框架--远程过程调用/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Git的简单使用">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="RPC框架--远程过程调用">
                         
-                        <span class="card-title">Git的简单使用</span>
+                        <span class="card-title">RPC框架--远程过程调用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">提交版本：git add xxxgit commit -m “注释”
-查看修改了什么东西：git diff xxx
-查看历史记录：git log    精简版:git log –pretty=oneline版本回退到上一个版本：git re</div>
+                    <div class="summary">首先了解什么叫RPC，为什么要RPC，RPC是指远程过程调用，也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。
+比</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
@@ -558,8 +645,8 @@ return 0;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/" target="_blank">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/rpc-netty/" target="_blank">
+                        <span class="chip bg-color">rpc netty</span>
                     </a>
                     
                 </div>
