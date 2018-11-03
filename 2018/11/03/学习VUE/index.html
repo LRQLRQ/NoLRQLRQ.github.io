@@ -348,6 +348,36 @@ data.alexa = 1234
 document.write(vm.alexa) // 1234
 &lt;/script&gt;
 
+</code></pre><p><b>Html</b><br>使用 v-html 指令用于输出 html 代码：</p>
+<p>###<b>指令</b>###</p>
+<p>指令是带有 v- 前缀的特殊属性。</p>
+<p>指令用于在表达式的值改变时，将某些行为应用到 DOM 上。</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;
+    &lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue({
+  el: &#39;#app&#39;,
+  data: {
+    seen: true
+  }
+})
+&lt;/script&gt;
+</code></pre><p>新建一个vue对象，用el名绑定div中的id，那么在这个id为xxx的div块中，就可以使用其元素相应的数据。</p>
+<p>###参数###<br>参数在指令后以冒号指明。例如， v-bind 指令被用来响应地更新 HTML 属性</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;
+    &lt;pre&gt;&lt;a v-bind:href=&quot;url&quot;&gt;菜鸟教程&lt;/a&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Vue({
+  el: &#39;#app&#39;,
+  data: {
+    url: &#39;http://www.runoob.com&#39;
+  }
+})
+&lt;/script&gt;
 </code></pre><p>###用户输入###<br>在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：</p>
 <pre><code>&lt;div id=&quot;app&quot;&gt;
     &lt;p&gt;{{ message }}&lt;/p&gt;
