@@ -5,11 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="学习Java, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="##关于，面向对象类用于客观世界里某一类对象的共同特征，而对象则是类的具体存在，Java程序使用类的构造器来创建该类的对象
-构造器用于对类实例进行初始化操作，构造器支持重载。
-
-##对于一个类定义而言，可以包含三种最常见的成员：构造器、成员">
+    <meta name="keywords" content="Git的简单使用, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="提交版本：git add xxxgit commit -m “注释”
+查看修改了什么东西：git diff xxx
+查看历史记录：git log    精简版:git log –pretty=oneline版本回退到上一个版本：git re">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>学习Java | 欢迎来到，瑞卿的窝。</title>
+    <title>Git的简单使用 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -248,13 +247,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        学习Java
+                        Git的简单使用
                     </div>
                 </div>
             </div>
@@ -274,8 +273,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/java/" target="_blank">
-                    <span class="chip bg-color">java</span>
+                <a href="/tags/git/" target="_blank">
+                    <span class="chip bg-color">git</span>
                 </a>
                 
             </div>
@@ -291,44 +290,33 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>##关于，面向对象<br>类用于客观世界里某一类对象的共同特征，而对象则是类的具体存在，Java程序使用类的构造器来创建该类的对象</p>
-<p>构造器用于对类实例进行初始化操作，构造器支持重载。</p>
-<hr>
-<p>##对于一个类定义而言，可以包含三种最常见的成员：构造器、成员变量和方法。</p>
-<hr>
-<p>static修饰的成员不能访问没有static修饰的成员</p>
-<hr>
-<p>成员变量用于定义该类或该类的实例所包含的状态数据，方法则用于定义该类或该类的实例的行为特征或者功能实现。构造器用于构造该类的实例，Java语言通过new关键字来调用构造器，从而返回该类的实例。</p>
-<hr>
-<p>##命名<br>成员变量应该由一个或多个有意义的单词连缀而成，第一个单词首字母小写，后面每个单词首字母大写，其他字母全部小写。方法名的命名规则与成员变量的命名规则基本相同。</p>
-<hr>
-<p>static修饰的成员表明它属于这个类本身，而不属于该类的单个实例。因为通常把static修饰的成员变量和方法也称为类变量、类方法。不使用static修饰的普通方法、成员变量则属于该类的单个实例，而不属于该类。通常把不使用static修饰的成员变量和方法也成为实例变量、实例方法。</p>
-<hr>
-<p>构造器是一个特殊的方法，<strong>构造器名必须和类名相同</strong>。<br>构造器既不能定义返回值类型，也不能使用void声明构造器没有返回值。如果为构造器定义了返回值类型，或使用void声明构造器没有返回值，编译时不会出错，但是java会把这个所谓的构造器当成方法来处理—它就不是构造器。</p>
-<p>##<strong>实际构造器是有返回值的，当使用new关键字来调用构造器时，构造器返回该类的实例。</strong>##<br>创建对象的根本途径是构造器</p>
-<hr>
-<pre class=" language-java"><code class="language-java">Person p<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//使用person类定义一个person类型的变量</span>
-p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//通过new关键字调用Person类的构造器，返回一个Person的实例，将Person</span>
-
-或者
-Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//定义p变量的同时为p变量赋值</span>
-</code></pre>
-<p>Person p = new Person();<br>这行代码创建了一个Person实例，也被称为Person对象，这个Person对象被赋给p变量。<br>在这行代码实际产生了两个东西，一个是p变量，一个是Person对象。<br>程序中定义的Person类型的变量实际上是一个引用，它存放在栈内存中，指向实际的Person对象。而真正的Person对象则存放在堆（heap）内存中。</p>
-<hr>
-<p>栈内存里的引用变量并未真正存储对象的成员变量，对象的成员变量数据实际存放在堆内存里；而引用变量只是指向该堆内存里的对象。从这个角度看，引用变量与C语言里的指针很像，他们都是存储一个地址值，通过这个地址来引用到实际对象。实际上，Java里的引用就是C里的指针。<br>p引用变量本事只存储了一个地址值，并未包含任何实际数据。但它指向实际的Person对象，当访问p引用变量的成员变量和方法时，实际上是访问p所引用对象的成员变量和方法。</p>
-<hr>
-<p>如果堆内存里的对象没有任何变量指向该对象，那么程序将无法再访问该对象，这个对象也就变成了垃圾，Java的垃圾回收机制将回收该对象，释放该对象所占的内存区。<br>因此，如果希望通知垃圾回收机制回收某个对象，只需切断该对象的所有引用变量和它之间的关系即可。也就是把这些引用变量赋值为null。</p>
-<hr>
-<p>this关键字总是指向调用该方法的对象<br>this关键字最大的作用就是让类中一个方法，访问该类里的另一个方法或实例变量。</p>
-<p>##<strong>没有使用static修饰的成员变量和方法都必须使用对象调用。</strong>##</p>
-<p>this可以代表任何对象，当this出现在某个方法体中时，它所代表的对象是不确定的，但它的类型是确定的：它所代表的只能是当前类的实例，只有当这个方法被调用时，它所代表的对象才被确定下来：谁在调用这个方法，this就代表谁。</p>
-<p>java允许对象的一个成员直接调用另一个成员，可以省略this前缀。</p>
-<p>##<strong>static修饰的方法属于类，而不属于对象。</strong>##<br>Java编程时不要使用对象去调用static修饰的成员变量、方法，而是应该使用类去调用static修饰的成员变量、方法。</p>
-<hr>
-<p>##方法##<br>在结构化编程语言里，函数是一等公民，整个软件由一个个的函数组成；在面向对象编程语言里，类才是一等公民。整个系统由一个个的类组成。因此在Java语言里，方法不能独立村子，方法必须属于类或对象。</p>
-<p>Java语言是静态的。一个类定义完成后，只要不再重新编译这个类文件，该类和该类的对象所拥有的方法是固定的，永远都不会改变。</p>
-<p>同一个类的一个方法调用另外一个方法时，如果被调用方法是普通方法，则默认使用this作为调用者；如果被调方法是静态方法，则默认使用类作为调用者，表面上看起来某些方法可以被独立执行，但实际上还是使用this或者类作为调用者。</p>
-<p>##方法重载##<br>Java程序中确定一个方法需要三个要素：<br>调用者，也就是方法的所属者，既可以是类，也可以是对象。<br>方法名，方法的标识<br>形参列表，当调用方法时，系统将会根据传入的实参列表匹配。</p>
+                <p>提交版本：<br>git add xxx<br>git commit -m “注释”</p>
+<p>查看修改了什么东西：git diff xxx</p>
+<p>查看历史记录：git log    精简版:git log –pretty=oneline<br>版本回退到上一个版本：git reset –hard HEAD^<br>版本回退到上100个版本：git reset –hard HEAD~100</p>
+<p>恢复之前的版本：<br>1.获得之前的版本号git reflog<br>2.git reset –hard 版本号       来恢复<br><img src="http://www.ruanyifeng.com/blogimg/asset/2014/bg2014061202.jpg" alt="avatar"></p>
+<p>修改了文件之后，还未git add的情况下，想回复之前的状态，可以输入:git checkout – 文件名 </p>
+<p>文件修改后，还没有add放到暂存区，使用撤销修改就回到和版本库一模一样的状态。<br>另外一种是文件已经add放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。</p>
+<p>删除了文件之后，还未commit提交的情况下，想回复仓库之前的状态，可以输入 git checkout – 文件名<br>经常输入git status 来查看文件的状态</p>
+<p>把本地的仓库上传到github上：<br>1.在github新建一个仓库<br>2.输入git remote add origin 地址</p>
+<p>把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程<br>由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。推送成功后，可以立刻在github页面中看到远程库的内容已经和本地一模一样了</p>
+<p>从现在起，只要本地作了提交，就可以通过如下命令：<br>git push origin master</p>
+<p>克隆远程库：<br>假如远程库有新的内容了，我想克隆到本地来，如何克隆呢<br>使用命令git clone克隆一个本地库<br>git clone -b 分支名 地址</p>
+<p>##创建与分支合并##</p>
+<p>git checkout 命令加上 –b参数表示创建并切换，相当于如下2条命令</p>
+<p>git branch dev  //创建分支</p>
+<p>git checkout dev    //切换分支</p>
+<p>##总结创建与合并分支命令如下：##</p>
+<p>   查看分支：git branch</p>
+<p>   创建分支：git branch name</p>
+<p>   切换分支：git checkout name</p>
+<p>创建+切换分支：git checkout –b name</p>
+<p>合并某分支到当前分支：git merge name</p>
+<p>删除分支：git branch –d name</p>
+<p>##如何解决冲突？##<br>在merge时，主干和分支不同的情况下，会产生冲突<br>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，其中&lt;&lt;&lt;HEAD是指主分支修改的内容，&gt;&gt;&gt;&gt;&gt;fenzhi1 是指fenzhi1上修改的内容</p>
+<p>如果我想查看分支合并的情况的话，需要使用命令 git log</p>
+<p>##分支策略##</p>
+<p>首先master主分支应该是非常稳定的，也就是用来发布新版本，一般情况下不允许在上面干活，干活一般情况下在新建的dev分支上干活，干完后，比如上要发布，或者说dev分支代码稳定后可以合并到主分支master上来。</p>
+<p>##BUG分支##<br>在开发中，会经常碰到bug问题，那么有了bug就需要修复，在Git中，分支是很强大的，每个bug都可以通过一个临时分支来修复，修复完成后，合并分支，然后将临时的分支删除掉。</p>
 
             </div>
             <hr>
@@ -467,7 +455,7 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/03/Java学习笔记/" class="b-link-green">学习Java</a>
+                    <a href="/2018/11/03/Git的简单使用/" class="b-link-green">Git的简单使用</a>
                 </p>
             </div>
         </div>
@@ -487,7 +475,7 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/11/03/Git的简单使用/">
                     <div class="card-image">
@@ -503,9 +491,9 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
 查看修改了什么东西：git diff xxx
 查看历史记录：git log    精简版:git log –pretty=oneline版本回退到上一个版本：git re</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -514,6 +502,7 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -530,17 +519,20 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/03/hello-world/">
+                <a href="/2018/11/03/Java学习笔记/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="学习Java">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">学习Java</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">##关于，面向对象类用于客观世界里某一类对象的共同特征，而对象则是类的具体存在，Java程序使用类的构造器来创建该类的对象
+构造器用于对类实例进行初始化操作，构造器支持重载。
+
+##对于一个类定义而言，可以包含三种最常见的成员：构造器、成员</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-03
@@ -552,6 +544,14 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                 </div>
                 
             </div>
