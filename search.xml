@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>学习Ajax</title>
+      <link href="/2018/11/12/Ajax%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2018/11/12/Ajax%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p>####Ajax应用的工作流程如下：</p><ol><li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li><li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li><li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li></ol><p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p><ol><li>创建 XMLHTTPRequest 对象</li><li>通过XMLHTTPRequest 向服务器发送请求</li><li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li><li>回调函数通过 DOM 更新HTML页面</li></ol><p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Ajax </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>前端杂笔记</title>
       <link href="/2018/11/08/%E5%89%8D%E7%AB%AF%E6%9D%82%E7%AC%94%E8%AE%B0/"/>
       <url>/2018/11/08/%E5%89%8D%E7%AB%AF%E6%9D%82%E7%AC%94%E8%AE%B0/</url>

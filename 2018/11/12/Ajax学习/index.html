@@ -5,8 +5,11 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: css js, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="标签: css js | 欢迎来到，瑞卿的窝。">
+    <meta name="keywords" content="学习Ajax, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="####Ajax应用的工作流程如下：
+
+JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。
+JavaScript脚本使用 XMLHTTPRequest">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>标签: css js | 欢迎来到，瑞卿的窝。</title>
+    <title>学习Ajax | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -243,176 +246,309 @@
     </nav>
 </header>
 
-<div class="bg-cover  about-cover" style="background-image: url('/medias/cover.jpg')">
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+            <div class="col s12 m12 l12">
                 <div class="brand">
-                    <div class="title center-align">
-                    
-                        诗与远方在哪里？
-                    
-                    </div>
-
-                    <div class="description center-align">
-                    
-                        学习的小小笔记，记在这里。
-                    
+                    <div class="description center-align post-title">
+                        学习Ajax
                     </div>
                 </div>
             </div>
         </div>
-        
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/Ajax/" target="_blank">
+                    <span class="chip bg-color">Ajax</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2018-11-12
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>####Ajax应用的工作流程如下：</p>
+<ol>
+<li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li>
+<li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li>
+<li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li>
+</ol>
+<p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p>
+<ol>
+<li>创建 XMLHTTPRequest 对象</li>
+<li>通过XMLHTTPRequest 向服务器发送请求</li>
+<li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li>
+<li>回调函数通过 DOM 更新HTML页面</li>
+</ol>
+<p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-// Dynamically switch banner pictures every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
 </script>
+            
 
-<main class="content">
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 
+<div id="article-share">
     
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
 
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">文章标签</div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/Typora/" title="Typora: 0">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="Typora" style="background-color: #F9EBEA;">Typora
-                        <span class="tag-length">0</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Markdown/" title="Markdown: 0">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="Markdown" style="background-color: #F5EEF8;">Markdown
-                        <span class="tag-length">0</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Java/" title="Java: 0">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="Java" style="background-color: #D5F5E3;">Java
-                        <span class="tag-length">0</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/rpc-netty/" title="rpc netty: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="rpc netty" style="background-color: #E8F8F5;">rpc netty
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vue/" title="vue: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="vue" style="background-color: #FEF9E7;">vue
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/javascript/" title="javascript: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="javascript" style="background-color: #F8F9F9;">javascript
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="git" style="background-color: #82E0AA;">git
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/java/" title="java: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="java" style="background-color: #D7BDE2;">java
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/HTML/" title="HTML: 0">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="HTML" style="background-color: #A3E4D7;">HTML
-                        <span class="tag-length">0</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/css-js/" title="css js: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active " data-tagname="css js" style="background-color: #85C1E9;">css js
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Ajax/" title="Ajax: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="Ajax" style="background-color: #F8C471;">Ajax
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/11/12/Ajax学习/" class="b-link-green">学习Ajax</a>
+                </p>
             </div>
         </div>
     </div>
-</div>
 
-    <div class="container">
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
         
-
-        <article>
-            <div class="row tags-posts">
-                
-                
-                <div class="article tag-post col s12 m6 l4" data-tags="css js" data-aos="fade-up">
-                    <div class="card">
-                        <a href="/2018/11/08/前端杂笔记/">
-                            <div class="card-image tag-image">
-                                
-                                
-                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="前端杂笔记">
-                                
-                                <span class="card-title">前端杂笔记</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fa fa-user fa-fw"></i>
-                                    刘瑞
-                                    
-                                </span>
-                            </div>
-                        </div>
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2018/11/12/Ajax学习/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="学习Ajax">
+                        
+                        <span class="card-title">学习Ajax</span>
                     </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">####Ajax应用的工作流程如下：
+
+JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。
+JavaScript脚本使用 XMLHTTPRequest</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Ajax/" target="_blank">
+                        <span class="chip bg-color">Ajax</span>
+                    </a>
+                    
                 </div>
                 
             </div>
-        </article>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2018/11/08/前端杂笔记/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="前端杂笔记">
+                        
+                        <span class="card-title">前端杂笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">1.00&lt;meta&gt;元素，提供有关页面的元信息&lt;meta&gt;标签永远位于head元素内部元数据总是以名称/值的形式被成对传递的如：&lt;meta charset=’utf-8’ &gt; 告知浏览器此页面是属于什么字</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/css-js/" target="_blank">
+                        <span class="chip bg-color">css js</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
     </div>
-</main>
+</article>
+</div>
+    
 
+</main>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
