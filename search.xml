@@ -7,13 +7,13 @@
       <link href="/2018/11/12/Ajax%E5%AD%A6%E4%B9%A0/"/>
       <url>/2018/11/12/Ajax%E5%AD%A6%E4%B9%A0/</url>
       
-        <content type="html"><![CDATA[<p>####Ajax应用的工作流程如下：</p><ol><li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li><li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li><li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li></ol><p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p><ol><li>创建 XMLHTTPRequest 对象</li><li>通过XMLHTTPRequest 向服务器发送请求</li><li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li><li>回调函数通过 DOM 更新HTML页面</li></ol><p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p>]]></content>
+        <content type="html"><![CDATA[<p>####Ajax应用的工作流程如下：</p><ol><li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li><li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li><li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li></ol><p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p><ol><li>创建 XMLHTTPRequest 对象</li><li>通过XMLHTTPRequest 向服务器发送请求</li><li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li><li>回调函数通过 DOM 更新HTML页面</li></ol><p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p><hr><p>Ajax在于给用户连续的体验<br>对于Ajax应用，浏览器不仅可以包含简单逻辑，甚至可以保存用户会话转状态。<br><strong>Ajax技术有以下优势：</strong></p><ol><li>减轻了客户端的内存消耗。Ajax的根本理念是“按需取数据”</li><li>无刷新更新页面。通过异步发送请求，避免了频繁刷新页面，从而减少了用户的等待时间，给于用户一种连续的体验</li><li>Ajax技术可以将传统的服务器工作转嫁到客户端，从而减轻服务器和带宽的负担，节约空间和带宽租用成本。</li></ol><hr><p>Ajax采用异步的方式发送请求，页面的更新由JavaScript操作DOM完成。</p>]]></content>
       
       
       
         <tags>
             
-            <tag> Ajax </tag>
+            <tag> ajx </tag>
             
         </tags>
       
