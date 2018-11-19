@@ -5,11 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="学习Ajax, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="####Ajax应用的工作流程如下：
-
-JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。
-JavaScript脚本使用 XMLHTTPRequest">
+    <meta name="keywords" content="校园网的无限流量, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="无限流量归纳最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +14,7 @@ JavaScript脚本使用 XMLHTTPRequest">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>学习Ajax | 欢迎来到，瑞卿的窝。</title>
+    <title>校园网的无限流量 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -248,13 +245,13 @@ JavaScript脚本使用 XMLHTTPRequest">
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        学习Ajax
+                        校园网的无限流量
                     </div>
                 </div>
             </div>
@@ -274,8 +271,8 @@ JavaScript脚本使用 XMLHTTPRequest">
             
             <div class="article-tag">
                 
-                <a href="/tags/ajx/" target="_blank">
-                    <span class="chip bg-color">ajx</span>
+                <a href="/tags/vpn/" target="_blank">
+                    <span class="chip bg-color">vpn</span>
                 </a>
                 
             </div>
@@ -284,36 +281,33 @@ JavaScript脚本使用 XMLHTTPRequest">
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-11-12
+                    <i class="fa fa-clock-o fa-fw"></i>2018-11-19
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>####Ajax应用的工作流程如下：</p>
-<ol>
-<li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li>
-<li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li>
-<li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li>
-</ol>
-<p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p>
-<ol>
-<li>创建 XMLHTTPRequest 对象</li>
-<li>通过XMLHTTPRequest 向服务器发送请求</li>
-<li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li>
-<li>回调函数通过 DOM 更新HTML页面</li>
-</ol>
-<p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p>
+                <h1 id="无限流量归纳"><a href="#无限流量归纳" class="headerlink" title="无限流量归纳"></a>无限流量归纳</h1><p>最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返以续之。</p>
 <hr>
-<p>Ajax在于给用户连续的体验<br>对于Ajax应用，浏览器不仅可以包含简单逻辑，甚至可以保存用户会话转状态。<br><strong>Ajax技术有以下优势：</strong></p>
+<h2 id="1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。"><a href="#1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。" class="headerlink" title="1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。"></a>1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。</h2><p>准备材料：一台公网的服务器<br>步骤：</p>
 <ol>
-<li>减轻了客户端的内存消耗。Ajax的根本理念是“按需取数据”</li>
-<li>无刷新更新页面。通过异步发送请求，避免了频繁刷新页面，从而减少了用户的等待时间，给于用户一种连续的体验</li>
-<li>Ajax技术可以将传统的服务器工作转嫁到客户端，从而减轻服务器和带宽的负担，节约空间和带宽租用成本。</li>
+<li>在服务器上搭建SoftEther VPN Server</li>
+<li>在windows上下载SE-VPN Server Manager，连接到搭建好的服务器。</li>
+<li>通过Mananger这个软件来添加用户，并启用SecureNAT功能。</li>
+<li>改变OpenVPN监听的端口，默认是1193，改为53或67或68（不是都可以用，我测试53和67可用）。</li>
+<li>在Manager软件里生成OpenVpn Client的配置文件。</li>
+<li>在windows下载OpenVpn，把第5步生成的配置文件放到安装目录的config里面，并使用第3步添加的用户登录，来连接到服务器上。</li>
 </ol>
 <hr>
-<p>Ajax采用异步的方式发送请求，页面的更新由JavaScript操作DOM完成。</p>
+<p>原理介绍：<br>在连接到某个需要Web认证的热点之前，我们已经有了一个内网IP，此时，如果我们访问某个HTTP网站，网关会对这个HTTP响应报文劫持并篡改，302重定向到让我们认证的页面（就是登录让你输入账号密码的网页）。</p>
+<p>网关（交换机）都默认放行DHCP和DNS的报文，也就是UDP53和UDP67，所以把数据通过53端口传到服务器上，服务器将返回的网页内容再通过53端口传给客户端，实际上都在费流量，只是没有计费。</p>
+<p>参考的博客：</p>
+<p>UDP 53/67/68 端口转发 绕过校园网认证、免流<br><code>https://blog.csdn.net/sinat_38245860/article/details/78669584</code></p>
+<p>UDP 53免费上网、DNS隧道经验谈<code>https://blog.csdn.net/qq_42433224/article/details/82632711</code></p>
+<p>交换机 配置WEB认证的功能原理是什么</p>
+<p><code>http://www.ruijie.com.cn/fw/wt/36503/</code></p>
+<hr>
 
             </div>
             <hr>
@@ -452,7 +446,7 @@ JavaScript脚本使用 XMLHTTPRequest">
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/12/Ajax学习/" class="b-link-green">学习Ajax</a>
+                    <a href="/2018/11/19/校园网无限流量总结/" class="b-link-green">校园网的无限流量</a>
                 </p>
             </div>
         </div>
@@ -472,7 +466,7 @@ JavaScript脚本使用 XMLHTTPRequest">
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/11/19/校园网无限流量总结/">
                     <div class="card-image">
@@ -486,9 +480,9 @@ JavaScript脚本使用 XMLHTTPRequest">
                 <div class="card-content article-content">
                     <div class="summary">无限流量归纳最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -497,6 +491,7 @@ JavaScript脚本使用 XMLHTTPRequest">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -513,20 +508,23 @@ JavaScript脚本使用 XMLHTTPRequest">
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/08/前端杂笔记/">
+                <a href="/2018/11/12/Ajax学习/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="前端杂笔记">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="学习Ajax">
                         
-                        <span class="card-title">前端杂笔记</span>
+                        <span class="card-title">学习Ajax</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.&lt;meta&gt;元素，提供有关页面的元信息&lt;meta&gt;标签永远位于head元素内部元数据总是以名称/值的形式被成对传递的如：&lt;meta charset=’utf-8’ &gt; 告知浏览器此页面是属于什么字符编</div>
+                    <div class="summary">####Ajax应用的工作流程如下：
+
+JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。
+JavaScript脚本使用 XMLHTTPRequest</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-12
                             </span>
                         <span class="publish-author">
                             
@@ -539,8 +537,8 @@ JavaScript脚本使用 XMLHTTPRequest">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/HTML/" target="_blank">
-                        <span class="chip bg-color">HTML</span>
+                    <a href="/tags/ajx/" target="_blank">
+                        <span class="chip bg-color">ajx</span>
                     </a>
                     
                 </div>
