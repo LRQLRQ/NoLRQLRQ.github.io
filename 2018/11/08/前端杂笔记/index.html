@@ -358,6 +358,13 @@ if (temp==null){
 </code></pre><p>应该判断该值是不是为null，而不是判断</p>
 <pre><code>if(temp==&#39;&#39;)
 </code></pre><p>因为如果数值并没有传递的话，该值是undefined，是null，而不是为’’，具体的情况可以在浏览器进行调试。</p>
+<hr>
+<p><strong>button、input、a标签的区别</strong><br>button、input和a标签都可以加上一定的样式后成为外观上没有很大差别的按钮，但是这三个标签应用的场景不尽相同。</p>
+<ol>
+<li>button,通过onclick来绑定javascript事件。</li>
+<li>&amp;It input type=”submit” value=”提交” /&amp;gt  将表单内用户设置或者选择的所有数据一并<strong>提交到后台</strong>。</li>
+<li>&amp;It a class=”btn” href=’#’ &amp;gt 提交 &amp;It/a&amp;gt<br>通过添加链接访问到页面中的某一个位置或者另一个页面，不向后台提供数据</li>
+</ol>
 
             </div>
             <hr>
