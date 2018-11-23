@@ -6,8 +6,8 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="刷LeetCode的笔记, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="今天第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascript的一些方法
-有个题目是返回输入的数">
+    <meta name="description" content="刷LeetCode心得体会
+11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascri">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -289,14 +289,14 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。<br>总结一下javascript的一些方法</p>
+                <p><strong>刷LeetCode心得体会</strong></p>
+<p>11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。<br>总结一下javascript的一些方法</p>
 <p>有个题目是返回输入的数字的倒序<br>代码如下</p>
 <pre><code>var reverse = function(x){
     result = parseInt(x.toString().split(&#39;&#39;).reverse().join(&#39;&#39;));
     if(result &gt; Math.pow(2,31)-1 || -result &lt; Math.pow(-2,31)-1) return 0;
     return x &gt; 0 ? result : -result;
 }
-
 </code></pre><p><code>x.toString</code> 是把输入的数字转化为字符串<br><code>x.split(&#39;&#39;)</code>是把生成的字符串根据’’切割，转化为数组<br><code>x.reverse()</code> 是把数组进行倒序<br><code>x.join(&#39;&#39;)</code> 是将数组组合成字符串</p>
 <hr>
 
@@ -469,8 +469,8 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">今天第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascript的一些方法
-有个题目是返回输入的数</div>
+                    <div class="summary">刷LeetCode心得体会
+11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascri</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-23
