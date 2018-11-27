@@ -299,6 +299,71 @@
 }
 </code></pre><p><code>x.toString</code> 是把输入的数字转化为字符串<br><code>x.split(&#39;&#39;)</code>是把生成的字符串根据’’切割，转化为数组<br><code>x.reverse()</code> 是把数组进行倒序<br><code>x.join(&#39;&#39;)</code> 是将数组组合成字符串</p>
 <hr>
+<p>11.27 Roman to Integer<br>        今天做了一道将罗马数字转化为数字的题，罗马数字中I为1，V为5，X为10，L为50，C为100，D为500，M为1000.但是表示4的时候不是表示IIII，而是IV，I在V左边表示5-1=4，像这样的都有 IV=4  IX=9  XL=40  XC=90  CD=400 CM=900.<br>然后根据罗马数字的输入来得到整数的输出，我的代码是这样：</p>
+<pre><code>/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    var num_IV = s.split(&#39;IV&#39;).length-1;    //-1
+    var num_IX = s.split(&#39;IX&#39;).length-1;    //-1    
+    var num_XL = s.split(&#39;XL&#39;).length-1;    //-10
+    var num_XC = s.split(&#39;XC&#39;).length-1;    //-10
+    var num_CD = s.split(&#39;CD&#39;).length-1;    //-100
+    var num_CM = s.split(&#39;CM&#39;).length-1;    //-100
+    var num_I = s.split(&#39;I&#39;).length-1;
+    var num_V = s.split(&#39;V&#39;).length-1;
+    var num_X = s.split(&#39;X&#39;).length-1;
+    var num_L = s.split(&#39;L&#39;).length-1;
+    var num_C = s.split(&#39;C&#39;).length-1;
+    var num_D = s.split(&#39;D&#39;).length-1;
+    var num_M = s.split(&#39;M&#39;).length-1;
+    var result = 0;
+
+    result = num_I + num_V*5 + num_X*10 + num_L*50 + num_C*100 + num_D*500 + num_M*1000 
+    - num_IV*2 - num_IX*2 - num_XL*20 - num_XC*20 - num_CD*200 - num_CM*200;
+
+    return result;
+
+};
+
+</code></pre><p>这样写代码很冗杂，才超过了百分之30多的人。。。也算是初步会用了js的一些方法吧。<br>如果想求某个字符串temp，在字符串s中出现的次数，可以用s.split(‘temp’).length-1，来获得。s.split(‘temp’)后得到一个数组，再求出这个数组的长度，再-1，因为split操作后，数组中会出现’’元素。</p>
+<p>看了看discussion，发现另一种用slice实现的方法，虽然也有点暴力，没有为之一振的感觉，但是初学者，能吸收一点是一点，放在这里刚好可以对比着学习split和slice这两个方法了</p>
+<pre><code>var romanToInt = function(s) {
+    var roman = {        //定义存储的数组
+        &#39;I&#39;: 1,
+        &#39;V&#39;: 5,
+        &#39;X&#39;: 10,
+        &#39;L&#39;: 50,
+        &#39;C&#39;: 100,
+        &#39;D&#39;: 500,
+        &#39;M&#39;: 1000,
+        &#39;IV&#39;: 4,
+        &#39;IX&#39;: 9,
+        &#39;XL&#39;: 40,
+        &#39;XC&#39;: 90,
+        &#39;CD&#39;: 400,
+        &#39;CM&#39;: 900,
+    };
+    var ret = 0;
+    for (var i = 0; i &lt; s.length; ) {
+        var j = i + 1;    //每次j只比i大1，是当前元素的下一个元素
+        if (j === s.length) {    //如果j为字符串的长度，就说明到了最后，进行最后一次运算
+            ret += roman[s.slice(i, j)];
+            return ret;
+        }
+        if (s.slice(i, j + 1) in roman) {        //如果连着2个字符出现在之前存储的数组中，即出现了IV、IX这些
+            ret += roman[s.slice(i, j + 1)];
+            i = j + 1;
+        } else {
+            ret += roman[s.slice(i, j)];
+            i = j;
+        }
+    }
+    return ret;
+};
+</code></pre><p><code>if (s.slice(i, j + 1) in roman)</code> 我觉得这个知识点有点东西，得记一下。<br>依据键来取声明式对象中的值</p>
+<p>此外，slice方法，是输入两个index，返回的是该字符串中，两个index之间的字符串。<br>而split方法，是把字符串进行切分，分割成若干个数组。</p>
 
             </div>
             <hr>
