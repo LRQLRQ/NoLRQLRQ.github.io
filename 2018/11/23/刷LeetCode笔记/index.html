@@ -364,6 +364,10 @@ var romanToInt = function(s) {
 };
 </code></pre><p><code>if (s.slice(i, j + 1) in roman)</code> 我觉得这个知识点有点东西，得记一下。<br>依据键来取声明式对象中的值</p>
 <p>此外，slice方法，是输入两个index，返回的是该字符串中，两个index之间的字符串。<br>而split方法，是把字符串进行切分，分割成若干个数组。</p>
+<hr>
+<p>11.28 求一个数组中，前面相同的部分<br>如输入 strs = [‘flower’,’flow’,’fly’]  就输出’fl’</p>
+<p>做这道题我自己的方法是<br>1.最多循环数组中第一个元素的长度<br>2.以第一个元素为基准，以此和数组中别的元素的相同位置的字符进行比较<br>3.如果相同，则将该字符添加到ret后面</p>
+<p>做这道题，掌握到的<strong>新知识点</strong>：<br>1.对于一些乱七八糟的输入，比如空数组[] ,比如[‘’]，可以这样来判断输入值是否合法<br><code>if(!strs || strs.length)</code>,如果是undefined的话，加一个取反，逻辑就为true。如果是长度为0，也会返回true。<br>2.对于输入的strs，可以用这种方式来取值<code>strs[i][j]</code><br>即对于string类型的数据，可以直接通过[]的方式取值<br>3.string类型的一个新方法，截取字符串 <code>string.substring(i,j)</code>，则返回字符串string中的i到j坐标中的字符串</p>
 
             </div>
             <hr>
