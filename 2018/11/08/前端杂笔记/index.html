@@ -367,6 +367,8 @@ if (temp==null){
 </ol>
 <hr>
 <p>对于输入框，可以在input内加一个placeholder，来显示默认提示信息。</p>
+<hr>
+<p>今天遇到一个bug，在写一个日历组件的时候，将代码从demo中扒过来之后，发现不能用。以后要先检查一下，看下console报的什么错误。然后看source里面的文件，都用了哪里的地方，然后一起扒过来。<br>在抄过来的时候，报了错误，$(…).datetimepicker is not a function，是因为我在html中先引用了这个函数，后引用了库函数，顺序反了，所以没有找到这个函数。顺序改好了就好了。</p>
 
             </div>
             <hr>
