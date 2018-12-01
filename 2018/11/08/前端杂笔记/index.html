@@ -369,6 +369,14 @@ if (temp==null){
 <p>对于输入框，可以在input内加一个placeholder，来显示默认提示信息。</p>
 <hr>
 <p>今天遇到一个bug，在写一个日历组件的时候，将代码从demo中扒过来之后，发现不能用。以后要先检查一下，看下console报的什么错误。然后看source里面的文件，都用了哪里的地方，然后一起扒过来。<br>在抄过来的时候，报了错误，$(…).datetimepicker is not a function，是因为我在html中先引用了这个函数，后引用了库函数，顺序反了，所以没有找到这个函数。顺序改好了就好了。</p>
+<hr>
+<p>12.1日<br>昨天新增了一个日历的插件，在查询的时候，后端给的接口需要输入时间戳的格式的时间。现在的时间格式是2018-12-01,但是时间戳的格式是  1543593600000  ，首先解释一下时间戳的意思，<strong>是从1970年1月1日开始，到此时此刻所经过的秒数。</strong>在这里帖上把时间转换为时间戳的代码：</p>
+<pre><code>var startTime = &#39;2018-12-1 21:57:00:000&#39;
+var date = new Date(startTime.replace(/-/g,&#39;/&#39;));
+var time1 = date.getTime();    //这种会精确到毫秒
+var time2 = date.valueOf();    //同上，会精确到毫秒
+var Date.parse(date);        //只会精确到秒
+</code></pre><p>第二行使用了正则表达式，两个<code>/</code>之间的是表达式，<code>g</code>是所有的意思，这行代码的意思是将所有的<code>-</code>都变为<code>&#39;/&#39;</code></p>
 
             </div>
             <hr>
