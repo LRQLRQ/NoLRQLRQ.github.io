@@ -378,7 +378,7 @@ var time2 = date.valueOf();    //同上，会精确到毫秒
 var Date.parse(date);        //只会精确到秒
 </code></pre><p>第二行使用了正则表达式，两个<code>/</code>之间的是表达式，<code>g</code>是所有的意思，这行代码的意思是将所有的<code>-</code>都变为<code>&#39;/&#39;</code></p>
 <hr>
-<p>vue中的bind和model的比较</p>
+<p>##<strong>vue中的bind和model的比较</strong></p>
 <ol>
 <li>select控件使用model时，不应该将model写到 option里面，应该写到select中，绑定selece的value值</li>
 <li>model是双向绑定。将html比作前面展示出来的东西，将js比作后面处理的动作。使用model之后，比如对于input控件，当用户进行输入，改变值之后，后面的js中的绑定的变量也会改变。同理js进行改变之后，前面的html页面也会进行修改。</li>
