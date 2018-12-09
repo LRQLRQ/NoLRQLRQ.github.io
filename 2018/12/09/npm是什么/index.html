@@ -5,9 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Git的远程建立分支, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="2018-12-03项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。
-git branch :列出本地的分支，当前分支会标有*号git branch -r :列出远程的">
+    <meta name="keywords" content="npm是干什么的, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +14,7 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Git的远程建立分支 | 欢迎来到，瑞卿的窝。</title>
+    <title>npm是干什么的 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -246,13 +245,13 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Git的远程建立分支
+                        npm是干什么的
                     </div>
                 </div>
             </div>
@@ -272,8 +271,8 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
             
             <div class="article-tag">
                 
-                <a href="/tags/Git/" target="_blank">
-                    <span class="chip bg-color">Git</span>
+                <a href="/tags/npm-前端/" target="_blank">
+                    <span class="chip bg-color">npm 前端</span>
                 </a>
                 
             </div>
@@ -282,29 +281,22 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-03
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-09
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>2018-12-03<br>项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。</p>
-<p><code>git branch</code> :列出本地的分支，当前分支会标有<code>*</code>号<br><code>git branch -r</code> :列出远程的分支<br><code>git branch -a</code> :列出所有本地和远程的分支</p>
-<h2 id="首先新建一个本地分支："><a href="#首先新建一个本地分支：" class="headerlink" title="首先新建一个本地分支："></a>首先新建一个本地分支：</h2><p><code>git checkout -b lrqTest</code><br>上面这行代码代表新建一个分支并切换到分支内，等同于下<br><code>git branch lrqTest</code><br><code>git checkout lrqTest</code></p>
-<h2 id="第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起"><a href="#第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起" class="headerlink" title="第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起"></a>第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起</h2><p><code>git push origin lrqTest:remoteTest</code><br>其中<code>lrqTest</code>是本地的分支名,<code>remoteTest</code>是远程服务器的分支名，可以随便起名</p>
-<p>到此，就建立了远程分支。</p>
-<hr>
-<h2 id="如果想要删除远程分支"><a href="#如果想要删除远程分支" class="headerlink" title="如果想要删除远程分支"></a>如果想要删除远程分支</h2><p><code>git push origin  :lrqTest</code><br>意思是将一个空的分支push到远程名为lrqTest的分支，就是相当于删除.<br>也可以使用此命令：<br><code>git pust origin --delete lrqTest</code></p>
-<hr>
-<h2 id="如果某个用户想要拉取远程的分支"><a href="#如果某个用户想要拉取远程的分支" class="headerlink" title="如果某个用户想要拉取远程的分支"></a>如果某个用户想要拉取远程的分支</h2><ol>
-<li>直接使用<code>git checkout -b 本地分支名 origin/远程分支名</code><br>这种方式会直接在本地新建分支，并且切换到该分支。<br>并且，这种方式会将新建立的本地分支和远程分支建立<strong>映射关系</strong></li>
-<li>使用<code>git fetch origin 远程分支名:本地分支名</code><br>这种方式建立的分支不会切换到新建的分支，需要自己手动进行checkout<br>而且，这种方式建立的本地分支<strong>不会和远程分支建立映射关系</strong></li>
+                <h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p>
+<p>在这里抄一下npm的实现思路：</p>
+<ol>
+<li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li>
+<li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li>
+<li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li>
+<li>下载完之后的代码就在node_modules里面，可以使用了。</li>
 </ol>
-<hr>
-<p>##建立本地分支和远程分支之间的映射关系<br>建立了映射关系之后，就不需要在每次<code>git pull</code> 和 <code>git push</code>的时候指定从远程的哪个分支拉取合并和推送到哪个分支。</p>
-<p>使用<code>git branch -vv</code>查看本地分支和远程分支的映射关系<br>如果没有映射关系，就需要自己<strong>手动建立</strong>：<br><code>git branch -u origin/分支名</code><br>或者<br><code>git branch --set-upstream-to origin/分支名</code><br>origin为git地址的标志，可以建立当前分支与远程分支的映射关系</p>
-<p><strong>撤销本地分支与远程分支的映射关系</strong><br><code>git branch -unset-upstream</code> 就撤销掉了与远程分支的映射关系</p>
+<h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>
 
             </div>
             <hr>
@@ -443,7 +435,7 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/03/Git建立分支/" class="b-link-green">Git的远程建立分支</a>
+                    <a href="/2018/12/09/npm是什么/" class="b-link-green">npm是干什么的</a>
                 </p>
             </div>
         </div>
@@ -463,7 +455,7 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/12/09/npm是什么/">
                     <div class="card-image">
@@ -477,9 +469,9 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                 <div class="card-content article-content">
                     <div class="summary">npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -488,6 +480,7 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -504,21 +497,21 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/23/刷LeetCode笔记/">
+                <a href="/2018/12/03/Git建立分支/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="刷LeetCode的笔记">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Git的远程建立分支">
                         
-                        <span class="card-title">刷LeetCode的笔记</span>
+                        <span class="card-title">Git的远程建立分支</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">刷LeetCode心得体会
-11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascri</div>
+                    <div class="summary">2018-12-03项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。
+git branch :列出本地的分支，当前分支会标有*号git branch -r :列出远程的</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-03
                             </span>
                         <span class="publish-author">
                             
@@ -531,8 +524,8 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/algorithm/" target="_blank">
-                        <span class="chip bg-color">algorithm</span>
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
