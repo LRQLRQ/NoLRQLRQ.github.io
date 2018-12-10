@@ -384,7 +384,38 @@ var Date.parse(date);        //只会精确到秒
 <li>model是双向绑定。将html比作前面展示出来的东西，将js比作后面处理的动作。使用model之后，比如对于input控件，当用户进行输入，改变值之后，后面的js中的绑定的变量也会改变。同理js进行改变之后，前面的html页面也会进行修改。</li>
 <li>bind是单向绑定。前改后不改，后改了前改。js中变量的改变会引起HTML中值的变化，显示就改变。而前面发生改变的话，js的变量是不会发生改变的。</li>
 </ol>
-
+<hr>
+<p>2018-12-10</p>
+<h4 id="廖雪峰网站中学到的js基础知识"><a href="#廖雪峰网站中学到的js基础知识" class="headerlink" title="廖雪峰网站中学到的js基础知识"></a>廖雪峰网站中学到的js基础知识</h4><p><strong>对于相等比较符，<code>==</code>和<code>===</code></strong>，JavaScript在设计时，有两种运算符：<br>第一种是<code>==</code>,它会自动转换数据类型再比较，很多时候会得出很诡异的结果。。<br>第二种是<code>===</code>比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再进行比较。<br>由于JavaScript这个设计缺陷，不要使用<code>==</code>比较，始终坚持使用<code>===</code>进行比较。</p>
+<p><strong>NaN这个特殊的number与其他所有的值都不相等，包括他自己</strong><br><code>NaN===NaN  //false</code><br>唯一能判断NaN的方式是使用<code>isNaN()</code>函数：<br>isNaN(NaN);  //true</p>
+<p><strong>JavaScript是一门动态语言</strong>，变量本身类型不固定的语言称为动态语言，与之对应的是静态语言。静态语言在定义变量的时候就必须指定变量类型，如果赋值的时候类型不匹配，就会报错。<br>比如在C语言中:</p>
+<pre><code>int a = 123; //a是整形变量，类型用int声明
+a = &#39;LRQ&#39;;   //错误，不能把字符串变量赋值给整形变量
+</code></pre><p><strong>字符串是不可变的，如果对某个字符串的索引赋值，不会有错误，但也没有任何效果</strong><br>要获取字符串某个指定位置的字符，可以使用类似Array的下标操作，索引号从0开始：</p>
+<pre><code>var str = &#39;lrqiswriting&#39;;
+a = str[0];   //a = &#39;l&#39;
+b = str[3];   //b = &#39;i&#39;
+str[2] = &#39;z&#39;; //不会出错，但也不会有任何效果
+</code></pre><p><strong>如果要在Array数组的头部添加若干元素，可以使用unshift()方法，shift()方法则把Array数组的第一个元素删掉</strong></p>
+<pre><code>var str=[1,2];
+str.unshift(&#39;A&#39;,&#39;B&#39;);   //此时str为[&#39;A&#39;,&#39;B&#39;,1,2]
+arr.shift();        //去掉头部元素，则str为[&#39;B&#39;,1,2]
+</code></pre><p>空数组连续shift()不会报错，而是会返回undefined</p>
+<p><strong>concat()方法把当前的Array和另一个Array连接起来，并返回一个新的Array</strong></p>
+<pre><code>var arr = [1,2,3];
+var added = arr.cncat([4,5,6]);//此时added为[1,2,3,4,5,6]
+</code></pre><p>concat()方法并没有修改当前的Array(),而是返回了一个新的Array</p>
+<p><strong>for…in…是for循环的一个变体，他可以把一个对象的所有属性依次循环出来</strong></p>
+<pre><code>var object = {
+    name: &#39;lrq&#39;,
+    age: 22,
+    city: &#39;BeiJing&#39;
+}
+for(key in object){
+    console.log(key);//&#39;name&#39;,&#39;age&#39;,&#39;city&#39;
+    console.log(object[key]);  //使用索引取出值
+}
+</code></pre>
             </div>
             <hr>
 
