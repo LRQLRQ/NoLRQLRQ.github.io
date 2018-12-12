@@ -415,7 +415,30 @@ for(key in object){
     console.log(key);//&#39;name&#39;,&#39;age&#39;,&#39;city&#39;
     console.log(object[key]);  //使用索引取出值
 }
-</code></pre>
+</code></pre><hr>
+<h3 id="2018-12-12"><a href="#2018-12-12" class="headerlink" title="2018-12-12"></a>2018-12-12</h3><h4 id="arguments关键字"><a href="#arguments关键字" class="headerlink" title="arguments关键字"></a>arguments关键字</h4><p>JavaScript有一个免费赠送的关键字，<strong>arguments</strong>,在函数体内使用这个关键字可以得到当前函数的调用者传入的所有参数。<code>arguments</code>类似于一个<code>Array</code>而又不是一个<code>Array</code>.<br>实际上<strong>arguments</strong>这个参数一般用于判断传入参数的个数。</p>
+<pre><code>function foo(x){
+    console.log(&#39;x = &#39; + x);
+    for(var i=0;i&lt;arguments.length;i++){
+        console.log(&#39;arg&#39; + i + &#39; = &#39; + arguments[i]);
+    }
+}
+
+`foo(10,20,30,40,50);`
+输入以上函数可以获得以下结果
+**x = 10
+arg0 = 10
+arg1 = 20
+arg2 = 30
+arg3 = 40
+arg4 = 50**
+
+#### rest参数
+ES6引入了rest参数
+</code></pre><p>function foo(a,b,…rest){<br>    console.log(‘a = ‘ + a);<br>    console.log(‘b = ‘ + b);<br>    console.log(rest);<br>}<br><code>`</code><br>输入函数<code>foo(1,2,3,4,5,6,7,8,9);</code><br>输出如下:<br><strong>a = 1<br>b = 2<br>[3,4,5,6,7,8,9]</strong></p>
+<p><strong>注意：rest参数只能写在最后面，前面用<code>...</code>来进行标识，传入的参数先绑定a和b，其余的再放入rest数组内。如果传入的参数连正常的都没有填满，rest参数会接收一个空数组。而不是<code>undefined</code></strong></p>
+<p><strong>JavaScript有一个在行末自动加分号的机制。</strong></p>
+
             </div>
             <hr>
 
