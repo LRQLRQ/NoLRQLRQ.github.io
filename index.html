@@ -1,757 +1,650 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
+    <meta charset="utf-8">
+    <meta name="keywords" content="欢迎来到，瑞卿的窝。">
+    <meta name="description" content="欢迎来到，瑞卿的窝。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>欢迎来到，瑞卿的窝。</title>
+    <link rel="icon" type="image/png" href="/favicon.jpg">
 
-  
-  <title>欢迎来到，瑞卿的窝。</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习的小小笔记，记在这里。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到，瑞卿的窝。">
-<meta property="og:url" content="https://lrqlrq.github.io/index.html">
-<meta property="og:site_name" content="欢迎来到，瑞卿的窝。">
-<meta property="og:description" content="学习的小小笔记，记在这里。">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到，瑞卿的窝。">
-<meta name="twitter:description" content="学习的小小笔记，记在这里。">
-  
-    <link rel="alternate" href="/atom.xml" title="欢迎来到，瑞卿的窝。" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
-</html>
+
+</head>
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">欢迎来到，瑞卿的窝。</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">诗与远方在哪里？</a>
-        </h2>
-      
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">欢迎来到，瑞卿的窝。</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">欢迎来到，瑞卿的窝。</div>
+        <div class="logo-desc">
+            
+            学习的小小笔记，记在这里。
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    <ul class="menu-list mobile-menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
         
-      </nav>
-      <nav id="sub-nav">
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lrqlrq.github.io"></form>
-      </div>
-    </div>
-  </div>
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-npm是什么" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/09/npm是什么/" class="article-date">
-  <time datetime="2018-12-09T12:36:01.557Z" itemprop="datePublished">2018-12-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/09/npm是什么/">npm是干什么的</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p>
-<p>在这里抄一下npm的实现思路：</p>
-<ol>
-<li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li>
-<li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li>
-<li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li>
-<li>下载完之后的代码就在node_modules里面，可以使用了。</li>
-</ol>
-<h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/12/09/npm是什么/" data-id="cjpm2rbko000et87qiz7x0uxy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm-前端/">npm 前端</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Git建立分支" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/03/Git建立分支/" class="article-date">
-  <time datetime="2018-12-03T06:50:54.556Z" itemprop="datePublished">2018-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/03/Git建立分支/">Git的远程建立分支</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2018-12-03<br>项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。</p>
-<p><code>git branch</code> :列出本地的分支，当前分支会标有<code>*</code>号<br><code>git branch -r</code> :列出远程的分支<br><code>git branch -a</code> :列出所有本地和远程的分支</p>
-<h2 id="首先新建一个本地分支："><a href="#首先新建一个本地分支：" class="headerlink" title="首先新建一个本地分支："></a>首先新建一个本地分支：</h2><p><code>git checkout -b lrqTest</code><br>上面这行代码代表新建一个分支并切换到分支内，等同于下<br><code>git branch lrqTest</code><br><code>git checkout lrqTest</code></p>
-<h2 id="第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起"><a href="#第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起" class="headerlink" title="第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起"></a>第二步，将新建的本地分支push到远程服务器，远程分支名字可以随便起</h2><p><code>git push origin lrqTest:remoteTest</code><br>其中<code>lrqTest</code>是本地的分支名,<code>remoteTest</code>是远程服务器的分支名，可以随便起名</p>
-<p>到此，就建立了远程分支。</p>
-<hr>
-<h2 id="如果想要删除远程分支"><a href="#如果想要删除远程分支" class="headerlink" title="如果想要删除远程分支"></a>如果想要删除远程分支</h2><p><code>git push origin  :lrqTest</code><br>意思是将一个空的分支push到远程名为lrqTest的分支，就是相当于删除.<br>也可以使用此命令：<br><code>git pust origin --delete lrqTest</code></p>
-<hr>
-<h2 id="如果某个用户想要拉取远程的分支"><a href="#如果某个用户想要拉取远程的分支" class="headerlink" title="如果某个用户想要拉取远程的分支"></a>如果某个用户想要拉取远程的分支</h2><ol>
-<li>直接使用<code>git checkout -b 本地分支名 origin/远程分支名</code><br>这种方式会直接在本地新建分支，并且切换到该分支。<br>并且，这种方式会将新建立的本地分支和远程分支建立<strong>映射关系</strong></li>
-<li>使用<code>git fetch origin 远程分支名:本地分支名</code><br>这种方式建立的分支不会切换到新建的分支，需要自己手动进行checkout<br>而且，这种方式建立的本地分支<strong>不会和远程分支建立映射关系</strong></li>
-</ol>
-<hr>
-<p>##建立本地分支和远程分支之间的映射关系<br>建立了映射关系之后，就不需要在每次<code>git pull</code> 和 <code>git push</code>的时候指定从远程的哪个分支拉取合并和推送到哪个分支。</p>
-<p>使用<code>git branch -vv</code>查看本地分支和远程分支的映射关系<br>如果没有映射关系，就需要自己<strong>手动建立</strong>：<br><code>git branch -u origin/分支名</code><br>或者<br><code>git branch --set-upstream-to origin/分支名</code><br>origin为git地址的标志，可以建立当前分支与远程分支的映射关系</p>
-<p><strong>撤销本地分支与远程分支的映射关系</strong><br><code>git branch -unset-upstream</code> 就撤销掉了与远程分支的映射关系</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/12/03/Git建立分支/" data-id="cjpm2rbjk0001t87qw7xwuhxk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-刷LeetCode笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/23/刷LeetCode笔记/" class="article-date">
-  <time datetime="2018-11-23T09:27:04.554Z" itemprop="datePublished">2018-11-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/23/刷LeetCode笔记/">刷LeetCode的笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>刷LeetCode心得体会</strong></p>
-<p>11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。<br>总结一下javascript的一些方法</p>
-<p>有个题目是返回输入的数字的倒序<br>代码如下</p>
-<pre><code>var reverse = function(x){
-    result = parseInt(x.toString().split(&#39;&#39;).reverse().join(&#39;&#39;));
-    if(result &gt; Math.pow(2,31)-1 || -result &lt; Math.pow(-2,31)-1) return 0;
-    return x &gt; 0 ? result : -result;
-}
-</code></pre><p><code>x.toString</code> 是把输入的数字转化为字符串<br><code>x.split(&#39;&#39;)</code>是把生成的字符串根据’’切割，转化为数组<br><code>x.reverse()</code> 是把数组进行倒序<br><code>x.join(&#39;&#39;)</code> 是将数组组合成字符串</p>
-<hr>
-<p>11.27 Roman to Integer<br>        今天做了一道将罗马数字转化为数字的题，罗马数字中I为1，V为5，X为10，L为50，C为100，D为500，M为1000.但是表示4的时候不是表示IIII，而是IV，I在V左边表示5-1=4，像这样的都有 IV=4  IX=9  XL=40  XC=90  CD=400 CM=900.<br>然后根据罗马数字的输入来得到整数的输出，我的代码是这样：</p>
-<pre><code>/**
- * @param {string} s
- * @return {number}
- */
-var romanToInt = function(s) {
-    var num_IV = s.split(&#39;IV&#39;).length-1;    //-1
-    var num_IX = s.split(&#39;IX&#39;).length-1;    //-1    
-    var num_XL = s.split(&#39;XL&#39;).length-1;    //-10
-    var num_XC = s.split(&#39;XC&#39;).length-1;    //-10
-    var num_CD = s.split(&#39;CD&#39;).length-1;    //-100
-    var num_CM = s.split(&#39;CM&#39;).length-1;    //-100
-    var num_I = s.split(&#39;I&#39;).length-1;
-    var num_V = s.split(&#39;V&#39;).length-1;
-    var num_X = s.split(&#39;X&#39;).length-1;
-    var num_L = s.split(&#39;L&#39;).length-1;
-    var num_C = s.split(&#39;C&#39;).length-1;
-    var num_D = s.split(&#39;D&#39;).length-1;
-    var num_M = s.split(&#39;M&#39;).length-1;
-    var result = 0;
-
-    result = num_I + num_V*5 + num_X*10 + num_L*50 + num_C*100 + num_D*500 + num_M*1000 
-    - num_IV*2 - num_IX*2 - num_XL*20 - num_XC*20 - num_CD*200 - num_CM*200;
-
-    return result;
-
-};
-
-</code></pre><p>这样写代码很冗杂，才超过了百分之30多的人。。。也算是初步会用了js的一些方法吧。<br>如果想求某个字符串temp，在字符串s中出现的次数，可以用s.split(‘temp’).length-1，来获得。s.split(‘temp’)后得到一个数组，再求出这个数组的长度，再-1，因为split操作后，数组中会出现’’元素。</p>
-<p>看了看discussion，发现另一种用slice实现的方法，虽然也有点暴力，没有为之一振的感觉，但是初学者，能吸收一点是一点，放在这里刚好可以对比着学习split和slice这两个方法了</p>
-<pre><code>var romanToInt = function(s) {
-    var roman = {        //定义存储的数组
-        &#39;I&#39;: 1,
-        &#39;V&#39;: 5,
-        &#39;X&#39;: 10,
-        &#39;L&#39;: 50,
-        &#39;C&#39;: 100,
-        &#39;D&#39;: 500,
-        &#39;M&#39;: 1000,
-        &#39;IV&#39;: 4,
-        &#39;IX&#39;: 9,
-        &#39;XL&#39;: 40,
-        &#39;XC&#39;: 90,
-        &#39;CD&#39;: 400,
-        &#39;CM&#39;: 900,
-    };
-    var ret = 0;
-    for (var i = 0; i &lt; s.length; ) {
-        var j = i + 1;    //每次j只比i大1，是当前元素的下一个元素
-        if (j === s.length) {    //如果j为字符串的长度，就说明到了最后，进行最后一次运算
-            ret += roman[s.slice(i, j)];
-            return ret;
-        }
-        if (s.slice(i, j + 1) in roman) {        //如果连着2个字符出现在之前存储的数组中，即出现了IV、IX这些
-            ret += roman[s.slice(i, j + 1)];
-            i = j + 1;
-        } else {
-            ret += roman[s.slice(i, j)];
-            i = j;
-        }
+<style type="text/css">
+    /* don't remove. */
+    .index-cover {
+        height: 100vh;
     }
-    return ret;
-};
-</code></pre><p><code>if (s.slice(i, j + 1) in roman)</code> 我觉得这个知识点有点东西，得记一下。<br>依据键来取声明式对象中的值</p>
-<p>此外，slice方法，是输入两个index，返回的是该字符串中，两个index之间的字符串。<br>而split方法，是把字符串进行切分，分割成若干个数组。</p>
-<hr>
-<p>11.28 求一个数组中，前面相同的部分<br>如输入 strs = [‘flower’,’flow’,’fly’]  就输出’fl’</p>
-<p>做这道题我自己的方法是<br>1.最多循环数组中第一个元素的长度<br>2.以第一个元素为基准，以此和数组中别的元素的相同位置的字符进行比较<br>3.如果相同，则将该字符添加到ret后面</p>
-<p>做这道题，掌握到的<strong>新知识点</strong>：<br>1.对于一些乱七八糟的输入，比如空数组[] ,比如[‘’]，可以这样来判断输入值是否合法<br><code>if(!strs || strs.length)</code>,如果是undefined的话，加一个取反，逻辑就为true。如果是长度为0，也会返回true。<br>2.对于输入的strs，可以用这种方式来取值<code>strs[i][j]</code><br>即对于string类型的数据，可以直接通过[]的方式取值<br>3.string类型的一个新方法，截取字符串 <code>string.substring(i,j)</code>，则返回字符串string中的i到j坐标中的字符串</p>
-<hr>
-<p>11.29 判定一个括号是不是成对出现，符合规则<code>{[()]}</code>,比如说是这样</p>
-<p>我的思路：<br>1.重复将输入的字符串根据<code>() [] {}</code> 进行split拆分成数组，再合并起来，一直到最后结果变为 <code>&#39;&#39;</code>,这就说明成功了。具体代码如下：</p>
-<pre><code>var temp = s;
-while(1){
-    temp = s.split(&quot;()&quot;).join(&quot;&quot;).split(&quot;[]&quot;).join(&quot;&quot;).split(&quot;{}&quot;).join(&quot;&quot;);
-    if(temp==&quot;&quot;)
-        return true;
-    if(temp==s){
-        return false;
-    }
-    s = temp;
-}
-</code></pre><p>但是这样运行效率太差劲了，只超过了10%的人，菜的要死。<br>然后在dission看到了超过100%的人。。学习一下<br>思路：<br>1.将括号的左边，和括号的右边存在两个Set对象中，将成对的括号制成map表，以左边括号为key，以右边括号为value<br>2.用一个栈，随时储存和进行操作<br>3.对传入的字符串进行遍历，如果是一个左括号的类型的值，则push到栈顶。如果是一个右括号类型的值，就pop弹出栈顶的值，此时栈顶是左括号的最后一个的值，弹出之后就变成了前一个。拿弹出的值对应的map和此时的右括号的某个值进行比较，看相不相等。相等就继续判断下一个，不等就直接输出false</p>
-<p>优点：<br>1.遍历的过程一次只判断一个字母，速度快一点。<br>2.提前制好了表，即两个set对象和一个map，查找更快。<br>3.用到了栈，巧妙的用后进先出的特点，解决了括号要按同种类型嵌套的问题<br>代码如下：</p>
-<pre><code>var isValid = function(s) {
-    let stack = [];
-    let openSet = new Set([&#39;(&#39;, &#39;{&#39;, &#39;[&#39;]);
-    let closeSet = new Set([&#39;}&#39;, &#39;]&#39;, &#39;)&#39;]);
-    let bracketMap = new Map([[&#39;(&#39;, &#39;)&#39;], [&#39;[&#39;, &#39;]&#39;], [&#39;{&#39;, &#39;}&#39;]]); 
-    for (let c of s) {
-        if (openSet.has(c))  {
-            stack.push(c);   
-        }
-        else if (closeSet.has(c)) {
-            let temp = stack.pop();
-            if (temp === undefined || c !== bracketMap.get(temp)) return false;
-        } 
-    }
-    return stack.length === 0;
-};
-</code></pre><p>新学的知识点：<br>1.Set对象，和map类似，是一组key的集合，但是不存储value，因为key不能重复，所以在Set中没有重复的元素。<br>2.map,是一组键值对的结构，具有极快的查找速度，通过传入的数组的数组建立。通过set(key,value)方法添加元素，通过get(key)来取值。<br>3.栈的push和pop，栈是一种后进先出的数据结构，栈中项的推入和弹出都发生在栈顶。javascript中为数组提供了push()和pop()方法，push()可以接受任意数量的参数，逐个添加到数组的末尾，并返回修改后数组的长度。pop()方法则从数组的末尾弹出最后一项，减少数组的length值，返回弹出的项</p>
+</style>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/11/23/刷LeetCode笔记/" data-id="cjpm2rbkk000ct87qsk3rrw27" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
+<div class="bg-cover index-cover about-cover" style="background-image: url('/medias/cover.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                <div class="brand">
+                    <div class="title center-align">
+                    
+                        诗与远方在哪里？
+                    
+                    </div>
 
-    </footer>
-  </div>
-  
-</article>
+                    <div class="description center-align">
+                    
+                        学习的小小笔记，记在这里。
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-btns">
+            <a href="#recommend-sections" class="waves-effect waves-light btn">
+                <i class="fa fa-angle-double-down"></i>继续阅读
+            </a>
 
-
-  
-    <article id="post-校园网无限流量总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/19/校园网无限流量总结/" class="article-date">
-  <time datetime="2018-11-19T01:26:38.514Z" itemprop="datePublished">2018-11-19</time>
+            
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light btn" target="_blank">
+                <i class="fa fa-github-alt"></i>Github
+            </a>
+            
+        </div>
+        <div class="cover-social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/19/校园网无限流量总结/">校园网的无限流量</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="无限流量归纳"><a href="#无限流量归纳" class="headerlink" title="无限流量归纳"></a>无限流量归纳</h1><p>最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返以续之。</p>
-<hr>
-<h2 id="1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。"><a href="#1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。" class="headerlink" title="1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。"></a>1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。</h2><p>准备材料：一台公网的服务器<br>步骤：</p>
-<ol>
-<li>在服务器上搭建SoftEther VPN Server</li>
-<li>在windows上下载SE-VPN Server Manager，连接到搭建好的服务器。</li>
-<li>通过Mananger这个软件来添加用户，并启用SecureNAT功能。</li>
-<li>改变OpenVPN监听的端口，默认是1193，改为53或67或68（不是都可以用，我测试53和67可用）。</li>
-<li>在Manager软件里生成OpenVpn Client的配置文件。</li>
-<li>在windows下载OpenVpn，把第5步生成的配置文件放到安装目录的config里面，并使用第3步添加的用户登录，来连接到服务器上。</li>
-</ol>
-<hr>
-<p>原理介绍：<br>在连接到某个需要Web认证的热点之前，我们已经有了一个内网IP，此时，如果我们访问某个HTTP网站，网关会对这个HTTP响应报文劫持并篡改，302重定向到让我们认证的页面（就是登录让你输入账号密码的网页）。</p>
-<p>网关（交换机）都默认放行DHCP和DNS的报文，也就是UDP53和UDP67，所以把数据通过53端口传到服务器上，服务器将返回的网页内容再通过53端口传给客户端，实际上都在费流量，只是没有计费。</p>
-<p>参考的博客：</p>
-<p>UDP 53/67/68 端口转发 绕过校园网认证、免流<br><code>https://blog.csdn.net/sinat_38245860/article/details/78669584</code></p>
-<p>UDP 53免费上网、DNS隧道经验谈<code>https://blog.csdn.net/qq_42433224/article/details/82632711</code></p>
-<p>交换机 配置WEB认证的功能原理是什么</p>
-<p><code>http://www.ruijie.com.cn/fw/wt/36503/</code></p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/11/19/校园网无限流量总结/" data-id="cjpm2rbl1000mt87qebd2qv3t" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn/">vpn</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Ajax学习" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/12/Ajax学习/" class="article-date">
-  <time datetime="2018-11-12T08:34:02.872Z" itemprop="datePublished">2018-11-12</time>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/12/Ajax学习/">学习Ajax</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####Ajax应用的工作流程如下：</p>
-<ol>
-<li>JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以发送GET请求，也可以发送POST请求。</li>
-<li>JavaScript脚本使用 XMLHTTPRequest 对象解析服务器响应数据</li>
-<li>JavaScript 脚本通过 DOM 动态更新 HTML 页面。也可以为服务器响应数据增加 CSS 样式表，在当前网页的某个部分加以显示。</li>
-</ol>
-<p>####JavaScript 脚本是Ajax 技术中另一个重要的部分。JavaScript 主要完成如下部分；</p>
-<ol>
-<li>创建 XMLHTTPRequest 对象</li>
-<li>通过XMLHTTPRequest 向服务器发送请求</li>
-<li>创建回调函数，监视服务器响应状态，在服务器响应完成之后，回调函数启动</li>
-<li>回调函数通过 DOM 更新HTML页面</li>
-</ol>
-<p>JSON是一种跨平台，跨语言的轻量级数据交换格式，以JSON作为数据交换格式不仅简单，而且网络传输的数据量更小，因此， JSON 取代了 Ajax 技术中 XML 的地位。</p>
-<hr>
-<p>Ajax在于给用户连续的体验<br>对于Ajax应用，浏览器不仅可以包含简单逻辑，甚至可以保存用户会话转状态。<br><strong>Ajax技术有以下优势：</strong></p>
-<ol>
-<li>减轻了客户端的内存消耗。Ajax的根本理念是“按需取数据”</li>
-<li>无刷新更新页面。通过异步发送请求，避免了频繁刷新页面，从而减少了用户的等待时间，给于用户一种连续的体验</li>
-<li>Ajax技术可以将传统的服务器工作转嫁到客户端，从而减轻服务器和带宽的负担，节约空间和带宽租用成本。</li>
-</ol>
-<hr>
-<p>Ajax采用异步的方式发送请求，页面的更新由JavaScript操作DOM完成。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/11/12/Ajax学习/" data-id="cjpm2rbjx0003t87qd341ff50" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajx/">ajx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-前端杂笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/08/前端杂笔记/" class="article-date">
-  <time datetime="2018-11-08T03:30:48.585Z" itemprop="datePublished">2018-11-08</time>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+</div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/08/前端杂笔记/">前端杂笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.<br>&lt;meta&gt;元素，提供有关页面的元信息<br>&lt;meta&gt;标签永远位于head元素内部<br>元数据总是以名称/值的形式被成对传递的<br>如：&lt;meta charset=’utf-8’ &gt; 告知浏览器此页面是属于什么字符编码格式。<br>&lt; meta http-equiv=”charset” content=”iso-8859-1” &gt;  使用带有 http-equiv属性的&lt;meta&gt;标签时，服务器将把名称/值对添加到发送给浏览器的内容头部。</p>
-<hr>
-<p>####CSS、JS的放置位置与前端性能的关系？</p>
-<h4 id="前备知识：浏览器的解析方式"><a href="#前备知识：浏览器的解析方式" class="headerlink" title="前备知识：浏览器的解析方式"></a>前备知识：浏览器的解析方式</h4><p>浏览器解析html页面首先浏览器先下载html，然后再内存中把html代码转化成Dom Tree，然后浏览器根据Dom Tree上的Node分析CSS和Images，当文档下载遇到JS时，JS独立下载。</p>
-<p>Q:为什么将引用的外部JS放在下面，外部CSS放在上面？（浏览器会有自己的解析顺序）<br>A1:<br>JS是阻塞加载，会影响页面加载的速度，如果JS文件比较大，算法也比较复杂的话，影响更大。<br>CSS放在前端是页面渲染时，首先是根据DOM结构生成一个DOM树，然后加上CSS生成一个渲染树，如果CSS放在后面可能页面会出现闪跳的感觉，或者是白屏或者布局混乱样式很丑，直到CSS加载完成。<br>A2:<br>一般来说CSS放在头部，JS放在底部来确保用户至少能早一点看到界面，让网站看起来至少反应快一点，不过如果CSS稍微有点多了，会让屏幕白屏时间更长，所以并不是说把CSS都放顶部是一个完美的方法，而且有些JS必须在页面加载前执行掉。<br>所以应该是，把必须的js和css放在顶部，把不那么重要的css和js放在底部。</p>
-<hr>
-<p><strong>如何在图片上设置多个跳转</strong><br>今天完成了项目首页的搭建，在一张图片上设置多个跳转。查了很久资料，发现是用HTML中的map和area标签定位使用。主要用到了 <strong>shape</strong> <strong>coords</strong> <strong>href</strong> 这三个标签，shape来表明在图片上的什么形状，如矩形、圆形、多边形。coords来标出图片上的位置，以坐标的形式表示出来。href则表示跳转的链接。<br>图片和热点区域元素关联是使用图片的usemap属性，其值对应&lt;map&gt;的id或者name值。</p>
-<pre class=" language-html"><code class="language-html">&lt;map name="Map" id = "CribMap">
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>32,205,193,247<span class="token punctuation">"</span></span>  <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./architecture.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>269,207,475,247<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./aut.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--被测系统管理--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>269,294,475,336<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./aut.html<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goHere(<span class="token punctuation">'</span>newfunpoint<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--新建功能点--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>269,378,475,421<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./aut.html<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goHere(<span class="token punctuation">'</span>architecture<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--配置元素库--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>269,463,475,505<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./aut.html<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goHere(<span class="token punctuation">'</span>architecture<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--生成基础脚本--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>570,204,686,246<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./testplan-execute.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--批量执行--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>561,294,696,336<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./scene.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--场景管理--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>545,379,713,420<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./datatable.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--测试资源配置--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>545,460,713,508<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./caseManagement.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--新增用例--></span>               
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>803,204,914,247<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./execution.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   <span class="token comment" spellcheck="true">&lt;!--执行记录查询--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>area</span> <span class="token attr-name">shape</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rect<span class="token punctuation">"</span></span> <span class="token attr-name">coords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>786,379,932,421<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./testProject.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   <span class="token comment" spellcheck="true">&lt;!--新增测试项目--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span>
-</code></pre>
-<p>####PS</p>
-<pre><code>#main-content {
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
-}
-#main-content .wrapper {
-    flex: 1;
-}
-#main-content .fixedwh {
-    width: 1100px;
-    height: 650px;
-}
-</code></pre><p>在途中遇到了一点CSS的问题，最后一段代码是我加上的，强制图片的像素为宽1100像素，高650像素，实际上图片有自己的强制缩放比，图片的最后比例是1100x700多。</p>
-<pre><code>&lt;section class=&quot;wrapper fixedwh&quot; &gt;
-</code></pre><p>通过在代码里面给框柱图片上的那部分加上这个css的类，来限制图片的大小。因为mian-content.wrapper这个属性是一个模板，在每个页面都会被使用，所以这样加一个多的属性，来与一下。</p>
-<p>可以通过PhotoShop来，先将图片的大小设置为css中限定的大小，然后找到croods的坐标。</p>
-<p><strong>vue中的Vac对象和sessionstorge可以在页面之间传递数据</strong></p>
-<hr>
-<p><strong>关于作用域的问题</strong><br>在Vue中，若声明在data里面的数据temp，如果想要在Vue的method里面对temp进行操作，就必须在方法内部写</p>
-<pre><code>var _this = this;
-_this.temp = 123;
-</code></pre><p>这样才能调用data里面的数据</p>
-<p>此外，如果想要在Vue体外写Javascript的function，在函数内部想引用的Vue内部的数据的话，先看声明的Vue对象名字是什么，然后进行引用，如</p>
-<pre><code>var app=new Vue({
-el:&#39;#something&#39;
-data:{
-
-temp:‘’,
-
-}
-})
-app.temp=1
-</code></pre><hr>
-<p><strong>在页面之间传递值-sessionStorage</strong><br>sessionStorage属性允许在浏览器中存储key/value对的数据，在页面进行跳转的时候可以将某些数据进行传递。</p>
-<pre><code>sessionStorage.setItem(&#39;name&#39;,&#39;liuruiqing&#39;);    //在a页面存储变量name的值为lrq
-//当跳转到另一页面时，可以对sessionStorage进行操作，读出name的值
-var temp = sessionStorage.getItem(&#39;name&#39;);
-
-</code></pre><p>需要注意的地方是，如果要判断一个变量是否存在应这样判断:</p>
-<pre><code>var temp = session.getItem(name);
-if (temp==null){
-    ...
-} else{
-    ...
-}
-</code></pre><p>应该判断该值是不是为null，而不是判断</p>
-<pre><code>if(temp==&#39;&#39;)
-</code></pre><p>因为如果数值并没有传递的话，该值是undefined，是null，而不是为’’，具体的情况可以在浏览器进行调试。</p>
-<hr>
-<p><strong>button、input、a标签的区别</strong><br>button、input和a标签都可以加上一定的样式后成为外观上没有很大差别的按钮，但是这三个标签应用的场景不尽相同。</p>
-<ol>
-<li>button,通过onclick来绑定javascript事件。</li>
-<li>&amp;It input type=”submit” value=”提交” /&amp;gt  将表单内用户设置或者选择的所有数据一并<strong>提交到后台</strong>。</li>
-<li>&amp;It a class=”btn” href=’#’ &amp;gt 提交 &amp;It/a&amp;gt<br>通过添加链接访问到页面中的某一个位置或者另一个页面，不向后台提供数据</li>
-</ol>
-<hr>
-<p>对于输入框，可以在input内加一个placeholder，来显示默认提示信息。</p>
-<hr>
-<p>今天遇到一个bug，在写一个日历组件的时候，将代码从demo中扒过来之后，发现不能用。以后要先检查一下，看下console报的什么错误。然后看source里面的文件，都用了哪里的地方，然后一起扒过来。<br>在抄过来的时候，报了错误，$(…).datetimepicker is not a function，是因为我在html中先引用了这个函数，后引用了库函数，顺序反了，所以没有找到这个函数。顺序改好了就好了。</p>
-<hr>
-<p>12.1日<br>昨天新增了一个日历的插件，在查询的时候，后端给的接口需要输入时间戳的格式的时间。现在的时间格式是2018-12-01,但是时间戳的格式是  1543593600000  ，首先解释一下时间戳的意思，<strong>是从1970年1月1日开始，到此时此刻所经过的秒数。</strong>在这里帖上把时间转换为时间戳的代码：</p>
-<pre><code>var startTime = &#39;2018-12-1 21:57:00:000&#39;
-var date = new Date(startTime.replace(/-/g,&#39;/&#39;));
-var time1 = date.getTime();    //这种会精确到毫秒
-var time2 = date.valueOf();    //同上，会精确到毫秒
-var Date.parse(date);        //只会精确到秒
-</code></pre><p>第二行使用了正则表达式，两个<code>/</code>之间的是表达式，<code>g</code>是所有的意思，这行代码的意思是将所有的<code>-</code>都变为<code>&#39;/&#39;</code></p>
-<hr>
-<p><strong>vue中的bind和model的比较</strong></p>
-<ol>
-<li>select控件使用model时，不应该将model写到 option里面，应该写到select中，绑定selece的value值</li>
-<li>model是双向绑定。将html比作前面展示出来的东西，将js比作后面处理的动作。使用model之后，比如对于input控件，当用户进行输入，改变值之后，后面的js中的绑定的变量也会改变。同理js进行改变之后，前面的html页面也会进行修改。</li>
-<li>bind是单向绑定。前改后不改，后改了前改。js中变量的改变会引起HTML中值的变化，显示就改变。而前面发生改变的话，js的变量是不会发生改变的。</li>
-</ol>
-<hr>
-<p>2018-12-10</p>
-<h4 id="廖雪峰网站中学到的js基础知识"><a href="#廖雪峰网站中学到的js基础知识" class="headerlink" title="廖雪峰网站中学到的js基础知识"></a>廖雪峰网站中学到的js基础知识</h4><p><strong>对于相等比较符，<code>==</code>和<code>===</code></strong>，JavaScript在设计时，有两种运算符：<br>第一种是<code>==</code>,它会自动转换数据类型再比较，很多时候会得出很诡异的结果。。<br>第二种是<code>===</code>比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再进行比较。<br>由于JavaScript这个设计缺陷，不要使用<code>==</code>比较，始终坚持使用<code>===</code>进行比较。</p>
-<p><strong>NaN这个特殊的number与其他所有的值都不相等，包括他自己</strong><br><code>NaN===NaN  //false</code><br>唯一能判断NaN的方式是使用<code>isNaN()</code>函数：<br>isNaN(NaN);  //true</p>
-<p><strong>JavaScript是一门动态语言</strong>，变量本身类型不固定的语言称为动态语言，与之对应的是静态语言。静态语言在定义变量的时候就必须指定变量类型，如果赋值的时候类型不匹配，就会报错。<br>比如在C语言中:</p>
-<pre><code>int a = 123; //a是整形变量，类型用int声明
-a = &#39;LRQ&#39;;   //错误，不能把字符串变量赋值给整形变量
-</code></pre><p><strong>字符串是不可变的，如果对某个字符串的索引赋值，不会有错误，但也没有任何效果</strong><br>要获取字符串某个指定位置的字符，可以使用类似Array的下标操作，索引号从0开始：</p>
-<pre><code>var str = &#39;lrqiswriting&#39;;
-a = str[0];   //a = &#39;l&#39;
-b = str[3];   //b = &#39;i&#39;
-str[2] = &#39;z&#39;; //不会出错，但也不会有任何效果
-</code></pre><p><strong>如果要在Array数组的头部添加若干元素，可以使用unshift()方法，shift()方法则把Array数组的第一个元素删掉</strong></p>
-<pre><code>var str=[1,2];
-str.unshift(&#39;A&#39;,&#39;B&#39;);   //此时str为[&#39;A&#39;,&#39;B&#39;,1,2]
-arr.shift();        //去掉头部元素，则str为[&#39;B&#39;,1,2]
-</code></pre><p>空数组连续shift()不会报错，而是会返回undefined</p>
-<p><strong>concat()方法把当前的Array和另一个Array连接起来，并返回一个新的Array</strong></p>
-<pre><code>var arr = [1,2,3];
-var added = arr.cncat([4,5,6]);//此时added为[1,2,3,4,5,6]
-</code></pre><p>concat()方法并没有修改当前的Array(),而是返回了一个新的Array</p>
-<p><strong>for…in…是for循环的一个变体，他可以把一个对象的所有属性依次循环出来</strong></p>
-<pre><code>var object = {
-    name: &#39;lrq&#39;,
-    age: 22,
-    city: &#39;BeiJing&#39;
-}
-for(key in object){
-    console.log(key);//&#39;name&#39;,&#39;age&#39;,&#39;city&#39;
-    console.log(object[key]);  //使用索引取出值
-}
-</code></pre><hr>
-<h3 id="2018-12-12"><a href="#2018-12-12" class="headerlink" title="2018-12-12"></a>2018-12-12</h3><h4 id="arguments关键字"><a href="#arguments关键字" class="headerlink" title="arguments关键字"></a>arguments关键字</h4><p>JavaScript有一个免费赠送的关键字，<strong>arguments</strong>,在函数体内使用这个关键字可以得到当前函数的调用者传入的所有参数。<code>arguments</code>类似于一个<code>Array</code>而又不是一个<code>Array</code>.<br>实际上<strong>arguments</strong>这个参数一般用于判断传入参数的个数。</p>
-<pre><code>function foo(x){
-    console.log(&#39;x = &#39; + x);
-    for(var i=0;i&lt;arguments.length;i++){
-        console.log(&#39;arg&#39; + i + &#39; = &#39; + arguments[i]);
-    }
-}
-
-`foo(10,20,30,40,50);`
-输入以上函数可以获得以下结果
-**x = 10
-arg0 = 10
-arg1 = 20
-arg2 = 30
-arg3 = 40
-arg4 = 50**
-</code></pre><h4 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h4><p>ES6引入了rest参数</p>
-<pre><code>function foo(a,b,...rest){
-    console.log(&#39;a = &#39; + a);
-    console.log(&#39;b = &#39; + b);
-    console.log(rest);
-}
-</code></pre><p>输入函数<code>foo(1,2,3,4,5,6,7,8,9);</code><br>输出如下:<br><strong>a = 1<br>b = 2<br>[3,4,5,6,7,8,9]</strong></p>
-<p><strong>注意：rest参数只能写在最后面，前面用<code>...</code>来进行标识，传入的参数先绑定a和b，其余的再放入rest数组内。如果传入的参数连正常的都没有填满，rest参数会接收一个空数组。而不是<code>undefined</code></strong></p>
-<p><strong>JavaScript有一个在行末自动加分号的机制。</strong></p>
-<p><strong>变量提升</strong><br>JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部。</p>
-<pre><code>&#39;use strict&#39;
-
-function foo(){
-    var x = &#39;hello&#39;+y;
-    console.log(x);
-    var y = &#39;Lrq&#39;;
-}
-foo();
-</code></pre><p>当运行以上函数时，返回的结果是helloundefined.如果没有定义y变量的话，则会显示referenceError.<br>实际上JavaScript引擎看到的代码如下：</p>
-<pre><code>function foo(){
-    var y;
-    var x = &#39;hello&#39;+y;
-    console.log(x);
-    var y = &#39;Lrq&#39;;
-}
-
-</code></pre><p>在给y赋值之前已经声明，但是还没有值。所以可以运行，只不过结果是undefined.但是如果连定义也没有的话，运行都会出错，会提示ReferenceError。</p>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://lrqlrq.github.io/2018/11/08/前端杂笔记/" data-id="cjpm2rbkr000gt87q5ed81xxj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+</div>
 
-    </footer>
-  </div>
-  
-</article>
+<script>
+// Dynamically switch banner pictures every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
 
+<main class="content">
 
-  
-
-
-  <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajx/">ajx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-前端/">npm 前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpc-netty/">rpc netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li></ul>
+    <div class="container notice">
+        <div class="card">
+            <div class="card-content">
+                <i class="fa fa-volume-up fa-lg fa-fw text-color"></i>不爱吃酸,爱吃酸+甜+辣的咸鱼,也能有梦想吧?
+            </div>
+        </div>
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/ajx/" style="font-size: 10px;">ajx</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/npm-前端/" style="font-size: 10px;">npm 前端</a> <a href="/tags/rpc-netty/" style="font-size: 10px;">rpc netty</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a>
-    </div>
-  </div>
 
-  
+    <div id="recommend-sections">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/12/09/npm是什么/">npm是干什么的</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/03/Git建立分支/">Git的远程建立分支</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/23/刷LeetCode笔记/">刷LeetCode的笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/19/校园网无限流量总结/">校园网的无限流量</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/12/Ajax学习/">学习Ajax</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 刘瑞<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+
+    
     </div>
-  </div>
+
+    
+
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/12/09/npm是什么/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="npm是干什么的">
+                            
+                            <span class="card-title">npm是干什么的</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Mana</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/npm-前端/" target="_blank">
+                            <span class="chip bg-color">npm 前端</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/12/03/Git建立分支/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Git的远程建立分支">
+                            
+                            <span class="card-title">Git的远程建立分支</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">2018-12-03项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-03
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Git/" target="_blank">
+                            <span class="chip bg-color">Git</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/11/23/刷LeetCode笔记/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="刷LeetCode的笔记">
+                            
+                            <span class="card-title">刷LeetCode的笔记</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">刷LeetCode心得体会
+11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了j</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/algorithm/" target="_blank">
+                            <span class="chip bg-color">algorithm</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/11/19/校园网无限流量总结/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="校园网的无限流量">
+                            
+                            <span class="card-title">校园网的无限流量</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">无限流量归纳最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/vpn/" target="_blank">
+                            <span class="chip bg-color">vpn</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/11/12/Ajax学习/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="学习Ajax">
+                            
+                            <span class="card-title">学习Ajax</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">####Ajax应用的工作流程如下：
+
+JavaScript脚本使用 XMLHttpRequest 对象向服务器发送请求。发送请求时，既可以</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/ajx/" target="_blank">
+                            <span class="chip bg-color">ajx</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2018/11/08/前端杂笔记/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="前端杂笔记">
+                            
+                            <span class="card-title">前端杂笔记</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary">1.&lt;meta&gt;元素，提供有关页面的元信息&lt;meta&gt;标签永远位于head元素内部元数据总是以名称/值的形式被成对传</div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                刘瑞
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/HTML/" target="_blank">
+                            <span class="chip bg-color">HTML</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/" class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
 </footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
 
 
-<script src="/js/script.js"></script>
-
-
-
-  </div>
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
 </body>
 </html>
