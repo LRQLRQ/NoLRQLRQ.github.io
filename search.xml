@@ -3,17 +3,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2018/12/12/test/"/>
-      <url>/2018/12/12/test/</url>
-      
-        <content type="html"><![CDATA['use strict'function foo(){    var x = 'hello'+y;    console.log(x);    var y = 'Lrq';}var pow = function(x){    return x*x;}var arr = [1,2,3,4,5,6,7,8,9];var result = arr.map(pow);console.log(result);]]></content>
-      
-      
-      
-    </entry>
-    
-    <entry>
       <title>npm是干什么的</title>
       <link href="/2018/12/09/npm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
       <url>/2018/12/09/npm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
