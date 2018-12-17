@@ -459,6 +459,20 @@ foo();
 }
 
 </code></pre><p>在给y赋值之前已经声明，但是还没有值。所以可以运行，只不过结果是undefined.但是如果连定义也没有的话，运行都会出错，会提示ReferenceError。</p>
+<hr>
+<h4 id="函数的一种写法"><a href="#函数的一种写法" class="headerlink" title="函数的一种写法"></a>函数的一种写法</h4><p>发现师兄写的一个函数的写法，感觉很高级使用。带参数可以使用，不带参数也可以使用。代码如下：</p>
+<pre><code>var page = {
+    totalCount = 1;
+    currentPage = 1;
+    totalPage = 1;
+    pageSize = 20;
+}
+
+getRecord(page){
+    var pageSize = page?page.pageSize:this.page.pageSize,
+    currentPage = page?page.currentPage:this.page.currentPage;
+}
+</code></pre><p>这么写的好处，可以直接调用<code>getRecord()</code>来使用函数，这样的话就是传入的page参数是null，然后在函数内部使用表达式判断进行赋初值。<br><code>page?page.pageSize:this.page.pageSize</code>这句话的意思是，判断page是不是存在，如果存在的话就给<code>pageSize</code>赋值为传入对象的储值，如果不存在的话，就赋值为全局变量中的初值。这么写省了很多逻辑。</p>
 
             </div>
             <hr>
