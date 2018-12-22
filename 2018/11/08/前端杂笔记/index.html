@@ -290,8 +290,7 @@
             <div id="articleContent">
                 <p>1.<br>&lt;meta&gt;元素，提供有关页面的元信息<br>&lt;meta&gt;标签永远位于head元素内部<br>元数据总是以名称/值的形式被成对传递的<br>如：&lt;meta charset=’utf-8’ &gt; 告知浏览器此页面是属于什么字符编码格式。<br>&lt; meta http-equiv=”charset” content=”iso-8859-1” &gt;  使用带有 http-equiv属性的&lt;meta&gt;标签时，服务器将把名称/值对添加到发送给浏览器的内容头部。</p>
 <hr>
-<p>####CSS、JS的放置位置与前端性能的关系？</p>
-<h4 id="前备知识：浏览器的解析方式"><a href="#前备知识：浏览器的解析方式" class="headerlink" title="前备知识：浏览器的解析方式"></a>前备知识：浏览器的解析方式</h4><p>浏览器解析html页面首先浏览器先下载html，然后再内存中把html代码转化成Dom Tree，然后浏览器根据Dom Tree上的Node分析CSS和Images，当文档下载遇到JS时，JS独立下载。</p>
+<h4 id="CSS、JS的放置位置与前端性能的关系？"><a href="#CSS、JS的放置位置与前端性能的关系？" class="headerlink" title="CSS、JS的放置位置与前端性能的关系？"></a>CSS、JS的放置位置与前端性能的关系？</h4><h4 id="前备知识：浏览器的解析方式"><a href="#前备知识：浏览器的解析方式" class="headerlink" title="前备知识：浏览器的解析方式"></a>前备知识：浏览器的解析方式</h4><p>浏览器解析html页面首先浏览器先下载html，然后再内存中把html代码转化成Dom Tree，然后浏览器根据Dom Tree上的Node分析CSS和Images，当文档下载遇到JS时，JS独立下载。</p>
 <p>Q:为什么将引用的外部JS放在下面，外部CSS放在上面？（浏览器会有自己的解析顺序）<br>A1:<br>JS是阻塞加载，会影响页面加载的速度，如果JS文件比较大，算法也比较复杂的话，影响更大。<br>CSS放在前端是页面渲染时，首先是根据DOM结构生成一个DOM树，然后加上CSS生成一个渲染树，如果CSS放在后面可能页面会出现闪跳的感觉，或者是白屏或者布局混乱样式很丑，直到CSS加载完成。<br>A2:<br>一般来说CSS放在头部，JS放在底部来确保用户至少能早一点看到界面，让网站看起来至少反应快一点，不过如果CSS稍微有点多了，会让屏幕白屏时间更长，所以并不是说把CSS都放顶部是一个完美的方法，而且有些JS必须在页面加载前执行掉。<br>所以应该是，把必须的js和css放在顶部，把不那么重要的css和js放在底部。</p>
 <hr>
 <p><strong>如何在图片上设置多个跳转</strong><br>今天完成了项目首页的搭建，在一张图片上设置多个跳转。查了很久资料，发现是用HTML中的map和area标签定位使用。主要用到了 <strong>shape</strong> <strong>coords</strong> <strong>href</strong> 这三个标签，shape来表明在图片上的什么形状，如矩形、圆形、多边形。coords来标出图片上的位置，以坐标的形式表示出来。href则表示跳转的链接。<br>图片和热点区域元素关联是使用图片的usemap属性，其值对应&lt;map&gt;的id或者name值。</p>

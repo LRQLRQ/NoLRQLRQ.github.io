@@ -5,8 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="npm是干什么的, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管">
+    <meta name="keywords" content="写的贪吃蛇, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起~首先介绍一下整体的思路，整个地图是一个canvas元素，这个canvas就相当于是画布。在画布上画蛇就是在canvas内的规定好的位">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>npm是干什么的 | 欢迎来到，瑞卿的窝。</title>
+    <title>写的贪吃蛇 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -245,13 +245,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        npm是干什么的
+                        写的贪吃蛇
                     </div>
                 </div>
             </div>
@@ -271,8 +271,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/npm-前端/" target="_blank">
-                    <span class="chip bg-color">npm 前端</span>
+                <a href="/tags/javascript/" target="_blank">
+                    <span class="chip bg-color">javascript</span>
                 </a>
                 
             </div>
@@ -281,22 +281,56 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-09
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-22
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p>
-<p>在这里抄一下npm的实现思路：</p>
+                <h2 id="前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起"><a href="#前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起" class="headerlink" title="前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起~"></a>前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起~</h2><p>首先介绍一下整体的思路，整个地图是一个canvas元素，这个canvas就相当于是画布。在画布上画蛇就是在canvas内的规定好的位置画矩形，边写边想，想到哪里写到哪里。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><hr>
+<h4 id="canvas介绍"><a href="#canvas介绍" class="headerlink" title="canvas介绍"></a>canvas介绍</h4><p>首先get到页面中的canvas元素，<code>var canvas = documents.getElementById(&#39;canvas&#39;)</code>,此时canvas在js中就相当于是画布，然后再得到画笔，<code>var content = canvas.getContext(&#39;2d&#39;)</code>，之后再操作<code>content</code>的方法，就可以得到相应的图形。这里就用到了rect方法，画矩形。</p>
+<hr>
+<h4 id="蛇的思路"><a href="#蛇的思路" class="headerlink" title="蛇的思路"></a>蛇的思路</h4><p>在这个代码中，学到了真正的面向对象的写代码方式。<br>创建一个数组，数组中放rect()对象。蛇头的那个rect对象在数组的第一位。<br>这里介绍一下蛇移动的思路吧。</p>
 <ol>
-<li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li>
-<li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li>
-<li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li>
-<li>下载完之后的代码就在node_modules里面，可以使用了。</li>
+<li>蛇每移动一次，就使用splice方法，在数组中第二个位置中插入一个和头部一模一样的rect</li>
+<li>然后判断是不是吃到了食物，如果吃到了食物，则生成新的食物，蛇头向当前的方向移动一个单位</li>
+<li>如果没有吃到食物，就把蛇尾的元素pop掉，然后蛇头向当前方向移动一个单位。</li>
+<li>以上是蛇的数组的操作方式，然后将蛇在画布中展示出来。使用canvas对象的draw方法，用一个for循环，将方块画出来。</li>
 </ol>
-<h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>
+<h4 id="学到的一些小东西"><a href="#学到的一些小东西" class="headerlink" title="学到的一些小东西"></a>学到的一些小东西</h4><hr>
+<p>在js中，有一个东西叫做定时器，和单片机里面的定时器几乎是同样的东西。相当于定一个时间间隔，每过多少时间，就执行一次函数里面的代码。<br>比如：</p>
+<pre><code>var timer = setInterval(function(){
+    context.clearRect(0, 0, canvas.width, canvas.height);  //清除已经画的蛇
+    food.draw();    //画出食物矩形
+    snake.move();    //蛇身进行移动，相当于在脑海中想象蛇应该在的位置
+    snake.draw();    //调用draw函数，把蛇的矩形画到画布上
+},100)
+</code></pre><hr>
+<h2 id="在随机生成食物的时候，想要生成在【0-480】之内的，20倍数的随机数，可以先生成一个【0-24】内的随机整数，然后再给这个整数乘以20，就可以达到效果了。"><a href="#在随机生成食物的时候，想要生成在【0-480】之内的，20倍数的随机数，可以先生成一个【0-24】内的随机整数，然后再给这个整数乘以20，就可以达到效果了。" class="headerlink" title="在随机生成食物的时候，想要生成在【0-480】之内的，20倍数的随机数，可以先生成一个【0-24】内的随机整数，然后再给这个整数乘以20，就可以达到效果了。"></a>在随机生成食物的时候，想要生成在【0-480】之内的，20倍数的随机数，可以先生成一个【0-24】内的随机整数，然后再给这个整数乘以20，就可以达到效果了。</h2><p>判断蛇移动方向，需要设置按键监听事件。这个也是类似定时器一样，在后台自动就监听，感觉类似于外部中断。<br>具体代码如下：</p>
+<pre><code>document.onkeydown = function(e){
+    var ev = e || window.event;   //防止事件冲突
+    switch(ev.keyCode){        //判断按键的键值是什么
+        case 37:    //按键为左
+            do()...;
+            break;
+        case 38:    //上
+            do()...;
+            break;
+        case 39:    //右
+            do()...;
+            break;
+        case 40:    //下
+            do()...;    
+            break;
+        default:
+            break;
+    }
+}
+
+</code></pre><hr>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>这次小项目只是一个单机版的贪吃蛇，锻炼了js的能力，学习到了js的很多基础知识，已经发布到github上了，还加了背景音乐，配了图，有机会可以去玩一玩。嘿嘿~~<br><a href="http://www.lrqwriting.top/snakeGame" target="_blank" rel="noopener">www.lrqwriting.top/snakeGame</a></p>
 
             </div>
             <hr>
@@ -435,7 +469,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/09/npm是什么/" class="b-link-green">npm是干什么的</a>
+                    <a href="/2018/12/22/第一次写贪吃蛇/" class="b-link-green">写的贪吃蛇</a>
                 </p>
             </div>
         </div>
@@ -455,7 +489,7 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/12/22/第一次写贪吃蛇/">
                     <div class="card-image">
@@ -469,9 +503,9 @@
                 <div class="card-content article-content">
                     <div class="summary">前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起~首先介绍一下整体的思路，整个地图是一个canvas元素，这个canvas就相当于是画布。在画布上画蛇就是在canvas内的规定好的位</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -480,6 +514,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -496,21 +531,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/12/03/Git建立分支/">
+                <a href="/2018/12/09/npm是什么/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Git的远程建立分支">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="npm是干什么的">
                         
-                        <span class="card-title">Git的远程建立分支</span>
+                        <span class="card-title">npm是干什么的</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">2018-12-03项目需要给邮政那边一个版本，所以需要给他们进行定制。因此就需要在现在的git仓库上新建一个分支，在此列出需要的几个命令。
-git branch :列出本地的分支，当前分支会标有*号git branch -r :列出远程的</div>
+                    <div class="summary">npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-03
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
                             </span>
                         <span class="publish-author">
                             
@@ -523,8 +557,8 @@ git branch :列出本地的分支，当前分支会标有*号git branch -r :列�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/" target="_blank">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/npm-前端/" target="_blank">
+                        <span class="chip bg-color">npm 前端</span>
                     </a>
                     
                 </div>
