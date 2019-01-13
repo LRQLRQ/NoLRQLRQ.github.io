@@ -3,6 +3,17 @@
   
     
     <entry>
+      <title>开发小程序！</title>
+      <link href="/2019/01/13/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%80%E5%8F%91/"/>
+      <url>/2019/01/13/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%80%E5%8F%91/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ol><li>JSON文件在小程序代码中扮演者静态配置的作用，在小程序运行之前就决定了小程序的一些表现。需要注意的是小程序是无法再运行过程中去动态更新JSON配置文件而发生对应变化的。</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
       <title>学习HTTP协议</title>
       <link href="/2019/01/13/%E5%AD%A6%E4%B9%A0HTTP%E5%8D%8F%E8%AE%AE/"/>
       <url>/2019/01/13/%E5%AD%A6%E4%B9%A0HTTP%E5%8D%8F%E8%AE%AE/</url>
