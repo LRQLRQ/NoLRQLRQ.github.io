@@ -5,7 +5,7 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="刷LeetCode的笔记, 欢迎来到，瑞卿的窝。">
+    <meta name="keywords" content="LeetCode第3题, 欢迎来到，瑞卿的窝。">
     <meta name="description" content="2018.2.26
 题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。第一次用了滑动窗口的思想解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>刷LeetCode的笔记 | 欢迎来到，瑞卿的窝。</title>
+    <title>LeetCode第3题 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -246,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        刷LeetCode的笔记
+                        LeetCode第3题
                     </div>
                 </div>
             </div>
@@ -291,8 +291,9 @@
             <div id="articleContent">
                 <p>2018.2.26</p>
 <h2 id="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"><a href="#题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。" class="headerlink" title="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"></a>题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。</h2><h4 id="第一次用了滑动窗口的思想"><a href="#第一次用了滑动窗口的思想" class="headerlink" title="第一次用了滑动窗口的思想"></a><strong>第一次用了滑动窗口的思想</strong></h4><p>解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp，每弹出一个字符先用变量tail存着，跟窗口–temp对比一下，如果重复了就记下当前temp的长度，和历史的比较留下大的，如果不重复就用push方法，推进窗口数组中。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><p>var lengthOfLongestSubstring = function(s) {<br>    var sArray = s.split(‘’);   //将所给的字符串分成数组<br>    var sTemp = [];             //缓存移动窗口<br>    var count = 0;              //返回的数字<br>    var tail;                   //每次循环数组队尾的字母<br>    while(sArray.length&gt;0){     //当字符串数组有值时进行循环<br>        tail = sArray.pop();     //取出sArray末尾的元素<br>        for(let i=0;i&lt;sTemp.length;i++){    //取出字符串尾的元素与缓存窗口进行比较<br>            if(sTemp[i]===tail){            //如果字符重复则进行操作<br>                count = count&gt;sTemp.length?count:sTemp.length;  //将历史中最大的count与窗口缓存的数组长度进行比较，取其大者<br>                for(let j=0;j&lt;i+1;j++){<br>                    sTemp.shift();          //将重复字符以前的字符弹出数组<br>                }<br>            }<br>        }<br>        sTemp.push(tail);                   //缓存移动窗口推入末尾的元素<br>    }<br>    count = count&gt;sTemp.length?count:sTemp.length;  //有时传入的字符串本身就是最大的字符串，没有进入循环中的判断，因此最后还要进行赋值<br>    console.log(count);<br>    return count;</p>
-<h2 id=""><a href="#" class="headerlink" title="};"></a>};</h2><p>然后看了一下别人的代码，感觉能写好一点。不需要将传入的s字符串转换为数组，也不需要对s进行操作，只需要每次取出s中的元素进行比较就行了。<strong>s[i]</strong>就可以取出字符串s中第i位的元素。思路是一样的，用滑动窗口进行判断，如果用<strong>temp.indexOf(s[i])</strong>进行判断后，发现这个字符在缓冲区的话，就使用slice方法，给temp重新赋值，从重复的位置的后一个到队尾，重新赋给temp。并记录下最大的长度和历史比较。如果不在缓冲区的话，直接push到缓冲区就好。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><p>var lengthOfLongestSubstring = function(s) {<br>    var sArray = s.split(‘’);   //将所给的字符串分成数组<br>    var sTemp = [];             //缓存移动窗口<br>    var count = 0;              //返回的数字<br>    var tail;                   //每次循环数组队尾的字母<br>    while(sArray.length&gt;0){     //当字符串数组有值时进行循环<br>        tail = sArray.pop();     //取出sArray末尾的元素<br>        for(let i=0;i&lt;sTemp.length;i++){    //取出字符串尾的元素与缓存窗口进行比较<br>            if(sTemp[i]===tail){            //如果字符重复则进行操作<br>                count = count&gt;sTemp.length?count:sTemp.length;  //将历史中最大的count与窗口缓存的数组长度进行比较，取其大者<br>                for(let j=0;j&lt;i+1;j++){<br>                    sTemp.shift();          //将重复字符以前的字符弹出数组<br>                }<br>            }<br>        }<br>        sTemp.push(tail);                   //缓存移动窗口推入末尾的元素<br>    }<br>    count = count&gt;sTemp.length?count:sTemp.length;  //有时传入的字符串本身就是最大的字符串，没有进入循环中的判断，因此最后还要进行赋值<br>    console.log(count);<br>    return count;<br>};</p>
+<hr>
+<p>然后看了一下别人的代码，感觉能写好一点。不需要将传入的s字符串转换为数组，也不需要对s进行操作，只需要每次取出s中的元素进行比较就行了。<strong>s[i]</strong>就可以取出字符串s中第i位的元素。思路是一样的，用滑动窗口进行判断，如果用<strong>temp.indexOf(s[i])</strong>进行判断后，发现这个字符在缓冲区的话，就使用slice方法，给temp重新赋值，从重复的位置的后一个到队尾，重新赋给temp。并记录下最大的长度和历史比较。如果不在缓冲区的话，直接push到缓冲区就好。</p>
 <h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><p>var lengthOfLongestSubstring = function(s) {<br>    var temp = [];<br>    var maxLength = 0;</p>
 <pre><code>for(var i = 0; i &lt; s.length; i++){
     if(temp.indexOf(s[i]) === -1){
@@ -306,7 +307,9 @@
 }
 
 return maxLength;
-</code></pre><h2 id="-1"><a href="#-1" class="headerlink" title="};"></a>};</h2>
+</code></pre><p>};</p>
+<hr>
+
             </div>
             <hr>
 
@@ -444,7 +447,7 @@ return maxLength;
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/02/26/leetcode第3题/" class="b-link-green">刷LeetCode的笔记</a>
+                    <a href="/2019/02/26/leetcode第3题/" class="b-link-green">LeetCode第3题</a>
                 </p>
             </div>
         </div>
@@ -470,9 +473,9 @@ return maxLength;
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="刷LeetCode的笔记">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="LeetCode第3题">
                         
-                        <span class="card-title">刷LeetCode的笔记</span>
+                        <span class="card-title">LeetCode第3题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
