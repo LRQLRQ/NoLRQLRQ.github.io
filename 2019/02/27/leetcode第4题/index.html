@@ -5,9 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode第3题, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="2018.2.26
-题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。第一次用了滑动窗口的思想解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp">
+    <meta name="keywords" content="LeetCode第4题, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="2.27
+第4题题目要求如下：给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)我的思路是：分别求出两个数组的中位数，合并后的中位数也">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode第3题 | 欢迎来到，瑞卿的窝。</title>
+    <title>LeetCode第4题 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -246,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        LeetCode第3题
+                        LeetCode第4题
                     </div>
                 </div>
             </div>
@@ -282,59 +282,95 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-02-26
+                    <i class="fa fa-clock-o fa-fw"></i>2019-02-27
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>2018.2.26</p>
-<h2 id="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"><a href="#题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。" class="headerlink" title="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"></a>题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。</h2><h4 id="第一次用了滑动窗口的思想"><a href="#第一次用了滑动窗口的思想" class="headerlink" title="第一次用了滑动窗口的思想"></a><strong>第一次用了滑动窗口的思想</strong></h4><p>解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp，每弹出一个字符先用变量tail存着，跟窗口–temp对比一下，如果重复了就记下当前temp的长度，和历史的比较留下大的，如果不重复就用push方法，推进窗口数组中。</p>
-<p><strong>代码如下：</strong></p>
-<hr>
-<pre><code>var lengthOfLongestSubstring = function(s) {
-    var sArray = s.split(&#39;&#39;);   //将所给的字符串分成数组
-    var sTemp = [];             //缓存移动窗口
-    var count = 0;              //返回的数字
-    var tail;                   //每次循环数组队尾的字母   
-    while(sArray.length&gt;0){     //当字符串数组有值时进行循环
-        tail = sArray.pop();     //取出sArray末尾的元素
-        for(let i=0;i&lt;sTemp.length;i++){    //取出字符串尾的元素与缓存窗口进行比较
-            if(sTemp[i]===tail){            //如果字符重复则进行操作
-                count = count&gt;sTemp.length?count:sTemp.length;  //将历史中最大的count与窗口缓存的数组长度进行比较，取其大者
-                for(let j=0;j&lt;i+1;j++){     
-                    sTemp.shift();          //将重复字符以前的字符弹出数组
-                }
+                <p>2.27</p>
+<h4 id="第4题题目要求如下："><a href="#第4题题目要求如下：" class="headerlink" title="第4题题目要求如下："></a>第4题题目要求如下：</h4><p>给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)<br>我的思路是：分别求出两个数组的中位数，合并后的中位数也一定在这两个中位数之间。就一步一步的逼近，当走过总长度的四分之一后，就达到了中位数。但是我被其中的奇数偶数困扰太多，越写情况越麻烦，最后筋疲力尽。</p>
+<p>然后看讨论区，有个人写的比较简单的解：使用shift方法，依次将两个数组头部中比较小的元素弹出，只要弹出总长度一半的次数，剩下的就是中位数了。为了应对奇数偶数的问题，设置一个缓冲变量记录上一次的值，如果总长度是奇数则剩下的就是中位数；如果总长度是偶数则对当前变量与缓冲变量求和即可。<br>感觉其实我的思路和这个差不多，但是一开始想的太局限了，陷入细节，越来越麻烦。如果跳出去的话就能更好些一点。<br>今日份感慨：<strong>算法===抽象，业务逻辑===具体</strong>，算法就像诗，业务逻辑写的越多就像屎。</p>
+<p>下面贴出代码：</p>
+<pre><code>var findMedianSortedArrays = function(nums1, nums2) {
+    const totalLength = nums1.length + nums2.length;    //计算出总共的长度
+    let mid = Math.floor(totalLength/2) + 1;            //算出中位数所在的位置，进行这么多次数
+    let last = null, preLast = null;                    //用两个变量作为缓冲，用于应对奇数偶数长度
+    while (mid--) {        
+        preLast = last;            //保存上次的值
+        last = ((nums2.length === 0 || nums1[0] &lt; nums2[0]) ? nums1 : nums2).shift();    //从两个数组头开始计算，把小的数字弹出去
+    }
+    console.log(totalLength % 2 ? last : (last + preLast)/2 );
+    return totalLength % 2 ? last : (last + preLast)/2         //如果有奇数个数字，则返回当前的值；如果有偶数个数字，则返回当前与上次值的均值
+};
+
+</code></pre><p>鞭策一下自己吧<br>然后是我的屎：</p>
+<pre><code>var findMedianSortedArrays = function(nums1, nums2) {
+    var start1 = parseInt((nums1.length-1)/2);
+    var start2 = parseInt((nums2.length-1)/2);
+    var step1 = 0;
+    var step2 = 0;
+    var length = nums1.length + nums2.length;
+
+    while(nums1[start1] &lt; nums2[start2] &amp;&amp; (step1+step2)&lt;(parseInt(length/4+1) )){
+        if(start1&lt;nums1.length-1){
+            start1++;
+            step1++;
+        }
+        if(start2&gt;0){
+            start2--;
+            step2++;
+        }
+    }
+    while(nums1[start1] &gt; nums2[start2] &amp;&amp; (step1+step2)&lt;(parseInt(length/4+1))){
+        if(start1&gt;0 ){
+            start1--;
+            step1++;
+        }
+        if(start2&lt;nums2.length-1){
+            start2++;
+            step2++;
+        }
+    }
+    if(nums1[start1] &lt; nums2[start2]){
+       if(length%2===1){   //如果总共是有奇数个，且数组1中位数小于数组2
+            console.log(step1&gt;step2?nums1[start1]:nums2[start2]);
+            return step1&gt;step2?nums1[start1]:nums2[start2];
+        } else{             //如果总数是有偶数个
+            if(step1&gt;step2){
+                console.log((nums1[start1]+nums1[start1-1])/2);
+                return (nums1[start1]+nums1[start1-1])/2;
+            } else if(step1===step2){
+                console.log((nums1[step1]+nums2[step2])/2);
+                return (nums1[step1]+nums2[step2])/2;
+            } else{
+                console.log((nums2[start2]+nums2[start2-1])/2);
+                return (nums2[start2]+nums2[start2-1])/2;
             }
         }
-        sTemp.push(tail);                   //缓存移动窗口推入末尾的元素
     }
-    count = count&gt;sTemp.length?count:sTemp.length;  //有时传入的字符串本身就是最大的字符串，没有进入循环中的判断，因此最后还要进行赋值
-    console.log(count);
-    return count;
-};
-</code></pre><hr>
-<p>然后看了一下别人的代码，感觉能写好一点。不需要将传入的s字符串转换为数组，也不需要对s进行操作，只需要每次取出s中的元素进行比较就行了。<strong>s[i]</strong>就可以取出字符串s中第i位的元素。思路是一样的，用滑动窗口进行判断，如果用<strong>temp.indexOf(s[i])</strong>进行判断后，发现这个字符在缓冲区的话，就使用slice方法，给temp重新赋值，从重复的位置的后一个到队尾，重新赋给temp。并记录下最大的长度和历史比较。如果不在缓冲区的话，直接push到缓冲区就好。<br><strong>代码如下：</strong></p>
-<hr>
-<pre><code>var lengthOfLongestSubstring = function(s) {
-    var temp = [];
-    var maxLength = 0; 
-    for(var i = 0; i &lt; s.length; i++){
-        if(temp.indexOf(s[i]) === -1){
-            temp.push(s[i]);
-            if(temp.length &gt; maxLength)
-                maxLength = temp.length;
-        }else{
-            temp = temp.slice(temp.indexOf(s[i]) + 1,temp.length);
-            temp.push(s[i]);
+
+    if(nums1[start1] &gt; nums2[start2]){
+        if(length%2===1 ){   //如果总共是有奇数个，且数组1中位数大于数组2
+            console.log(step1&gt;step2?nums1[start1]:nums2[start2]);
+            return step1&gt;step2?nums1[start1]:nums2[start2];
+        } else{             //如果总数是有偶数个
+            if(step1&gt;step2){
+                console.log((nums1[start1]+nums1[start1-1])/2);
+                return (nums1[start1]+nums1[start1+1])/2;
+            } else if(step1===step2){
+                console.log((nums1[step1]+nums2[step2])/2);
+                return (nums1[step1]+nums2[step2])/2;
+            } else{
+                console.log((nums2[start2]+nums2[start2-1])/2);
+                return (nums2[start2]+nums2[start2+1])/2;
+            }
         }
     }
-
-    return maxLength;
 };
-</code></pre><hr>
 
+</code></pre>
             </div>
             <hr>
 
@@ -472,7 +508,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/02/26/leetcode第3题/" class="b-link-green">LeetCode第3题</a>
+                    <a href="/2019/02/27/leetcode第4题/" class="b-link-green">LeetCode第4题</a>
                 </p>
             </div>
         </div>
@@ -492,7 +528,7 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2019/02/27/leetcode第4题/">
                     <div class="card-image">
@@ -507,9 +543,9 @@
                     <div class="summary">2.27
 第4题题目要求如下：给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)我的思路是：分别求出两个数组的中位数，合并后的中位数也</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -518,6 +554,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -534,23 +571,21 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/13/小程序的开发/">
+                <a href="/2019/02/26/leetcode第3题/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="开发小程序！">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="LeetCode第3题">
                         
-                        <span class="card-title">开发小程序！</span>
+                        <span class="card-title">LeetCode第3题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-JSON文件在小程序代码中扮演者静态配置的作用，在小程序运行之前就决定了小程序的一些表现。需要注意的是小程序是无法再运行过程中去动态更新JSON配置文件而发生对应变化的。
-
-</div>
+                    <div class="summary">2018.2.26
+题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。第一次用了滑动窗口的思想解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-26
                             </span>
                         <span class="publish-author">
                             
@@ -559,6 +594,14 @@ JSON文件在小程序代码中扮演者静态配置的作用，在小程序运�
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/algorithm/" target="_blank">
+                        <span class="chip bg-color">algorithm</span>
+                    </a>
+                    
                 </div>
                 
             </div>
