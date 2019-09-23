@@ -1,0 +1,746 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="你不知道的JavaScript (中卷)2, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="异步和性能如何表达和控制持续一段时间的程序行为。是指程序的一部分现在运行，而另一部分在将来运行——现在和将来之间有间隙，在这段间隙中，程序没有活跃。所有重要的程序(特别是 JavaScript 程序)都需要通过这样或那样的方法来管理这段时间">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>你不知道的JavaScript (中卷)2 | 欢迎来到，瑞卿的窝。</title>
+    <link rel="icon" type="image/png" href="/favicon.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">欢迎来到，瑞卿的窝。</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">欢迎来到，瑞卿的窝。</div>
+        <div class="logo-desc">
+            
+            学习的小小笔记，记在这里。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/LRQLRQ" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>I am here.
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/LRQLRQ" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="I am here." data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        你不知道的JavaScript (中卷)2
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/javascript/" target="_blank">
+                    <span class="chip bg-color">javascript</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="异步和性能"><a href="#异步和性能" class="headerlink" title="异步和性能"></a>异步和性能</h2><p>如何表达和控制持续一段时间的程序行为。是指程序的一部分<strong>现在运行</strong>，而另一部分在<strong>将来运行</strong>——现在和将来之间有间隙，在这段间隙中，程序没有活跃。<br>所有重要的程序(特别是 JavaScript 程序)都需要通过这样或那样的方法来管理这段时间间隙，这时可能是在等待用户输入、从数据库或文件系统中请求数据、通过网络发送数据并等待响应。在诸如此类的场景中，程序都需要管理这段时间间隙的状态。<br><strong>程序中现在运行的部分和将来运行的部分之间的关系，就是异步编程的核心</strong></p>
+<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><p>JavaScript 引擎并不是独立运行的，它运行在<strong>宿主环境</strong>中，对多数开发者来说通常就是 Web 浏览器。最近几年 JavaScript 已经超出了浏览器的范围，进入了其他环境。比如通过像 node.js 这样的工具进入服务器领域。但是这些所有环境都有一个共同的“点”，即他们都提供了一种机制来处理程序中多个块的执行，且执行每块时调用 JavaScript 引擎。这种机制被称为<strong>事件循环</strong>。<br>换句话说，JavaScript 引擎本身并没有时间的概念，只是一个按需执行 JavaScript 任意代码片段的环境。“事件”(JavaScript 代码执行)调度总是由包含它的环境进行。</p>
+<p><code>setTimeOut(..)</code>并没有把你的回调函数挂在事件循环队列中，他所做的是设定一个定时器。当定时器到时，环境会把你的回调函数放在事件循环中，这样在未来某个时刻的 tick 会摘下并执行这个回调。假如此时事件循环中已经有 100 个项目了怎么办？它就得排在其他项目之后。这也解释了为什么<code>setTimeOut(..)</code>定时器的精度可能不高。只能保证你的回调函数不会在指定的时间间隔之前运行，可能在那个时刻，也可能在那个时刻之后运行。</p>
+<h3 id="并行线程"><a href="#并行线程" class="headerlink" title="并行线程"></a>并行线程</h3><p>术语“异步”和“并行”常常被混为一谈，但实际上它们的意义完全不同。异步是<strong>现在</strong>和<strong>将来</strong>的时间间隙。而并行是关于能够同时发生的事情。</p>
+<p>并行计算最常见的工具就是<strong>进程</strong>和<strong>线程</strong>。进程和线程独立运行，并可能同时运行：在不同的处理器，甚至不同的计算机上，但多个线程能够共享单个进程的内存。与之相对的是，事件循环把自身的工作分成一个个任务并顺序执行，不允许对共享内存并行访问和修改。通过分立线程中彼此合作的事件循环，并行和顺序执行可以共存。</p>
+<p>并行线程的交替执行和异步事件的交替调度，其粒度是完全不同的。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  a <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://some.url.1"</span><span class="token punctuation">,</span> foo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://some.ur2.1"</span><span class="token punctuation">,</span> bar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>完整运行</strong><br>JavaScript 单线程运行特性，所以 foo()和 bar()中的代码具有原子性。也就是说，一旦 foo()开始运行，它的所有代码都会在 bar()中的任意代码运行之前完成。或者 bar()比 foo()运行的完整。这称为：<strong>完整运行</strong> 特性。</p>
+<p>但是，同一段代码有两个可能输出意味着还是存在不确定性！！~但是，这种不确定性是在函数(事件)顺序级别上，而不是多线程情况下的语句顺序级别(或者说，表达式运算顺序级别)。换句话说，这一确定性要高于多线程情况。<br>在 JavaScript 特性中，这种函数顺序的不确定性，就是通常所说的<strong>竞态条件</strong>，foo()和 bar()相互竞争，看谁先运行。具体的说，因为无法可靠预测 a 和 b 的最终结果，所以才是竞态条件。</p>
+<p>单线程事件循环是==并发==的一种形式。</p>
+<p><strong>不交互</strong><br>两个或多个“进程”在同一个程序内并发地交替运行它们的步骤/事件时，如果这些任务彼此不相关，就不一定需要交互。<strong>如果进程间没有相互影响的话，不确定性是完全可以接受的</strong>。</p>
+<p><strong>交互</strong><br>并发的“进程”需要相互交流，通过作用域或 DOM 间接交互。如果出现这样的交互，就需要对它们的交互进行协调以避免竞态的出现。</p>
+<p><strong>协作</strong><br>一种并发合作方式，称为“并发协作”。<br>如下情况:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">response</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  res <span class="token operator">=</span> res<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>
+    <span class="token comment" spellcheck="true">//创建一个新的变换数组并把所有data值加倍</span>
+    data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> val <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://some.url.1"</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//异步的ajax请求</span>
+</code></pre>
+<p>当 ajax 请求返回结果之后，整个列表会映射到 res 中，如果记录只有几千条，就没什么关系，如果有 1000w 条记录的话，就可能需要运行很长时间了。这样的“进程”运行时，页面上的其他代码都不能运行，包括不能有其他的 response 调用或 UI 刷新，甚至像滚动、输入、按钮点击这样的用户事件。</p>
+<p>所以要创建一个协作性更强更友好且不会霸占事件循环队列的并发系统，可以异步地批处理这些结果。每次处理之后返回事件循环，让其他等待事件有机会运行。如下：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">response</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> chunk <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//分块，将数据一次运算1000个</span>
+
+    res <span class="token operator">=</span> res<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>
+        chunk<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span> <span class="token keyword">function</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> val <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>       <span class="token comment" spellcheck="true">//如果还有数据，就接着调用</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">response</span><span class="token punctuation">(</span> data <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://some.url.1"</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//异步的ajax请求</span>
+</code></pre>
+<p>把数据集合放在最多包含 1000 条项目的块中。这样，就确保了“进程”运行时间很短，即使这意味着需要更多后续“进程”，因为事件循环的交替运行会提高站点/APP 的响应(性能)。这里使用 setTimeout(..,0),进行异步调度，意思就是“把这个函数插入到当前事件循环队列的结尾处”。</p>
+<p><strong>任务</strong>：<br>对于任务队列最好的理解方式：它是挂在事件循环队列的每个 tick 之后的一个队列。在事件循环的每个 tick 中，可能出现的异步动作不会导致一个完整的新事件添加到事件循环队列中，而会在当前 tick 的任务队列末尾添加一个项目。(一个任务)。提一下，promise 的异步特性是基于任务的。</p>
+<p><strong>小结</strong><br>实际上，JavaScript 程序总是至少分为两块：第一块<strong>现在</strong>执行，下一块<strong>将来</strong>运行，以响应某个事件。尽管程序是一块一块执行的，但是所有这些块共享对程序作用域和状态的访问，所以对状态的修改都是在之前累积的修改之上进行的。<br>一旦有事件需要运行，事件循环就会运行，直到队列清空。事件循环的每一轮称为一个 tick。用户交互、IO 和定时器会向事件队列中加入事件。<br>任意时刻，一次只能从队列中处理一个事件。执行事件的时候，可能直接或间接地引发一个或多个后续事件。<br>并发是指两个或多个事件链随事件发展交替执行，以至于从更高的层次来看，就像是同时在运行(尽管在任意时刻只处理一个事件)。<br>通常需要对这些并发执行的“进程”(和操作系统中的进程不同)进行某种形式的交互协调，比如需要确保执行顺序或者需要防止竞态出现。这些“进程”也可以通过把自身分割为更小块，以便于其他“进程”插入进来。</p>
+<p><strong>回调地狱</strong>：<br>我们的顺序阻塞式的大脑计划行为无法很好地映射到面向回调的异步代码。这就是回调方式最主要的缺陷：对于它们在代码中表达异步的方式，我们的大脑需要努力才能同步得上。</p>
+<p><strong>Node 风格</strong>：<br>有一种常见的回调模式叫做“error-first 风格”，有时也叫 Node 风格，因为几乎所有的 Node.js API 都会采用这种风格。其中回调的第一个参数保留用作错误对象(如果有的话)，如果成功的话，这个参数就会被清空/置假(后续的参数就是成功数据)。不过，如果产生了错误结果，那么第一个参数就会被置起/置真(通常就不会再传递其他结果)：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">response</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//出错？</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//否则认为成功</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://some.url.1"</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>下面展示一个工具：验证概念版本</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">timeoutify</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> delay<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//这个setTimeout会隔一段delay的时间</span>
+  <span class="token comment" spellcheck="true">//再把这个function放到任务队列里面</span>
+  <span class="token comment" spellcheck="true">//到了时间，就抛出timeout错误</span>
+  <span class="token keyword">var</span> intv <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    intv <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token function">fn</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Timeout!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> delay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">//return的这个函数算是闭包了</span>
+  <span class="token comment" spellcheck="true">//里面有intv这个东西，会提升到全局变量吧</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//返回的函数判断一下intv是否存在</span>
+    <span class="token comment" spellcheck="true">//如果超时了delay就会置为null</span>
+    <span class="token comment" spellcheck="true">//没超时的话就把定时器清除掉</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>intv<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">clearTimeout</span><span class="token punctuation">(</span>intv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//使用方式</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">ajax</span><span class="token punctuation">(</span><span class="token string">"http://someurl.1"</span><span class="token punctuation">,</span> <span class="token function">timeoutify</span><span class="token punctuation">(</span>foo<span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>ajax 异步调用请求需要耗费时间，如果响应很快，500ms 以内就能响应，那就调用了<code>timeoutify</code>返回的那个函数，在函数里面执行相应的逻辑：500ms 还没到， 定时器的任务还没执行，intv 还是真值，判断后清除这个定时器，然后让 foo 函数在 ajax 回调的环境中执行。猜测，ajax 必定至少返回两个参数，一个是 err 的位置，返回的必然是 null，另一个是 data 的位置，应该返回相应的请求数据。</p>
+<p><strong>小结</strong><br>回调函数是 JavaScript 异步的基本单元。但是随着 JavaScript 越来越熟，对于异步编程领域的发展，回调已经不够用了。</p>
+<ol>
+<li>大脑对于事情的计划方式是线性的、阻塞的、单线程的语义，但是回调表达异步流程的方式是非线性的，非顺序的，这使得正确推导这样的代码难度很大。难于理解的代码是坏代码，会导致 bug。</li>
+<li>更重要的一点是，回调会受到控制翻转的影响！因为回调会把控制权交给第三方(通常是不受控制的第三方工具！)来调用代码中的<code>continuation</code>。这种控制转移导致一系列麻烦的信任问题，比如回调的次数是否会超出预期。</li>
+</ol>
+<p>可以发明一些特定的逻辑来解决这些信任问题，但是其难度高于应有的水平，可能会产生更笨重、更难维护的代码。并且缺少足够的保护，其中的损害要直到受到 bug 的影响才会被发现。</p>
+<h3 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h3><p>一但我需要的值准备好了，我就用我的承诺值换取这个值本身。</p>
+<p>从外部看，由于 Promise 封装了依赖于时间的状态——等待底层值的完成或拒接，所以 Promise 本身是与时间无关的。因此，Promise 可以按照可预测的方式组成(组合)，而不用关心时序或底层的结果。</p>
+<p>一旦 Promise 决议，它就永远保持在这个状态。此时它就成为了不变值，可以根据需求多次查看。Promise 决议后就是外部不可变的值，我们可以安全地把这个值传递给第三方，并确信它不会被有意无意地修改。特别是对于多方查看同一个 Promise 决议的情况，尤其如此。<br>Promise 是一种封装和组合未来值的易于复用的机制。</p>
+<h4 id="具有-then-方法的鸭子类型"><a href="#具有-then-方法的鸭子类型" class="headerlink" title="具有 then 方法的鸭子类型"></a>具有 then 方法的鸭子类型</h4><p>如何判断某个值是不是 promise？既然 promise 是通过 new promise(..)语法创建的你可能认为使用 <code>p instanceof Promise</code>来判断，但是这种方式不足以作为检查方法。最重要的原因是，Promise 值可能是从其他浏览器窗口(iframe 等)接收到的，这个浏览器窗口自己的 Promise 可能和当前窗口/frame 的不同，因此这样的检查无法识别 Promise 实例。此外，库和框架可能会选择实现自己的 Promise，而不是使用原生 ES6 Promise 实现。实际上，很可能使用的是早期根本没有 Promise 实现的浏览器中使用由库提供的 Promise。</p>
+<p>根据一个值的形态(具有哪些属性)对这个值的类型作出一些假定。这种类型检查一般用术语<strong>鸭子类型</strong>来表示——(如果它看起来像只鸭子，叫起来像只鸭子，那它一定就是鸭子)，于是检测大概就是这样：</p>
+<pre><code>if(
+    p !== null &amp;&amp;
+    (
+        typeof p === &quot;object&quot; ||
+        typeof p == &quot;function&quot;
+    ) &amp;&amp;
+    typeof p.then === &quot;function&quot;
+) {
+    //假定这就是一个thenable
+}
+else {
+    //不是一个thenable
+}
+</code></pre><p>假如在原型中加入了 then 函数，那么生成的对象就会被认定为 thenable 的。</p>
+<pre><code>Object.prototype.then = function() {};
+Array.prototype.then = function() {};
+var v1 = { hello: &quot;world&quot; };
+var v2 = [ &quot;hello&quot;, &quot;world&quot;];
+</code></pre><p>v1 和 v2 都会被认作是 thenable。如果有任何代码无意或恶意地给 Object.prototype、Array.prototype 或任何原生原型添加 then(..)，如果有 Promise 决议到这样的值，就会永远挂住。</p>
+<h4 id="Promise-的信任问题"><a href="#Promise-的信任问题" class="headerlink" title="Promise 的信任问题"></a>Promise 的信任问题</h4><p>把一个回调传入工具 foo(..)时，可能会出现如下问题：</p>
+<ul>
+<li>调用回调过早</li>
+<li>调用回调过晚(或不被调用)</li>
+<li>调用回调次数过少或过多</li>
+<li>未能传递所需的环境和参数</li>
+<li>吞掉可能出现的错误和异常<br>Promise 的特性就是专门用来为这些问题提供一个有效的可复用的答案。</li>
+</ul>
+<p><strong>调用过早</strong><br>根据定义，promise 就不必担心这种问题，因为即使是立即完成的 Promise,如下：</p>
+<pre><code>new Promise( function(resolve) {
+    resolve(32);
+})
+</code></pre><p>也无法被同步观察到。也就是说，对一个 Promise 调用 then(…)的时候，即使这个 Promise 已经决议，提供给 then(..)的回调的总会被异步调用。</p>
+<p><strong>调用过晚</strong><br>Promise 创建对象调用 resolve(..)或 reject(..)时，这个 promise 的 then(..)注册的观察回调就会被自动调度。一个 promise 决议后，这个 promise 上所有的通过 then(..)注册的回调都会在下一个异步时机点上依次被立即调用。这些回调中的任意一个都无法影响或延误对其他回调的调用。</p>
+<p><strong>回调未调用</strong><br>没有任何东西(甚至是 JavaScript 错误)能阻止 Promise 向你通知它的决议(如果它决议了的话)。如果对一个 Promise 注册了一个完成回调和一个拒绝回调，那么 Promise 在决议时总是会调用其中的一个。</p>
+<p><strong>调用次数过多或过少</strong><br>根据定义，回调被调用的正确次数应该是 1.“过少”的调用次数就是 0 次，和前面解释的唯美调用是一个道理。“过多”的情况很容易解释。Promise 的定义方式使得它只能被决议一次，如果出于某种原因，Promise 创建的代码试图调用 resolve(..)或 reject(..)多次，或者试图两者都调用，那么这个 Promise 将只会接受第一次决议，并默默地忽略任何后续调用。由于 Promise 只能被决议一次，所以任何通过 then(..)注册的(每个)回调就只会被调用一次。</p>
+<p><strong>未能传递参数/环境值</strong><br>Promise 最多只能有一个决议值(完成或拒绝)。<br>如果没有用任何值显式决议，那么这个值就是<code>undefined</code>,这是 JavaScript 常见的处理方式。但不管这个值是什么，无论当前或未来，他都会被传给所有注册的(且适当的完成或拒绝)回调。<br>此外，如果使用多个参数调用 resolve(..)或者 reject(..)，第一个参数之后的所有参数都会被默默忽略。如果要传递多个值，就必须要把它们封装在单个值中传递，比如通过一个数组或对象。</p>
+<p><strong>吞掉错误或异常</strong><br>如果拒绝一个 promise 并给出一个理由(也就是一个出错信息)，这个值就会被传给拒绝回调。如果在 promise 的创建过程中或在查看决议过程中的任意时间点，出现了一个 JavaScript 异常错误，比如一个 TypeError 或 ReferenceError，那这个异常就会被捕捉，并且会使这个 promise 被拒绝。</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/09/23/你不知道的JavaScript中2/" class="b-link-green">你不知道的JavaScript (中卷)2</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/09/23/你不知道的JavaScript中2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="你不知道的JavaScript (中卷)2">
+                        
+                        <span class="card-title">你不知道的JavaScript (中卷)2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">异步和性能如何表达和控制持续一段时间的程序行为。是指程序的一部分现在运行，而另一部分在将来运行——现在和将来之间有间隙，在这段间隙中，程序没有活跃。所有重要的程序(特别是 JavaScript 程序)都需要通过这样或那样的方法来管理这段时间</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/09/23/你不知道的JavaScript中1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="你不知道的JavaScript(中卷)1">
+                        
+                        <span class="card-title">你不知道的JavaScript(中卷)1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">第一部分 类型和语法第一章 类型这些工具库之所以功能强大，正是因为它们的开发者理解这门语言的本质和优点，并将它们运用到了极致。JavaScript 有 7 中内置类型：
+
+空值（null）
+未定义（undefined）
+布尔值（boolea</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://lrqlrq.github.io/" target="_blank"> LRQ </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>
