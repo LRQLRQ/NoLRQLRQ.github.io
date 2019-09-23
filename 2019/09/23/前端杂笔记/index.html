@@ -632,18 +632,20 @@ getRecord(page){
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/09/23/关于JS的void函数传参问题/">
+                <a href="/2019/09/23/你不知道的JavaScript3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="前端开发笔记--JS的void函数传参问题">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="你不知道的JavaScript(3)">
                         
-                        <span class="card-title">前端开发笔记--JS的void函数传参问题</span>
+                        <span class="card-title">你不知道的JavaScript(3)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">背景这周要修复一个系统的BUG，在某个页面有查询功能，点击查询按钮后，前端发送查询信息到后端，后端返回给查询的数据。但是在前台翻页的时候，没有保留查询条件。
-解决方案原来系统的结构是正常翻页有一个函数，查询有一个函数。（如果现在让我构造的话</div>
+                    <div class="summary">不变性
+
+对象常量结合writable:false 和configurable:false就可以创建一个真正的常量属性(不可修改、重定义或删除)var myObject = {};
+Object.defineProperty( myObje</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
@@ -659,8 +661,8 @@ getRecord(page){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/javascript/" target="_blank">
-                        <span class="chip bg-color">javascript</span>
+                    <a href="/tags/前端/" target="_blank">
+                        <span class="chip bg-color">前端</span>
                     </a>
                     
                 </div>
@@ -672,19 +674,24 @@ getRecord(page){
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/23/你不知道的JavaScript/">
+                <a href="/2019/09/23/你不知道的JavaScript2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="你不知道的JavaScript(1)">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="你不知道的JavaScript(2)">
                         
-                        <span class="card-title">你不知道的JavaScript(1)</span>
+                        <span class="card-title">你不知道的JavaScript(2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.作用域javascript是一门编译语言，与传统的编译语言不同，它不是提前编译的，编译结果也不能在分布式系统中移植。
-编译的三个步骤1. 分词，词法分析将字符串分解为有意义的代码块，这些代码块被称为词法单元。
-2. 解析将词法单元流转换</div>
+                    <div class="summary">块级作用域先说一段代码
+var foo = true;
+if(foo) {
+    var bar = foo * 2;
+    console.log(bar);
+}
+console.log(bar);
+上述代码会输出什么呢？我一直以为第</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
