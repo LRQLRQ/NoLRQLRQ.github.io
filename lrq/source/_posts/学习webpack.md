@@ -1,4 +1,4 @@
-﻿---
+---
 title: 学习Webpack
 tags: 前端
 ---
@@ -14,7 +14,7 @@ tags: 前端
 ```
 module.export = {
     entry: {
-        index: ['index.js', 'app.js'],
+        index: ['index.js', '<a href=""></a>p.js'],
         vender: 'vender.js'
     }
 }
