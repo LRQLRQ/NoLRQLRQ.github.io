@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="刷LeetCode的笔记, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="刷LeetCode心得体会
+11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。总结一下javascri">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>刷LeetCode的笔记 | 欢迎来到，瑞卿的窝。</title>
+    <link rel="icon" type="image/png" href="/favicon.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">欢迎来到，瑞卿的窝。</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">欢迎来到，瑞卿的窝。</div>
+        <div class="logo-desc">
+            
+            学习的小小笔记，记在这里。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/LRQLRQ" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>I am here.
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/LRQLRQ" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="I am here." data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        刷LeetCode的笔记
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/algorithm/" target="_blank">
+                    <span class="chip bg-color">algorithm</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-09-17
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>刷LeetCode心得体会</strong></p>
+<p>11.23日，第一次刷LeetCode，有一个题我写了28行，看了讨论区别人只写了4行，看了他写的代码，是用了javascript的一些方法，我不知道这些方法，还是像C语言一样实现了一下。<br>总结一下javascript的一些方法</p>
+<p>有个题目是返回输入的数字的倒序<br>代码如下</p>
+<pre><code>var reverse = function(x){
+    result = parseInt(x.toString().split(&#39;&#39;).reverse().join(&#39;&#39;));
+    if(result &gt; Math.pow(2,31)-1 || -result &lt; Math.pow(-2,31)-1) return 0;
+    return x &gt; 0 ? result : -result;
+}
+</code></pre><p><code>x.toString</code> 是把输入的数字转化为字符串<br><code>x.split(&#39;&#39;)</code>是把生成的字符串根据’’切割，转化为数组<br><code>x.reverse()</code> 是把数组进行倒序<br><code>x.join(&#39;&#39;)</code> 是将数组组合成字符串</p>
+<hr>
+<p>11.27 Roman to Integer<br>        今天做了一道将罗马数字转化为数字的题，罗马数字中I为1，V为5，X为10，L为50，C为100，D为500，M为1000.但是表示4的时候不是表示IIII，而是IV，I在V左边表示5-1=4，像这样的都有 IV=4  IX=9  XL=40  XC=90  CD=400 CM=900.<br>然后根据罗马数字的输入来得到整数的输出，我的代码是这样：</p>
+<pre><code>/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    var num_IV = s.split(&#39;IV&#39;).length-1;    //-1
+    var num_IX = s.split(&#39;IX&#39;).length-1;    //-1    
+    var num_XL = s.split(&#39;XL&#39;).length-1;    //-10
+    var num_XC = s.split(&#39;XC&#39;).length-1;    //-10
+    var num_CD = s.split(&#39;CD&#39;).length-1;    //-100
+    var num_CM = s.split(&#39;CM&#39;).length-1;    //-100
+    var num_I = s.split(&#39;I&#39;).length-1;
+    var num_V = s.split(&#39;V&#39;).length-1;
+    var num_X = s.split(&#39;X&#39;).length-1;
+    var num_L = s.split(&#39;L&#39;).length-1;
+    var num_C = s.split(&#39;C&#39;).length-1;
+    var num_D = s.split(&#39;D&#39;).length-1;
+    var num_M = s.split(&#39;M&#39;).length-1;
+    var result = 0;
+
+    result = num_I + num_V*5 + num_X*10 + num_L*50 + num_C*100 + num_D*500 + num_M*1000 
+    - num_IV*2 - num_IX*2 - num_XL*20 - num_XC*20 - num_CD*200 - num_CM*200;
+
+    return result;
+
+};
+
+</code></pre><p>这样写代码很冗杂，才超过了百分之30多的人。。。也算是初步会用了js的一些方法吧。<br>如果想求某个字符串temp，在字符串s中出现的次数，可以用s.split(‘temp’).length-1，来获得。s.split(‘temp’)后得到一个数组，再求出这个数组的长度，再-1，因为split操作后，数组中会出现’’元素。</p>
+<p>看了看discussion，发现另一种用slice实现的方法，虽然也有点暴力，没有为之一振的感觉，但是初学者，能吸收一点是一点，放在这里刚好可以对比着学习split和slice这两个方法了</p>
+<pre><code>var romanToInt = function(s) {
+    var roman = {        //定义存储的数组
+        &#39;I&#39;: 1,
+        &#39;V&#39;: 5,
+        &#39;X&#39;: 10,
+        &#39;L&#39;: 50,
+        &#39;C&#39;: 100,
+        &#39;D&#39;: 500,
+        &#39;M&#39;: 1000,
+        &#39;IV&#39;: 4,
+        &#39;IX&#39;: 9,
+        &#39;XL&#39;: 40,
+        &#39;XC&#39;: 90,
+        &#39;CD&#39;: 400,
+        &#39;CM&#39;: 900,
+    };
+    var ret = 0;
+    for (var i = 0; i &lt; s.length; ) {
+        var j = i + 1;    //每次j只比i大1，是当前元素的下一个元素
+        if (j === s.length) {    //如果j为字符串的长度，就说明到了最后，进行最后一次运算
+            ret += roman[s.slice(i, j)];
+            return ret;
+        }
+        if (s.slice(i, j + 1) in roman) {        //如果连着2个字符出现在之前存储的数组中，即出现了IV、IX这些
+            ret += roman[s.slice(i, j + 1)];
+            i = j + 1;
+        } else {
+            ret += roman[s.slice(i, j)];
+            i = j;
+        }
+    }
+    return ret;
+};
+</code></pre><p><code>if (s.slice(i, j + 1) in roman)</code> 我觉得这个知识点有点东西，得记一下。<br>依据键来取声明式对象中的值</p>
+<p>此外，slice方法，是输入两个index，返回的是该字符串中，两个index之间的字符串。<br>而split方法，是把字符串进行切分，分割成若干个数组。</p>
+<hr>
+<p>11.28 求一个数组中，前面相同的部分<br>如输入 strs = [‘flower’,’flow’,’fly’]  就输出’fl’</p>
+<p>做这道题我自己的方法是<br>1.最多循环数组中第一个元素的长度<br>2.以第一个元素为基准，以此和数组中别的元素的相同位置的字符进行比较<br>3.如果相同，则将该字符添加到ret后面</p>
+<p>做这道题，掌握到的<strong>新知识点</strong>：<br>1.对于一些乱七八糟的输入，比如空数组[] ,比如[‘’]，可以这样来判断输入值是否合法<br><code>if(!strs || strs.length)</code>,如果是undefined的话，加一个取反，逻辑就为true。如果是长度为0，也会返回true。<br>2.对于输入的strs，可以用这种方式来取值<code>strs[i][j]</code><br>即对于string类型的数据，可以直接通过[]的方式取值<br>3.string类型的一个新方法，截取字符串 <code>string.substring(i,j)</code>，则返回字符串string中的i到j坐标中的字符串</p>
+<hr>
+<p>11.29 判定一个括号是不是成对出现，符合规则<code>{[()]}</code>,比如说是这样</p>
+<p>我的思路：<br>1.重复将输入的字符串根据<code>() [] {}</code> 进行split拆分成数组，再合并起来，一直到最后结果变为 <code>&#39;&#39;</code>,这就说明成功了。具体代码如下：</p>
+<pre><code>var temp = s;
+while(1){
+    temp = s.split(&quot;()&quot;).join(&quot;&quot;).split(&quot;[]&quot;).join(&quot;&quot;).split(&quot;{}&quot;).join(&quot;&quot;);
+    if(temp==&quot;&quot;)
+        return true;
+    if(temp==s){
+        return false;
+    }
+    s = temp;
+}
+</code></pre><p>但是这样运行效率太差劲了，只超过了10%的人，菜的要死。<br>然后在dission看到了超过100%的人。。学习一下<br>思路：<br>1.将括号的左边，和括号的右边存在两个Set对象中，将成对的括号制成map表，以左边括号为key，以右边括号为value<br>2.用一个栈，随时储存和进行操作<br>3.对传入的字符串进行遍历，如果是一个左括号的类型的值，则push到栈顶。如果是一个右括号类型的值，就pop弹出栈顶的值，此时栈顶是左括号的最后一个的值，弹出之后就变成了前一个。拿弹出的值对应的map和此时的右括号的某个值进行比较，看相不相等。相等就继续判断下一个，不等就直接输出false</p>
+<p>优点：<br>1.遍历的过程一次只判断一个字母，速度快一点。<br>2.提前制好了表，即两个set对象和一个map，查找更快。<br>3.用到了栈，巧妙的用后进先出的特点，解决了括号要按同种类型嵌套的问题<br>代码如下：</p>
+<pre><code>var isValid = function(s) {
+    let stack = [];
+    let openSet = new Set([&#39;(&#39;, &#39;{&#39;, &#39;[&#39;]);
+    let closeSet = new Set([&#39;}&#39;, &#39;]&#39;, &#39;)&#39;]);
+    let bracketMap = new Map([[&#39;(&#39;, &#39;)&#39;], [&#39;[&#39;, &#39;]&#39;], [&#39;{&#39;, &#39;}&#39;]]); 
+    for (let c of s) {
+        if (openSet.has(c))  {
+            stack.push(c);   
+        }
+        else if (closeSet.has(c)) {
+            let temp = stack.pop();
+            if (temp === undefined || c !== bracketMap.get(temp)) return false;
+        } 
+    }
+    return stack.length === 0;
+};
+</code></pre><p>新学的知识点：<br>1.Set对象，和map类似，是一组key的集合，但是不存储value，因为key不能重复，所以在Set中没有重复的元素。<br>2.map,是一组键值对的结构，具有极快的查找速度，通过传入的数组的数组建立。通过set(key,value)方法添加元素，通过get(key)来取值。<br>3.栈的push和pop，栈是一种后进先出的数据结构，栈中项的推入和弹出都发生在栈顶。javascript中为数组提供了push()和pop()方法，push()可以接受任意数量的参数，逐个添加到数组的末尾，并返回修改后数组的长度。pop()方法则从数组的末尾弹出最后一项，减少数组的length值，返回弹出的项</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/09/17/刷LeetCode笔记/" class="b-link-green">刷LeetCode的笔记</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/09/17/学习webpack/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="学习Webpack">
+                        
+                        <span class="card-title">学习Webpack</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">核心概念
+Entry:入口
+Output:输出
+Loaders:处理其他类型（不是js）的文件
+Plugins:插件，其他的功能
+
+
+Entyr:代码的入口，说自己import了什么，require了什么。可以在这里直接或者间接找到依赖。打</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/前端/" target="_blank">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/09/17/学习HTTP协议/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="学习HTTP协议">
+                        
+                        <span class="card-title">学习HTTP协议</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+Web使用一种名为HTTP的协议作为规范，完成从客户端到服务器等一些列运作流程。而协议是指规则的约定。Web是建立在HTTP协议上通信的。
+通常实用的网络（包括互联网）实在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://lrqlrq.github.io/" target="_blank"> LRQ </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>
