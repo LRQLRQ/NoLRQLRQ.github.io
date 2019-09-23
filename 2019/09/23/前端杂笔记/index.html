@@ -281,7 +281,7 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-09-17
+                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
                 </span>
             </div>
         </div>
@@ -472,7 +472,7 @@ getRecord(page){
     currentPage = page?page.currentPage:this.page.currentPage;
 }
 </code></pre><p>这么写的好处，可以直接调用<code>getRecord()</code>来使用函数，这样的话就是传入的page参数是null，然后在函数内部使用表达式判断进行赋初值。<br><code>page?page.pageSize:this.page.pageSize</code>这句话的意思是，判断page是不是存在，如果存在的话就给<code>pageSize</code>赋值为传入对象的储值，如果不存在的话，就赋值为全局变量中的初值。这么写省了很多逻辑。</p>
-
+<h3 id="ES6是什么？和javascript有什么关系？"><a href="#ES6是什么？和javascript有什么关系？" class="headerlink" title="ES6是什么？和javascript有什么关系？"></a>ES6是什么？和javascript有什么关系？</h3>
             </div>
             <hr>
 
@@ -610,7 +610,7 @@ getRecord(page){
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/09/17/前端杂笔记/" class="b-link-green">前端杂笔记</a>
+                    <a href="/2019/09/23/前端杂笔记/" class="b-link-green">前端杂笔记</a>
                 </p>
             </div>
         </div>
@@ -632,67 +632,22 @@ getRecord(page){
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/09/17/npm是什么/">
+                <a href="/2019/09/23/关于JS的void函数传参问题/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="npm是干什么的">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="前端开发笔记--JS的void函数传参问题">
                         
-                        <span class="card-title">npm是干什么的</span>
+                        <span class="card-title">前端开发笔记--JS的void函数传参问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">npm,一个和pip一样的东西一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管</div>
+                    <div class="summary">背景这周要修复一个系统的BUG，在某个页面有查询功能，点击查询按钮后，前端发送查询信息到后端，后端返回给查询的数据。但是在前台翻页的时候，没有保留查询条件。
+解决方案原来系统的结构是正常翻页有一个函数，查询有一个函数。（如果现在让我构造的话</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-user fa-fw"></i>
-                            刘瑞
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/npm-前端/" target="_blank">
-                        <span class="chip bg-color">npm 前端</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">下一篇</div>
-            <div class="card">
-                <a href="/2019/09/17/学习JavaScript/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="学习JavaScript">
-                        
-                        <span class="card-title">学习JavaScript</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">1.这是我第一天学习JavaScript斜体粗体好吗？
-
-这是引用sss
-
-print(&quot;hello!&quot;);
-return 0;
-
-##1.为什么学习 JavaScript?##JavaScript web 开发人员必须</div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -706,6 +661,47 @@ return 0;
                     
                     <a href="/tags/javascript/" target="_blank">
                         <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/09/23/你不知道的JavaScript/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="你不知道的JavaScript(1)">
+                        
+                        <span class="card-title">你不知道的JavaScript(1)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">1.作用域javascript是一门编译语言，与传统的编译语言不同，它不是提前编译的，编译结果也不能在分布式系统中移植。
+编译的三个步骤1. 分词，词法分析将字符串分解为有意义的代码块，这些代码块被称为词法单元。
+2. 解析将词法单元流转换</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/前端/" target="_blank">
+                        <span class="chip bg-color">前端</span>
                     </a>
                     
                 </div>

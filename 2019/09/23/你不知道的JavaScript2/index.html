@@ -1,0 +1,863 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="你不知道的JavaScript(2), 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="块级作用域先说一段代码
+var foo = true;
+if(foo) {
+    var bar = foo * 2;
+    console.log(bar);
+}
+console.log(bar);
+上述代码会输出什么呢？我一直以为第">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>你不知道的JavaScript(2) | 欢迎来到，瑞卿的窝。</title>
+    <link rel="icon" type="image/png" href="/favicon.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">欢迎来到，瑞卿的窝。</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">欢迎来到，瑞卿的窝。</div>
+        <div class="logo-desc">
+            
+            学习的小小笔记，记在这里。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/LRQLRQ" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>I am here.
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/LRQLRQ" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="I am here." data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        你不知道的JavaScript(2)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/前端/" target="_blank">
+                    <span class="chip bg-color">前端</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h5 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h5><p>先说一段代码</p>
+<pre><code>var foo = true;
+if(foo) {
+    var bar = foo * 2;
+    console.log(bar);
+}
+console.log(bar);
+</code></pre><p>上述代码会输出什么呢？我一直以为第一个console输出2，到第二个会输出undefined，但是两个都输出了2.就是因为定义的时候用的是var！！使用var声明变量时，bar在哪里都是一样的，最终都会属于外部作用域。<br>const 和 let有块级作用域，var出来的变量没有块级作用域。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><ol>
+<li>函数是JavaScript中最常见的作用域单元。本质上，声明在一个函数内部的变量或函数会在所处的作用域中“隐藏”起来，这是有意为之的良好软件的设计原则。</li>
+<li>函数不是唯一的作用域单元。块作用域指的是变量和函数不仅可以属于所处的作用域，也可以属于某个代码块(通常是指{ .. }内部)</li>
+<li>从ES3开始，try/catch结构在 catch分句中具有块作用域。</li>
+<li>在ES6中引入了<code>let</code>关键字(<code>var</code>关键字的表亲),用来在任意代码块中声明变量。if( .. ){ let a = 2; }会声明一个劫持了if的 { .. }块的变量，并且将变量添加到这个块中。</li>
+</ol>
+<h3 id="提升"><a href="#提升" class="headerlink" title="提升"></a>提升</h3><p>编译：引擎会在解释JavaScript代码之前首先对其进行编译。编译阶段的一部分工作就是找到所有的声明，并用合适的作用域将他们关联起来。<br><strong>只有声明本身会被提升，而赋值操作或其他运行逻辑会留在原地。如果提升改变了代码执行的顺序，会造成非常严重的后果</strong><br>函数声明会被提升，但是函数表达式却不会被提升。  </p>
+<pre><code>foo();  
+var foo = function bar() {
+    //
+}
+</code></pre><p>上面这种就是函数表达式，  变量标识符<code>foo()</code>被提升并分配给所在作用域，因此<code>foo()</code>不会导致ReferenceError。但是foo此时没有赋值，(如果他是一个函数声明而不是函数表达式，就会被赋值),程序运行到foo()时，foo的内容还是undefined，对undefined进行调用导致非法操作，因此会抛出TypeError异常。<br>此外，即使是具名的函数表达式，名称标识符在赋值之前也无法再所在作用域中使用：</p>
+<pre><code>foo();  //TypeError
+bar();  //ReferenceError
+var foo = function bar() {
+    //...
+};
+</code></pre><p>上段代码提升后，实际上会理解为以下形式:</p>
+<pre><code>var foo;
+foo();  //TypeError
+bar();  //ReferenceError
+foo = function() {
+    var bar = ...self...;   //其实我也不太懂
+
+}
+</code></pre><h4 id="函数优先"><a href="#函数优先" class="headerlink" title="函数优先"></a>函数优先</h4><p>函数声明和变量声明都会被提升，但是两者同时呢？答案是函数会首先被提升，然后才是变量。  </p>
+<pre><code>foo();
+var foo;
+function foo() {
+    console.log(&quot;1&quot;);
+}
+
+foo = function() {
+    console.log(&quot;2&quot;);
+}
+</code></pre><p>输出的结果是1，而不是2. <code>var foo</code>尽管出现在<code>function foo()...</code>的声明之前，但它是重复的声明，被忽略了，因为函数的声明会被提升到普通变量之前。  </p>
+<h3 id="作用域闭包"><a href="#作用域闭包" class="headerlink" title="作用域闭包"></a>作用域闭包</h3><p>闭包是基于词法作用域书写代码时所产生的自然结果，甚至不需要为了利用它们而有意识地创建闭包。闭包的创建和使用值代码中随处可见，<strong>缺少的是根据自己的意愿来识别、拥抱、和影响闭包的思维环境。</strong><br>闭包定义：<strong>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行</strong><br>引擎有垃圾回收器来释放不再使用的内存空间，但是闭包可以阻止这件事的发生。内部作用域依然存在，闭包的哪个引用，仍然在使用内部作用域的某个变量。<br>某个函数在定义时的词法作用域以外的地方被调用。闭包使得函数可以继续访问定义时的词法作用域。无论通过何种手段将内部函数传递到所在的词法作用域以外，<strong>它都会持有对原始定义作用域的引用</strong>，无论在何处执行这个函数都会使用闭包。  </p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>先看一块代码：</p>
+<pre><code>function CoolModule() {
+    var something = &quot;cool&quot;;
+    var another = [1, 2, 3];
+
+    function doSomething() {
+        console.log( something );
+    }
+    function doAnother() {
+        console.log( another.join(&quot;!&quot;) );
+    }
+
+    return {
+        doSomething: doSomething,
+        doAnother: doAnother
+    }
+}
+var foo = CoolModule();
+foo.doSomething();      //cool
+foo.doAnother();        //1!2!3!
+</code></pre><p>模块模式需要具备两个必要条件：</p>
+<ol>
+<li>必须有外部的封闭函数，该函数至少被调用一次（每次调用都会创建一个新的模块实例）</li>
+<li>封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以返回或者修改私有的状态。  </li>
+</ol>
+<p>一个具有函数属性的对象本身并不是真正的模块，从方便观察的角度看，一个从函数调用所返回的，只有数据属性而没有闭包函数的对象并不是真正的模块。<br>模块内部的函数也可以改动，如下代码：</p>
+<pre><code>var foo = (function CoolModule(id) {
+    function change() {
+        // 修改公共API
+        publicAPI.identify = identify2;
+    }
+    function identify1() {
+        console.log( id );
+    }
+    function identify2() {
+        console.log( id.toUpperCase() );
+    }
+
+    var publicAPI = {
+        change: change,
+        identify: identify1
+    };
+
+    return publicAPI;
+})( &quot;foo module&quot; );
+
+foo.identify(); // foo module
+foo.change();
+foo.identify(); //FOO MODULE 
+</code></pre><p>通过在模块实例的内部保留对公共API对象的内部引用，可以从内部对模块实例进行修改，包括添加或删除方法和属性，以及修改他们的值。</p>
+<p>贴一个模块管理器的代码：</p>
+<pre><code>var MyModules = (function Manager() {
+    var modules = {};
+    function define(name, deps, impl) {
+        for(var i=0; i&lt;deps.length; i++) {
+            deps[i] = module[deps[i]];
+        }
+        modules[name] = impl.apply( impl, deps );  //这句话很关键
+    }
+
+    function get(name) {
+        return modules[name];
+    }
+
+    return {
+        define: define,
+        get: get
+    };
+})();
+</code></pre><p>那句关键的话，为了模块的定义引入了包装函数，(可以传入任何依赖)，并且将返回值，也就是模块的API，存储在一个根据名字来管理的列表中。<br>模块管理器没有任何的”魔力”，他们符合前面说的模块模式的两个特点：<strong>为函数定义引入包装函数，并保证它的返回值和模块的API保持一致。</strong>  </p>
+<p>词法作用域和动态作用域的区别：  </p>
+<ol>
+<li>词法作用域是在写代码或者说定义时确定的，而动态作用域是在运行时确定的。(this 也是)</li>
+<li>词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用。</li>
+</ol>
+<h2 id="第二章-this和原型对象"><a href="#第二章-this和原型对象" class="headerlink" title="第二章 this和原型对象"></a>第二章 this和原型对象</h2><h4 id="误解"><a href="#误解" class="headerlink" title="误解"></a>误解</h4><h5 id="1-指向自身"><a href="#1-指向自身" class="headerlink" title="1.指向自身"></a>1.指向自身</h5><h5 id="2-指向它的作用域"><a href="#2-指向它的作用域" class="headerlink" title="2.指向它的作用域"></a>2.指向它的作用域</h5><p>在某种情况下它是正确的，但是在其他情况下它确实错误的。 <code>this</code>在任何情况下都不指向函数的词法作用域。在JavaScript内部，作用域确实和对象类似，可见的标识符都是它的属性。但是作用域”对象”无法通过JavaScript代码访问，他存在于JavaScript引擎内部。  </p>
+<h5 id="this到底是什么"><a href="#this到底是什么" class="headerlink" title="this到底是什么"></a>this到底是什么</h5><p>this是在运行时进行绑定的，并不是在编写时绑定的，它的上下文取决于函数调用时的各种条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。<br>当一个函数被调用时，会创建一个活动记录(也称为执行上下文)。这个记录会记录函数在哪里被调用(调用栈)、函数的调用方法、传入的参数等信息。this就是记录的其中一个属性，会在函数执行的过程中用到。<br><strong>this既不指向函数自身，也不指向函数的词法作用域，this实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用</strong>  </p>
+<h4 id="调用位置"><a href="#调用位置" class="headerlink" title="调用位置"></a>调用位置</h4><p>调用位置是函数在代码中被调用的位置（而不是声明的位置）。要分析调用栈(就是为了到达当前的执行位置所调用的所有函数)。我们关心的调用位置就是当前正在执行的函数的前一个调用中。</p>
+<h4 id="调用规则"><a href="#调用规则" class="headerlink" title="调用规则"></a>调用规则</h4><h5 id="1-默认绑定"><a href="#1-默认绑定" class="headerlink" title="1. 默认绑定"></a>1. 默认绑定</h5><p>独立函数调用。</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var a = 2;
+foo();
+</code></pre><p><strong>tip</strong>：声明在全局作用域中的变量(比如var a = 2)就是全局对象的一个同名属性。当调用foo()时，this.a被解析成了全局变量a。因为在本例中，函数调用时应用了this的<code>默认绑定</code>，因此this指向全局对象。<br>如果使用严格模式(strict mode)，那么全局对象将无法使用默认绑定，因此this会绑定到undefined。有时候写代码可能会用到第三方的库，其严格程度和你写的代码有所不同，要注意这类兼容性细节。</p>
+<h5 id="2-隐式绑定"><a href="#2-隐式绑定" class="headerlink" title="2. 隐式绑定"></a>2. 隐式绑定</h5><p>需要考虑调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含。</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var bar = obj.foo;  //函数别名
+var a = &quot;global&quot;;   //a是全局对象的属性
+bar();               //&quot;global&quot;
+</code></pre><p>参数传递其实是一种隐式赋值。回调函数丢失this绑定是非常常见的。除此之外，还有一种情况this也会令人出乎意料：调用回调函数的函数可能会修改this</p>
+<h5 id="3-显式绑定"><a href="#3-显式绑定" class="headerlink" title="3. 显式绑定"></a>3. 显式绑定</h5><p>在<strong>隐式绑定</strong>中，我们必须在一个对象内部包含一个指向函数的属性，并通过这个属性简介引用函数，从而把<code>this</code>间接(隐式)绑定到这个对象上。  </p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2
+};
+foo.call( obj )     //2
+</code></pre><p>通过<code>foo.call(...)</code>，我们可以在调用foo时强制把它的this绑定到obj上。<br>如果传入的是一个原始值(字符串类型、布尔类型或者数字类型)来当做this的绑定对象，这个原始值会被转换成它的对象形式。（也就是 new String(..) 、 new Boolean(..) 或者 new Number(..) ）。这通常被称为”装箱”  .</p>
+<h6 id="硬绑定"><a href="#硬绑定" class="headerlink" title="硬绑定"></a>硬绑定</h6><pre><code>function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2
+}
+var bar = function() {
+    foo.call(obj);
+}
+bar();  // 2
+setTimeout( bar, 100)   // 2
+</code></pre><p>创建了函数bar(),并在它的内部手动调用了foo.call(obj), 因此强制把foo的this绑定到了obj， 无论之后如何调用函数bar，他们总会手动在obj上调用foo，这种绑定是一种显示的强制绑定，因此我们称为硬绑定。<br><code>硬绑定</code>是一种非常常用的模式，在ES5中提供了内置的方法<code>Function.prototype.bind</code>,它的用法如下：</p>
+<pre><code>function foo(something) {
+    console.log( this.a , something);
+    return this.a + something;
+}
+var obj = {
+    a: 2
+};
+
+var bar = foo.bind( obj );
+var b = bar(3);     // 2 3
+console.log( b );   //5
+</code></pre><p>bind(..)会返回一个硬编码的新函数，它会把参数设置为this的上下文并调用原始函数。  </p>
+<h5 id="4-new绑定"><a href="#4-new绑定" class="headerlink" title="4. new绑定"></a>4. new绑定</h5><p>使用new来调用函数，或者说发生都早函数调用时，会自动执行下面的操作：</p>
+<ol>
+<li>创建（或者说构造）一个全新的对象</li>
+<li>这个新对象会被执行 [[原型 ]]连接。</li>
+<li>这个新对象会绑定到函数调用的this</li>
+<li>如果哈数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。</li>
+</ol>
+<pre><code>function foo(a) {
+    this.a = a;
+}
+
+var bar = new foo(2);
+console.log( bar.a );   //2
+</code></pre><h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p>有些地方多条规则都可以用，就得讨论一下优先级了。”默认绑定”这个弟弟肯定是优先级最低的了。</p>
+<h5 id="显式绑定和隐式绑定优先级比较"><a href="#显式绑定和隐式绑定优先级比较" class="headerlink" title="显式绑定和隐式绑定优先级比较"></a>显式绑定和隐式绑定优先级比较</h5><pre><code>function foo() {
+    console.log( this.a );
+}
+var obj1 = {
+    a: 2,
+    foo: foo
+};
+var obj2 = {
+    a: 3,
+    foo: foo
+};
+
+obj1.foo();             //2
+obj2.foo();             //3
+obj1.foo.call( obj2 );  //3
+obj2.foo.call( obj1 );  //2
+</code></pre><p><strong>显示绑定</strong>优先级更高，也就是说在判断时应当优先考虑是否可以应用<strong>显示绑定</strong>。</p>
+<h5 id="判断this"><a href="#判断this" class="headerlink" title="判断this"></a>判断this</h5><p>可以根据优先级来判断函数在某个调用位置应用的是哪条规则。可以按照以下顺序判断：</p>
+<ol>
+<li>函数是否在new中调用(new 绑定)？如果是的话，this绑定的对象是新创建的对象。<br><code>var bar = new foo();</code></li>
+<li>函数是否通过call、apply(显式绑定)或者硬绑定调用？如果是的话，this绑定的是指定的对象。<br><code>var bar = foo.call( obj2 );</code></li>
+<li>函数是否在某个上下文对象中调用(隐式绑定)？ 如果是的话，this绑定的是那个上下文对象。<br><code>var bar = obj1.foo();</code></li>
+<li>如果都不是，使用默认绑定。如果在严格模式下，就绑定到undefined，否则绑定到全局对象。<br><code>var bar = foo();</code></li>
+</ol>
+<h5 id="被忽略的this"><a href="#被忽略的this" class="headerlink" title="被忽略的this"></a>被忽略的this</h5><p>如果你把null或者undefined作为this的绑定对象传入call。apply或者bind，这些值在调用时会被忽略，实际使用的是默认绑定规则。  </p>
+<h5 id="this语法"><a href="#this语法" class="headerlink" title="this语法"></a>this语法</h5><p>ES6中有一种无法使用这些规则的特殊函数类型：箭头函数。<br>箭头函数不是用function关键字定义的，而是使用被称为”胖箭头”的操作符 =&gt;定义的。箭头函数不使用this的四种标准规则，而是根据外层(函数或全局)作用域来决定this。  </p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>如果要判断一个运行中的函数的this绑定，就需要找到这个函数的直接调用位置。找到之后就可以顺序应用下面的这四条规则来判断this的绑定对象。  </p>
+<ol>
+<li>由new 调用？  则绑定到新创建的对象。</li>
+<li>由call 或者 apply (或者bind)调用？  绑定到指定的对象。</li>
+<li>由上下文对象调用？  绑定到上下文对象</li>
+<li>默认： 在严格模式下绑定到undefined，  否则绑定到全局对象。</li>
+</ol>
+<p><strong>ATTENTION</strong>：有些调用可能再无意中使用默认绑定规则。如果想”更安全”地忽略this绑定，可以使用一个DMZ对象，比如φ = Object.create(null),以保护全局对象。<br>ES6中的箭头函数并不会使用四条标准的绑定规则，而是根据当前的词法作用域来决定this。具体来说，箭头函数会继承外层函数调用的this绑定，(无论this绑定到什么)。这其实和ES6之前的代码中的self = this机制一样。  </p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><p>对象是JavaScript的基础。在JavaScript中一共有六种主要类型(术语是”语言类型”):<br>string 、number 、boolean 、null 、undefined 、object<br>简单基本类型(string 、boolean 、number 、null 、undefined )本身并不是对象。null有时会被当做一种对象类型，但是这其实只是语言本身的一个bug，即对null执行 <code>typeof null</code> 会返回 <code>object</code>，实际上，null本身是基本类型。<br>JavaScript中海油一些对象子类型，通常被称为内置对象，如： Strig、Number、Boolean、Object、Function、Array、Date、RegExp、Error  </p>
+<pre><code>var str = &quot;I am a string&quot; ;
+console.log( str.length );      //13
+console.log( str.charAt(3));    //&quot;m&quot;
+</code></pre><p>原始值 <code>I am a string</code>并不是一个对象，他只是一个字面量，并且是一个不可变的值。如果要在这个字面量上执行一些操作，比如获取长度、访问其中某个字符等，那需要将其转换为String对象。<br>使用以上的方法，我们可以直接在字符串字面量上访问属性或者方法，之所以可以这样做，是因为引擎自动把字面量转换成String对象，所以可以访问属性和方法。  </p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>对象的内容是由一些存储在特定明明位置的(任意类型的)值组成的，称之为属性。存储在对象容器内部的是这些属性的名称，它们就像指针，(从技术角度来说就是引用)，指向这些值真正存储的位置。</p>
+<pre><code>var myObject = {
+    a: 2
+};
+myObject.a;     //2
+myObject[&quot;a&quot;]   //2
+</code></pre><p>如果要访问myObject中a位置上的值，我们需要.操作符或者[]操作符。 .a 语法通常被称为”属性访问”，[“a”]语法通常被称为”键访问”。实际上访问的是同一个位置。这两种语法的主要区别在于.操作符要求属性名满足标识符的命名规范，而[“..”]语法可以接受任何UTF-8字符串作为属性名。比如 myObject[“Super-Fun!”]  </p>
+<h5 id="属性与方法"><a href="#属性与方法" class="headerlink" title="属性与方法"></a>属性与方法</h5><p>从技术角度来说，函数永远不会”属于”一个对象。每次访问对象的属性就是属性访问，如果属性访问返回的是一个函数，那它也并不是一个”方法”。属性访问返回的函数和其他的函数没有任何区别。除了可能发生隐式绑定：<strong>有些函数有this引用，有时候这些this确实会指向调用位置的对象引用，但是这种用法从本质上来说并没有把一个函数变成一个“方法”，因为this是在运行时根据调用位置动态绑定的，所以函数和对象的关系最多也只能说是间接关系。</strong>  </p>
+<p><strong>复制对象</strong><br>JSON安全的对象：也就是说可以被序列化为一个JSON字符串并且可以根据这个字符串解析出一个结构和值完全一样的对象</p>
+<pre><code>function anotherFunction() {
+    //..
+}
+var anotherObject = {
+    c: true
+}
+var anotherArray = [];
+var myObject = {
+    a: 2,
+    b: anotherObject,
+    c: anotherArray,
+    d: anotherFunction
+}
+
+var newObj = Object.assign( {}, myObject );
+</code></pre><p><strong>属性描述符</strong>  </p>
+<pre><code>var myObject = {
+    a: 2
+}
+Object.getOwnPropertyDescriptor( myObject, &quot;a&quot;);
+//{
+//  value:2,
+//  writable: true,
+//  enumerable: true,
+//  configurable: true
+//}
+</code></pre>
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/09/23/你不知道的JavaScript2/" class="b-link-green">你不知道的JavaScript(2)</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/09/23/Vue的bind和set方法使用/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Vue中v-bind动态改变样式及Vue.set()方法使用">
+                        
+                        <span class="card-title">Vue中v-bind动态改变样式及Vue.set()方法使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">需求及问题描述现在用v-for将后端传来的图片显示在页面上了，想实现这样一个功能：
+
+点击某张图片后该图片添加边框 
+同时该图片右侧增加标记，提示已经点击。 
+边框是只有正在操作的图片才有，标记是只要点击过就有。
+
+解决方案这里因为是在fo</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/前端-vue/" target="_blank">
+                        <span class="chip bg-color">前端 vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/09/17/校园网无限流量总结/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="校园网的无限流量">
+                        
+                        <span class="card-title">校园网的无限流量</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">无限流量归纳最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vpn/" target="_blank">
+                        <span class="chip bg-color">vpn</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://lrqlrq.github.io/" target="_blank"> LRQ </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>
