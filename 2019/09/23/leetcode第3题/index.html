@@ -5,8 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="校园网的无限流量, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="无限流量归纳最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返">
+    <meta name="keywords" content="LeetCode第3题, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="2018.2.26
+题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。第一次用了滑动窗口的思想解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>校园网的无限流量 | 欢迎来到，瑞卿的窝。</title>
+    <title>LeetCode第3题 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -245,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        校园网的无限流量
+                        LeetCode第3题
                     </div>
                 </div>
             </div>
@@ -271,8 +272,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/vpn/" target="_blank">
-                    <span class="chip bg-color">vpn</span>
+                <a href="/tags/algorithm/" target="_blank">
+                    <span class="chip bg-color">algorithm</span>
                 </a>
                 
             </div>
@@ -281,33 +282,58 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-09-17
+                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="无限流量归纳"><a href="#无限流量归纳" class="headerlink" title="无限流量归纳"></a>无限流量归纳</h1><p>最近学校的无限流量套餐试验结束了，原先的1分钱100M带宽无线流量套餐，现在涨到50块了，前天晚上听到室友找到了一种校园网无线流量的方法，昨天就试了试，虽然还没成功，但是稍微了解了一下原理，还有一些引申。勒石以记，待有缘之时再返以续之。</p>
+                <p>2018.2.26</p>
+<h2 id="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"><a href="#题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。" class="headerlink" title="题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。"></a>题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。</h2><h4 id="第一次用了滑动窗口的思想"><a href="#第一次用了滑动窗口的思想" class="headerlink" title="第一次用了滑动窗口的思想"></a><strong>第一次用了滑动窗口的思想</strong></h4><p>解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp，每弹出一个字符先用变量tail存着，跟窗口–temp对比一下，如果重复了就记下当前temp的长度，和历史的比较留下大的，如果不重复就用push方法，推进窗口数组中。</p>
+<p><strong>代码如下：</strong></p>
 <hr>
-<h2 id="1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。"><a href="#1-UDP的53、67、68端口转发，绕过校园网认证，来免流量。" class="headerlink" title="1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。"></a>1. UDP的53、67、68端口转发，绕过校园网认证，来免流量。</h2><p>准备材料：一台公网的服务器<br>步骤：</p>
-<ol>
-<li>在服务器上搭建SoftEther VPN Server</li>
-<li>在windows上下载SE-VPN Server Manager，连接到搭建好的服务器。</li>
-<li>通过Mananger这个软件来添加用户，并启用SecureNAT功能。</li>
-<li>改变OpenVPN监听的端口，默认是1193，改为53或67或68（不是都可以用，我测试53和67可用）。</li>
-<li>在Manager软件里生成OpenVpn Client的配置文件。</li>
-<li>在windows下载OpenVpn，把第5步生成的配置文件放到安装目录的config里面，并使用第3步添加的用户登录，来连接到服务器上。</li>
-</ol>
+<pre><code>var lengthOfLongestSubstring = function(s) {
+    var sArray = s.split(&#39;&#39;);   //将所给的字符串分成数组
+    var sTemp = [];             //缓存移动窗口
+    var count = 0;              //返回的数字
+    var tail;                   //每次循环数组队尾的字母   
+    while(sArray.length&gt;0){     //当字符串数组有值时进行循环
+        tail = sArray.pop();     //取出sArray末尾的元素
+        for(let i=0;i&lt;sTemp.length;i++){    //取出字符串尾的元素与缓存窗口进行比较
+            if(sTemp[i]===tail){            //如果字符重复则进行操作
+                count = count&gt;sTemp.length?count:sTemp.length;  //将历史中最大的count与窗口缓存的数组长度进行比较，取其大者
+                for(let j=0;j&lt;i+1;j++){     
+                    sTemp.shift();          //将重复字符以前的字符弹出数组
+                }
+            }
+        }
+        sTemp.push(tail);                   //缓存移动窗口推入末尾的元素
+    }
+    count = count&gt;sTemp.length?count:sTemp.length;  //有时传入的字符串本身就是最大的字符串，没有进入循环中的判断，因此最后还要进行赋值
+    console.log(count);
+    return count;
+};
+</code></pre><hr>
+<p>然后看了一下别人的代码，感觉能写好一点。不需要将传入的s字符串转换为数组，也不需要对s进行操作，只需要每次取出s中的元素进行比较就行了。<strong>s[i]</strong>就可以取出字符串s中第i位的元素。思路是一样的，用滑动窗口进行判断，如果用<strong>temp.indexOf(s[i])</strong>进行判断后，发现这个字符在缓冲区的话，就使用slice方法，给temp重新赋值，从重复的位置的后一个到队尾，重新赋给temp。并记录下最大的长度和历史比较。如果不在缓冲区的话，直接push到缓冲区就好。<br><strong>代码如下：</strong></p>
 <hr>
-<p>原理介绍：<br>在连接到某个需要Web认证的热点之前，我们已经有了一个内网IP，此时，如果我们访问某个HTTP网站，网关会对这个HTTP响应报文劫持并篡改，302重定向到让我们认证的页面（就是登录让你输入账号密码的网页）。</p>
-<p>网关（交换机）都默认放行DHCP和DNS的报文，也就是UDP53和UDP67，所以把数据通过53端口传到服务器上，服务器将返回的网页内容再通过53端口传给客户端，实际上都在费流量，只是没有计费。</p>
-<p>参考的博客：</p>
-<p>UDP 53/67/68 端口转发 绕过校园网认证、免流<br><code>https://blog.csdn.net/sinat_38245860/article/details/78669584</code></p>
-<p>UDP 53免费上网、DNS隧道经验谈<code>https://blog.csdn.net/qq_42433224/article/details/82632711</code></p>
-<p>交换机 配置WEB认证的功能原理是什么</p>
-<p><code>http://www.ruijie.com.cn/fw/wt/36503/</code></p>
-<hr>
+<pre><code>var lengthOfLongestSubstring = function(s) {
+    var temp = [];
+    var maxLength = 0; 
+    for(var i = 0; i &lt; s.length; i++){
+        if(temp.indexOf(s[i]) === -1){
+            temp.push(s[i]);
+            if(temp.length &gt; maxLength)
+                maxLength = temp.length;
+        }else{
+            temp = temp.slice(temp.indexOf(s[i]) + 1,temp.length);
+            temp.push(s[i]);
+        }
+    }
+
+    return maxLength;
+};
+</code></pre><hr>
 
             </div>
             <hr>
@@ -446,7 +472,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/09/17/校园网无限流量总结/" class="b-link-green">校园网的无限流量</a>
+                    <a href="/2019/09/23/leetcode第3题/" class="b-link-green">LeetCode第3题</a>
                 </p>
             </div>
         </div>
@@ -468,20 +494,21 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/09/17/第一次写贪吃蛇/">
+                <a href="/2019/09/23/leetcode第4题/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="写的贪吃蛇">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="LeetCode第4题">
                         
-                        <span class="card-title">写的贪吃蛇</span>
+                        <span class="card-title">LeetCode第4题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">前两天在论坛上看到有人写了贪吃蛇，联机对战，自己也想学着写一个贪吃蛇，发布到网站上。先从单机版的贪吃蛇写起~首先介绍一下整体的思路，整个地图是一个canvas元素，这个canvas就相当于是画布。在画布上画蛇就是在canvas内的规定好的位</div>
+                    <div class="summary">2.27
+第4题题目要求如下：给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)我的思路是：分别求出两个数组的中位数，合并后的中位数也</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
                         </span>
                         <span class="publish-author">
                             
@@ -494,8 +521,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/javascript/" target="_blank">
-                        <span class="chip bg-color">javascript</span>
+                    <a href="/tags/algorithm/" target="_blank">
+                        <span class="chip bg-color">algorithm</span>
                     </a>
                     
                 </div>
@@ -507,22 +534,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/17/学习HTTP协议/">
+                <a href="/2019/09/23/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="学习HTTP协议">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">学习HTTP协议</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-Web使用一种名为HTTP的协议作为规范，完成从客户端到服务器等一些列运作流程。而协议是指规则的约定。Web是建立在HTTP协议上通信的。
-通常实用的网络（包括互联网）实在TCP/IP协议族的基础上运作的。而HTTP属于它内部的一个子集。</div>
+                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
                             </span>
                         <span class="publish-author">
                             
