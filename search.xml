@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>编写shell脚本并添加为快捷命令</title>
+      <link href="/2019/09/24/%E7%BC%96%E5%86%99shell%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%B7%BB%E5%8A%A0%E4%B8%BA%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4/"/>
+      <url>/2019/09/24/%E7%BC%96%E5%86%99shell%E8%84%9A%E6%9C%AC%E5%B9%B6%E6%B7%BB%E5%8A%A0%E4%B8%BA%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天想在mac上写一个简单的脚本，直接输入简单的命令就能跳转到我的工作目录。搞了大概半个小时终于搞定了。先贴代码，然后说几个关键点。</p><pre><code>#!/bin/bashecho &quot;$1&quot;if [ &quot;$1&quot; = &quot;blog&quot; ]; then    echo &quot;开始写博客!&quot;    cd ~/code/stuff/LRQLRQ.github.io/lrq/source/_posts/elif [ &quot;$1&quot; = &quot;book&quot; ]; then    echo &quot;看书!&quot;    cd ~/Documents/研究生涯/books/else    echo &quot;wu&quot;fi</code></pre><p>这就是代码，说几个写shell常见的点。</p><ol><li><code>$1</code>表示输入的第一个参数</li><li>在shell中用=和==不一样，刚开始用<code>==</code>一直不行，在[]中进行字符串比较的时候又是一样的。玄学问题。</li><li>shell中的if要用fi结尾</li></ol><p>因为使用的是zsh脚本，然后在home目录的隐藏文件添加一个alias，设置一个新的命令。如下:<br><code>alias lrq=&quot;source ~/code/shell/goto.sh&quot;</code>  </p><p>此外，直接<code>./goto.sh</code>运行脚本，会fork一个子shell，子shell会共享父shell的环境变量，但是不会将参数传进来，所以需要使用<code>. ./goto.sh</code>或者使用<code>source goto.sh</code>，这样就会直接在父shell中运行脚本。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>校园网的无限流量</title>
       <link href="/2019/09/23/%E6%A0%A1%E5%9B%AD%E7%BD%91%E6%97%A0%E9%99%90%E6%B5%81%E9%87%8F%E6%80%BB%E7%BB%93/"/>
       <url>/2019/09/23/%E6%A0%A1%E5%9B%AD%E7%BD%91%E6%97%A0%E9%99%90%E6%B5%81%E9%87%8F%E6%80%BB%E7%BB%93/</url>
@@ -218,23 +235,6 @@
     </entry>
     
     <entry>
-      <title>前端笔记(五)循环事件的理解</title>
-      <link href="/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B05/"/>
-      <url>/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B05/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天看了promise，一直在说promise是js的实现异步操作的解决方案。中间说了很多事件循环机制，就查了查。看到一篇博客，写的不错，很便于理解。</p><h4 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h4><ul><li>有些文章把消息队列称为任务队列，或者叫事件队列，总之是和异步任务相关的队列</li><li>可以确定的是，它是队列这种先入先出的数据结构，和排队是类似的，哪个异步操作完成的早，就排在前面。不论异步操作何时开始执行，只要异步操作执行完成，就可以到消息队列中排队</li><li>这样，主线程在空闲的时候，就可以从消息队列中获取消息并执行<br>*消息队列中放的消息具体是什么东西？消息的具体结构当然跟具体的实现有关。但是为了简单起见，可以认为：消息就是注册异步任务时添加的回调函数。</li></ul><h4 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h4><p>下面来详细介绍事件循环。下图中，主线程运行的时候，产生堆和栈，栈中的代码调用各种外部API，异步操作执行完成后，就在消息队列中排队。只要栈中的代码执行完毕，主线程就会去读取消息队列，依次执行那些异步任务所对应的回调函数<br><img src="https://github.com/LRQLRQ/picture/blob/master/eventloop.png?raw=true" alt="avatar"></p><p>详细步骤如下：</p><ol><li>所有同步任务都在主线程上执行，形成一个执行栈</li><li>主线程之外，还存在一个”消息队列”。只要异步操作执行完成，就到消息队列中排队</li><li>一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取消息队列中的异步任务，于是被读取的异步任务结束等待状态，进入执行栈，开始执行</li><li>主线程不断重复上面的第三步</li></ol><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>从代码执行顺序的角度来看，程序最开始是按代码顺序执行代码的，遇到同步任务，立刻执行；遇到异步任务，则只是调用异步函数发起异步请求。此时，异步任务开始执行异步操作，执行完成后到消息队列中排队。程序按照代码顺序执行完毕后，查询消息队列中是否有等待的消息。如果有，则按照次序从消息队列中把消息放到执行栈中执行。执行完毕后，再从消息队列中获取消息，再执行，不断重复。</p><p>由于主线程不断的重复获得消息、执行消息、再取消息、再执行。所以，这种机制被称为事件循环</p><h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>　　为什么叫事件循环？而不叫任务循环或消息循环。究其原因是消息队列中的每条消息实际上都对应着一个事件</p><p>　　DOM操作对应的是DOM事件，资源加载操作对应的是加载事件，而定时器操作可以看做对应一个“时间到了”的事件</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>前端笔记(四)初探node.js</title>
       <link href="/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B04/"/>
       <url>/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B04/</url>
@@ -257,6 +257,23 @@
       <url>/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B02/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="函数执行中的理解"><a href="#函数执行中的理解" class="headerlink" title="函数执行中的理解"></a>函数执行中的理解</h3><ol><li>进入执行上下文，激活变量对象VO，变为活动对象AO(Activation object)</li><li>AO对象默认初始化arguments对象，存有函数形参。</li><li>进入执行上下文后，将函数内的变量、函数解析到AO中，函数中的形参在AO中存值，函数内的实参在AO中是undefined，然后顺序执行代码，一步一步给AO中的参数赋值。</li></ol><h3 id="JS中堆与栈的使用"><a href="#JS中堆与栈的使用" class="headerlink" title="JS中堆与栈的使用"></a>JS中堆与栈的使用</h3><p>JS中基本类型保存在栈内存中，因为这些类型再内存中分别占有固定大小的空间，通过按值访问。引用类型保存在堆内存中，因为这种值的大小不固定，因此不能保存在栈内存中，但是内存地址大小是固定的，可以将地址放在栈中。<br>查找引用类型的值时，先去栈中查找，读取内存地址，再通过地址找到堆内存中的值。</p><p>小青离京，好好学习~</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>前端笔记(五)循环事件的理解</title>
+      <link href="/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B05/"/>
+      <url>/2019/09/23/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B05/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天看了promise，一直在说promise是js的实现异步操作的解决方案。中间说了很多事件循环机制，就查了查。看到一篇博客，写的不错，很便于理解。</p><h4 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h4><ul><li>有些文章把消息队列称为任务队列，或者叫事件队列，总之是和异步任务相关的队列</li><li>可以确定的是，它是队列这种先入先出的数据结构，和排队是类似的，哪个异步操作完成的早，就排在前面。不论异步操作何时开始执行，只要异步操作执行完成，就可以到消息队列中排队</li><li>这样，主线程在空闲的时候，就可以从消息队列中获取消息并执行<br>*消息队列中放的消息具体是什么东西？消息的具体结构当然跟具体的实现有关。但是为了简单起见，可以认为：消息就是注册异步任务时添加的回调函数。</li></ul><h4 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h4><p>下面来详细介绍事件循环。下图中，主线程运行的时候，产生堆和栈，栈中的代码调用各种外部API，异步操作执行完成后，就在消息队列中排队。只要栈中的代码执行完毕，主线程就会去读取消息队列，依次执行那些异步任务所对应的回调函数<br><img src="https://github.com/LRQLRQ/picture/blob/master/eventloop.png?raw=true" alt="avatar"></p><p>详细步骤如下：</p><ol><li>所有同步任务都在主线程上执行，形成一个执行栈</li><li>主线程之外，还存在一个”消息队列”。只要异步操作执行完成，就到消息队列中排队</li><li>一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取消息队列中的异步任务，于是被读取的异步任务结束等待状态，进入执行栈，开始执行</li><li>主线程不断重复上面的第三步</li></ol><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>从代码执行顺序的角度来看，程序最开始是按代码顺序执行代码的，遇到同步任务，立刻执行；遇到异步任务，则只是调用异步函数发起异步请求。此时，异步任务开始执行异步操作，执行完成后到消息队列中排队。程序按照代码顺序执行完毕后，查询消息队列中是否有等待的消息。如果有，则按照次序从消息队列中把消息放到执行栈中执行。执行完毕后，再从消息队列中获取消息，再执行，不断重复。</p><p>由于主线程不断的重复获得消息、执行消息、再取消息、再执行。所以，这种机制被称为事件循环</p><h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>　　为什么叫事件循环？而不叫任务循环或消息循环。究其原因是消息队列中的每条消息实际上都对应着一个事件</p><p>　　DOM操作对应的是DOM事件，资源加载操作对应的是加载事件，而定时器操作可以看做对应一个“时间到了”的事件</p>]]></content>
       
       
       
