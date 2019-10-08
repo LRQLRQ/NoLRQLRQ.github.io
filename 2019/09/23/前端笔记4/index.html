@@ -507,24 +507,20 @@ var cat = require(&#39;/home/usr/lib/cat/index&#39;);
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/09/23/学习webpack/">
+                <a href="/2019/09/23/前端笔记5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="学习Webpack">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="前端笔记(五)循环事件的理解">
                         
-                        <span class="card-title">学习Webpack</span>
+                        <span class="card-title">前端笔记(五)循环事件的理解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">核心概念
-Entry:入口
-Output:输出
-Loaders:处理其他类型（不是js）的文件
-Plugins:插件，其他的功能
-
-
-Entyr:代码的入口，说自己import了什么，require了什么。可以在这里直接或者间接找到依赖。打</div>
+                    <div class="summary">今天看了promise，一直在说promise是js的实现异步操作的解决方案。中间说了很多事件循环机制，就查了查。看到一篇博客，写的不错，很便于理解。
+消息队列
+有些文章把消息队列称为任务队列，或者叫事件队列，总之是和异步任务相关的队列
+可</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
@@ -553,20 +549,22 @@ Entyr:代码的入口，说自己import了什么，require了什么。可以在�
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/23/前端笔记2/">
+                <a href="/2019/09/23/前端笔记3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="前端笔记(二)">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="前端笔记(三)">
                         
-                        <span class="card-title">前端笔记(二)</span>
+                        <span class="card-title">前端笔记(三)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">函数执行中的理解
-进入执行上下文，激活变量对象VO，变为活动对象AO(Activation object)
-AO对象默认初始化arguments对象，存有函数形参。
-进入执行上下文后，将函数内的变量、函数解析到AO中，函数中的形参在AO中存</div>
+                    <div class="summary">由一个小问题分析JS的赋值问题问题
+var a = {n: 1};
+var b = a;
+a.x = a = {n:2};    
+console.log(a.x);    //输出是undefined
+console.log(b.x); </div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
