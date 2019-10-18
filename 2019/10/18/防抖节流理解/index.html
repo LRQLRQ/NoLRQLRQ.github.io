@@ -5,8 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="学习css的flex布局, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="今天看了阮一峰的博客，算是差不多了解了flex弹性布局。手过一遍，把课后习题也顺带做了一做，感觉差不多会用了。感觉最常用的应该就是justify-content主轴方向的布局；和align-items交叉轴方向的布局。灵活配合使用，应该布局">
+    <meta name="keywords" content="防抖节流函数理解, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="背景今天在掘金看到一篇文章，想到以前被问到防抖节流函数，让手写一个，当时听都没听过，十分惭愧。当时事后恶补了一下，感觉好像是理解了，实际上闭包都不是十分掌握。最近把js基础又看了一遍，今天无意看到这篇文章，就把自己的理解写一下。  
+防抖函">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>学习css的flex布局 | 欢迎来到，瑞卿的窝。</title>
+    <title>防抖节流函数理解 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -245,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        学习css的flex布局
+                        防抖节流函数理解
                     </div>
                 </div>
             </div>
@@ -271,8 +272,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/css/" target="_blank">
-                    <span class="chip bg-color">css</span>
+                <a href="/tags/前端/" target="_blank">
+                    <span class="chip bg-color">前端</span>
                 </a>
                 
             </div>
@@ -281,110 +282,80 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-10-08
+                    <i class="fa fa-clock-o fa-fw"></i>2019-10-18
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天看了阮一峰的博客，算是差不多了解了flex弹性布局。手过一遍，把课后习题也顺带做了一做，感觉差不多会用了。<br>感觉最常用的应该就是<code>justify-content</code>主轴方向的布局；和<code>align-items</code>交叉轴方向的布局。灵活配合使用，应该布局问题就比较好解决了。</p>
-<h3 id="Flex是什么"><a href="#Flex是什么" class="headerlink" title="Flex是什么"></a>Flex是什么</h3><p>Flex是Flex Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。<br>任何一个容器都可以指定为Flex。</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>行内元素也可以使用Flex布局。</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> inline-flex<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p><strong>ATTENTION</strong>：设为Flex之后，子元素的<code>float</code>、<code>clear</code>、和<code>vertical-align</code>属性将失效。  </p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>采用Flex布局的元素，称为Flex容器。它的所有子元素自动成为容器成员，称为Flex项目(flex items).<br><img src="https://github.com/LRQLRQ/picture/blob/master/flex图解.png?raw=true" alt="avatar"></p>
-<p>容器默认有两根轴，水平的主轴(main axis)和垂直的交叉轴(cross axis)。主轴的开始位置(与边框的交叉点)叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。项目默认沿着主轴排列，单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。  </p>
-<h3 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h3><p>容器主要设置以下6个属性:</p>
-<ul>
-<li>flex-direction</li>
-<li>flex-wrap</li>
-<li>flex-flow</li>
-<li>justify-content</li>
-<li>align-items</li>
-<li>align-content</li>
-</ul>
+                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>今天在掘金看到一篇文章，想到以前被问到防抖节流函数，让手写一个，当时听都没听过，十分惭愧。当时事后恶补了一下，感觉好像是理解了，实际上闭包都不是十分掌握。最近把js基础又看了一遍，今天无意看到这篇文章，就把自己的理解写一下。  </p>
+<h3 id="防抖函数：debounce"><a href="#防抖函数：debounce" class="headerlink" title="防抖函数：debounce"></a>防抖函数：debounce</h3><h4 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h4><p>限制某一事件发生太快，可能是抖动产生才发生这么多次事件，来防止抖动，只运行一次。</p>
+<h4 id="实例场景："><a href="#实例场景：" class="headerlink" title="实例场景："></a>实例场景：</h4><p>比如说百度的输入框，在输入内容后可能就会直接进行搜索，这里监听输入框的改变事件，当内容发生变化时，就发送ajax请求到后端，调用结果。但是如果用户输入过快，变化次数过多，比如说1s打了5个字，那就没有必要发送5个请求，只需要5个字打完之后，等一段时间，比如500ms，发现输入框还是没有变化，那就认为输入完毕，发送请求。</p>
 <hr>
-<h4 id="1-flex-direction属性"><a href="#1-flex-direction属性" class="headerlink" title="1.flex-direction属性"></a>1.flex-direction属性</h4><p>这个属性决定主轴的方向，即项目排列的方向。有以下四种选择，顾名思义。</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">flex-direction</span><span class="token punctuation">:</span> row | row-reverse | column | column-reverse<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="2-flex-wrap属性"><a href="#2-flex-wrap属性" class="headerlink" title="2.flex-wrap属性"></a>2.flex-wrap属性</h4><p>默认情况下，项目都排在一条线上，(又称轴线)，如果一条轴线排不下该如何换行。<br>它可能取三个值:</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap | wrap | wrap-reverse<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<p>这个限制条件就是：<br>一段时间内没有触发这个事件。写了函数如下，关键点如下。</p>
 <ol>
-<li>nowrap(默认) 不换行<br>虽然项目不会换行，但是会被压缩到一行。不会保持原来的宽度值。  </li>
-<li>wrap:换行，第一行在上方</li>
-<li>wrqp-reverse: 换行，第一行在下方</li>
+<li>实际上是将timer作为闭包，一个私有变量。首先第一次调用这个debounce函数，将触发的事件和间隔事件设置好，会返回一个内部函数，运行那个返回的fn1函数即可。再也没有人能访问函数内的timer变量了，这个timer变量就是闭包。</li>
+<li>每当事件发生变化时，运行这个fn1函数，首先会设置一个定时器，准备运行那个期望的回调函数fn，假如在间隔时间内再次触发了事件，进入了函数，则清除掉定时器timer，重新设置新的timer。直到满足间隔时间，运行时间结束后，由定时器内部的回调清除掉timer。</li>
 </ol>
-<h3 id="3-flex-flow"><a href="#3-flex-flow" class="headerlink" title="3.flex-flow"></a>3.flex-flow</h3><p>这个属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式。默认值为<code>row nowrap</code>。</p>
-<h4 id="4-justify-content属性-重点"><a href="#4-justify-content属性-重点" class="headerlink" title="4.justify-content属性(重点)"></a>4.justify-content属性(重点)</h4><p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。  </p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>它可能取5个值，具体对齐方式与主轴的方向有关， 假设主轴方向为从左到右。  </p>
-<ul>
-<li>flex-start(默认值): 左对齐</li>
-<li>flex-end: 右对齐</li>
-<li>center: 居中</li>
-<li>space-between: 两端对齐，项目之间的间隔都相等</li>
-<li>space-around: 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。  </li>
-</ul>
-<h4 id="5-align-items属性"><a href="#5-align-items属性" class="headerlink" title="5.align-items属性"></a>5.align-items属性</h4><p>此属性定义了项目在交叉轴上如何对齐。  </p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>它可能取5个值，具体的对齐方式与交叉轴的方向有关，假设交叉轴从上到下。</p>
-<ul>
-<li>flex-start: 交叉轴的起点对齐。</li>
-<li>flex-end: 交叉轴的终点对齐。</li>
-<li>center: 交叉轴的中点对齐。</li>
-<li>baseline: 项目的第一行文字的基线对齐。</li>
-<li>stretch(默认值): 如果项目未设置高度或者设为auto，将占满整个容器的高度，</li>
-</ul>
-<h4 id="6-align-content属性"><a href="#6-align-content属性" class="headerlink" title="6.align-content属性"></a>6.align-content属性</h4><p><code>align-content</code>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。  </p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
-    <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around | stretch<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>这个属性可能取6个值:  </p>
-<ul>
-<li>flex-start：与交叉轴的起点对齐。</li>
-<li>flex-end：与交叉轴的终点对齐。</li>
-<li>center：与交叉轴的中点对齐。</li>
-<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
-<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
-<li>stretch（默认值）：轴线占满整个交叉轴。</li>
-</ul>
-<h3 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h3><p>有6个属性值可以设置在项目上。</p>
-<ul>
-<li>order</li>
-<li>flex-grow</li>
-<li>flex-shrink</li>
-<li>flex-basis</li>
-<li>flex</li>
-<li>align-self</li>
-</ul>
 <hr>
-<h4 id="1-order属性"><a href="#1-order属性" class="headerlink" title="1.order属性"></a>1.order属性</h4><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。<br>数值相同的话，就按照在html中写的顺序进行排列。<br>如果将一个class中的item的order都改变的话，无论html中的书写顺序是什么，所有该类的item都会被提前或是延后。  </p>
-<h4 id="2-flex-grow属性"><a href="#2-flex-grow属性" class="headerlink" title="2.flex-grow属性"></a>2.flex-grow属性</h4><p>这个属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间(如果还有剩余空间的话)。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项目多一倍。  </p>
-<h4 id="3-flex-shrink属性"><a href="#3-flex-shrink属性" class="headerlink" title="3.flex-shrink属性"></a>3.flex-shrink属性</h4><p>该属性定义了项目的缩小比例，默认为1.即如果空间不足，该项目将缩小。<br>如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。<br><img src="https://github.com/LRQLRQ/picture/blob/master/flex-shrink.png?raw=true" alt="avatar"></p>
-<p>如图，本来蓝色是400x400的图片，黄色是200x200的图片。设置蓝色的style class中的<code>flex-shrink</code>为1之后，呈现如图所示情况。  </p>
-<h4 id="4-flex-basis属性"><a href="#4-flex-basis属性" class="headerlink" title="4.flex-basis属性"></a>4.flex-basis属性</h4><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间(main size)。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br>它可以设置跟<code>width</code>或<code>height</code>属性一样的值，则项目将占据固定空间。  </p>
-<h4 id="5-flex属性"><a href="#5-flex属性" class="headerlink" title="5.flex属性"></a>5.flex属性</h4><p><code>flex</code>属性是<code>flex-grow</code>，<code>flex-shrink</code>和<code>flex-basis</code>的简写，默认值是 <code>0 1 auto</code>。后两个属性可选。<br>该属性有两个快捷值: auto (<code>1 1 auto</code>),和none(<code>0 0 auto</code>).<br>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。  </p>
-<h4 id="6-align-self"><a href="#6-align-self" class="headerlink" title="6.align-self"></a>6.align-self</h4><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性，默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>.  </p>
+<p>节流和防抖差不多，看到一个有意思的理解：<br><strong>防抖</strong>：不冷静的决定，最后一次才能一锤定音。<br><strong>节流</strong>：技能的cd，要间隔一段时间才能再次使用。<br>下面是防抖和节流的代码：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> debounce <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> delay<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> timer<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+            fn<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> delay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> fn1 <span class="token operator">=</span> <span class="token function">debounce</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"I am here!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">fn1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">//时间戳版本</span>
+<span class="token keyword">var</span> throttle <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> delay<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> lastTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> now <span class="token operator">=</span> Data<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>now <span class="token operator">-</span> lastTime <span class="token operator">></span> delay<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fn<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            lastTime <span class="token operator">=</span> Data<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> fn2 <span class="token operator">=</span> <span class="token function">throttle</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"This is 节流函数"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">//定时器版本，但是要等定时器设置的时间才可以运行第一次</span>
+<span class="token keyword">var</span> throttle2 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> delay<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> timer<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                        fn<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span> delay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>以上就是我对于防抖和节流的理解了，今晚想要试着跑第一次半马~</p>
+<p>2019.10.18  written by: LRQ</p>
 
             </div>
             <hr>
@@ -523,7 +494,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/10/08/学习css的flex布局/" class="b-link-green">学习css的flex布局</a>
+                    <a href="/2019/10/18/防抖节流理解/" class="b-link-green">防抖节流函数理解</a>
                 </p>
             </div>
         </div>
@@ -543,7 +514,7 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2019/10/18/防抖节流理解/">
                     <div class="card-image">
@@ -558,9 +529,9 @@
                     <div class="summary">背景今天在掘金看到一篇文章，想到以前被问到防抖节流函数，让手写一个，当时听都没听过，十分惭愧。当时事后恶补了一下，感觉好像是理解了，实际上闭包都不是十分掌握。最近把js基础又看了一遍，今天无意看到这篇文章，就把自己的理解写一下。  
 防抖函</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -569,6 +540,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -585,23 +557,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/24/编写shell脚本并添加为快捷命令/">
+                <a href="/2019/10/08/学习css的flex布局/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="编写shell脚本并添加为快捷命令">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="学习css的flex布局">
                         
-                        <span class="card-title">编写shell脚本并添加为快捷命令</span>
+                        <span class="card-title">学习css的flex布局</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">今天想在mac上写一个简单的脚本，直接输入简单的命令就能跳转到我的工作目录。搞了大概半个小时终于搞定了。先贴代码，然后说几个关键点。
-#!/bin/bash
-echo &quot;$1&quot;
-if [ &quot;$1&quot; =</div>
+                    <div class="summary">今天看了阮一峰的博客，算是差不多了解了flex弹性布局。手过一遍，把课后习题也顺带做了一做，感觉差不多会用了。感觉最常用的应该就是justify-content主轴方向的布局；和align-items交叉轴方向的布局。灵活配合使用，应该布局</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-24
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-08
                             </span>
                         <span class="publish-author">
                             
@@ -614,8 +583,8 @@ if [ &quot;$1&quot; =</div>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/" target="_blank">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/css/" target="_blank">
+                        <span class="chip bg-color">css</span>
                     </a>
                     
                 </div>
