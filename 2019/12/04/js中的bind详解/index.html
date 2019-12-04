@@ -5,10 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="浅拷贝与深拷贝, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="在JS中，复制一个对象有浅拷贝和深拷贝之说。那么浅拷贝和深拷贝有哪些区别呢？在哪些方面会体现呢？
-
-待复制对象的属性JS中的有6种数据类型：字符串，数字，布尔，null，undefined，object。如果一个对象的属性是前5种，那么就没">
+    <meta name="keywords" content="js中bind详解, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="这两天被问到了call和apply的区别，都回答上来了，然后被问到bind，脑海里是有这个东西，但是一时搜索不出来。今天整理一下具体内容。
+1.js中bind和call和apply首先，为什么会有这三个东西?在什么应用场景下会用到呢？举一">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>浅拷贝与深拷贝 | 欢迎来到，瑞卿的窝。</title>
+    <title>js中bind详解 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -247,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        浅拷贝与深拷贝
+                        js中bind详解
                     </div>
                 </div>
             </div>
@@ -283,65 +282,43 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-11-28
+                    <i class="fa fa-clock-o fa-fw"></i>2019-12-04
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在JS中，复制一个对象有浅拷贝和深拷贝之说。那么浅拷贝和深拷贝有哪些区别呢？在哪些方面会体现呢？</p>
+                <p>这两天被问到了call和apply的区别，都回答上来了，然后被问到bind，脑海里是有这个东西，但是一时搜索不出来。今天整理一下具体内容。</p>
+<h2 id="1-js中bind和call和apply"><a href="#1-js中bind和call和apply" class="headerlink" title="1.js中bind和call和apply"></a>1.js中bind和call和apply</h2><p>首先，为什么会有这三个东西?在什么应用场景下会用到呢？举一个在很多博客中见到的例子：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> write <span class="token operator">=</span> document<span class="token punctuation">.</span>write<span class="token punctuation">;</span>
+<span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>代码这样写的意图，是想将document中的write方法抽离出来，在别的地方也可以调用。但问题是</p>
+<ol>
+<li><code>document.write(&quot;aa&quot;)</code>这样写是调用document这个对象中的write方法</li>
+<li><code>write(&quot;hello write&quot;)</code>这样写是调用window中的方法</li>
+<li>window中没有这个方法，就会报错</li>
+<li>归根结底是this没有绑定到相应的对象</li>
+</ol>
+<p>而bind、apply、call的出现，就是解决这个问题的。调用方式都是<code>function.bind(obj)</code>，这种形式，函数内的this即绑定到obj的this。</p>
 <hr>
-<h3 id="待复制对象的属性"><a href="#待复制对象的属性" class="headerlink" title="待复制对象的属性"></a>待复制对象的属性</h3><p>JS中的有6种数据类型：字符串，数字，布尔，null，undefined，object。如果一个对象的属性是前5种，那么就没有浅拷贝和深拷贝之分。但是如果待复制的对象中某个属性是对象的话，就会出现浅拷贝和深拷贝的区别了。</p>
+<h3 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h3><p>两者实现的效果是相同的，只是传入的参数不一样。两者都是立即执行。<br>对于call来说，所期望的输入参数应该是<code>function.call(obj,&quot;1&quot;, &quot;2&quot;, &quot;3&quot;)</code><br>对于apply来说，所期望输入的参数应该是<code>function.apply(obj, [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;])</code>  </p>
 <hr>
-<h3 id="浅拷贝和深拷贝区别"><a href="#浅拷贝和深拷贝区别" class="headerlink" title="浅拷贝和深拷贝区别"></a>浅拷贝和深拷贝区别</h3><p>对象，由引用和对象的内容组成，引用是在内存中的栈内，真正的对象的内容，在内存中是在堆内。  </p>
-<p>而对于对象的复制，如果只是复制了引用，那这就是浅拷贝。假如源对象中有属性为对象的话，源对象A和复制后的对象B，使用同一个引用指向相同的对象C。通过A改变C的内容，B中C的内容也会被修改。反之亦然。  </p>
-<p>如果是深拷贝的话，源对象的属性中有对象的话，目标对象中会生成一个新的对象，而不会共用同一个引用。目标对象会生成一个新的对象，引用和对象的内容，栈和堆中都会分别生成一个新的内容。  </p>
+<h3 id="bind和call、apply的区别"><a href="#bind和call、apply的区别" class="headerlink" title="bind和call、apply的区别"></a>bind和call、apply的区别</h3><p>call和apply，都是立即执行，返回结果的。而bind执行之后，会返回一个函数，留待开发者等待合适的时机自行决定什么时候调用。</p>
 <hr>
-<h3 id="浅拷贝的方法"><a href="#浅拷贝的方法" class="headerlink" title="浅拷贝的方法"></a>浅拷贝的方法</h3><ol>
-<li>使用Object.assign()，会通过浅拷贝生成一个新的对象。<pre><code>var obj = Object.assign({}, src);
-</code></pre></li>
-<li><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">shallowCopy</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
- <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
- <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-     obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> src<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span>
- <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<h3 id="bind的实现"><a href="#bind的实现" class="headerlink" title="bind的实现"></a>bind的实现</h3><p>如何实现一个bind呢？代码如下：</p>
+<pre class=" language-js"><code class="language-js">Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>my_bind <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> args <span class="token operator">=</span> Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//第一个参数是绑定的对象，剩下的参数是输入的参数</span>
+    <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//保存调用函数的this</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>     <span class="token comment" spellcheck="true">//返回的是一个函数</span>
+        <span class="token keyword">var</span> innerArgs <span class="token operator">=</span> Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//第二次传入的参数</span>
+        <span class="token keyword">var</span> finalArgs <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>innerArgs<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//所有的参数</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> finalArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//使用apply，绑定对象，返回结果</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-</li>
-</ol>
-<hr>
-<h3 id="深拷贝的方法"><a href="#深拷贝的方法" class="headerlink" title="深拷贝的方法"></a>深拷贝的方法</h3><ol>
-<li><p>将对象转换为json字符串，再反解析回来。但是对于对象中的function对象、正则表达式对象无法复制。而且会丢失对象的原型链，新生成的对象的constructor都会变为object。  </p>
-<pre><code>var src = {
- name: &quot;lrq&quot;,
- age: 18,
- hobbies: {
-     sing: &quot;songs&quot;,
-     play: &quot;football&quot;
- }
-}
-var obj = JSON.parse(JSON.stringify(src))
-</code></pre></li>
-<li><p>递归操作,可以将源对象中的对象和数组进行复制</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">deepClone</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="token keyword">var</span> obj <span class="token operator">=</span> src<span class="token punctuation">.</span>constructor<span class="token operator">===</span>Array<span class="token operator">?</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   <span class="token keyword">if</span><span class="token punctuation">(</span>src<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-       <span class="token keyword">if</span><span class="token punctuation">(</span>src<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> src<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-           obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> src<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>constructor<span class="token operator">===</span>Array<span class="token operator">?</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-           obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">deepClone</span><span class="token punctuation">(</span>src<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-           obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> src<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
-       <span class="token punctuation">}</span>
-   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">return</span> obj<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
+<p>以上。<br>written by LRQ<br>2019.12.4</p>
 
             </div>
             <hr>
@@ -480,7 +457,7 @@ var obj = JSON.parse(JSON.stringify(src))
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/11/28/浅拷贝与深拷贝/" class="b-link-green">浅拷贝与深拷贝</a>
+                    <a href="/2019/12/04/js中的bind详解/" class="b-link-green">js中bind详解</a>
                 </p>
             </div>
         </div>
@@ -500,7 +477,7 @@ var obj = JSON.parse(JSON.stringify(src))
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2019/12/04/js中的bind详解/">
                     <div class="card-image">
@@ -515,9 +492,9 @@ var obj = JSON.parse(JSON.stringify(src))
                     <div class="summary">这两天被问到了call和apply的区别，都回答上来了，然后被问到bind，脑海里是有这个东西，但是一时搜索不出来。今天整理一下具体内容。
 1.js中bind和call和apply首先，为什么会有这三个东西?在什么应用场景下会用到呢？举一</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -526,6 +503,7 @@ var obj = JSON.parse(JSON.stringify(src))
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -542,20 +520,22 @@ var obj = JSON.parse(JSON.stringify(src))
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/10/22/二叉树的各种遍历/">
+                <a href="/2019/11/28/浅拷贝与深拷贝/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="二叉树的各种遍历">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="浅拷贝与深拷贝">
                         
-                        <span class="card-title">二叉树的各种遍历</span>
+                        <span class="card-title">浅拷贝与深拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">最近在刷牛客网的题，刷到一个二叉树的题。记得有一次别人问我让我写一个简单的二叉树遍历，广度优先，深度优先的。。我说不太会，对方就说leetcode上基本一半的题都是这种BFS和DFS的。。当时根本没有涉及过这一块，觉得自己太菜。今天既然刷到</div>
+                    <div class="summary">在JS中，复制一个对象有浅拷贝和深拷贝之说。那么浅拷贝和深拷贝有哪些区别呢？在哪些方面会体现呢？
+
+待复制对象的属性JS中的有6种数据类型：字符串，数字，布尔，null，undefined，object。如果一个对象的属性是前5种，那么就没</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-22
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-28
                             </span>
                         <span class="publish-author">
                             
@@ -568,8 +548,8 @@ var obj = JSON.parse(JSON.stringify(src))
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
                     </a>
                     
                 </div>
