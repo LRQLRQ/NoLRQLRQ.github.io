@@ -1,0 +1,734 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="JS的六种继承模式, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="前言JS中的六种模式，基本的东西应该掌握。  
+1.原型链继承操作：将子类的原型赋值为父类的一个实例。优点：子类的实例可以继承父类的原型链缺点：所有子类的实例共享一份数据，不能向父类传参。  
+function superType() {
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>JS的六种继承模式 | 欢迎来到，瑞卿的窝。</title>
+    <link rel="icon" type="image/png" href="/favicon.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">欢迎来到，瑞卿的窝。</span>
+                    </a>
+                </div>
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">欢迎来到，瑞卿的窝。</div>
+        <div class="logo-desc">
+            
+            学习的小小笔记，记在这里。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/LRQLRQ" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>I am here.
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/LRQLRQ" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="I am here." data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        JS的六种继承模式
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/js/" target="_blank">
+                    <span class="chip bg-color">js</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-12-16
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>JS中的六种模式，基本的东西应该掌握。  </p>
+<h3 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1.原型链继承"></a>1.原型链继承</h3><p>操作：将子类的原型赋值为父类的一个实例。<br>优点：子类的实例可以继承父类的原型链<br>缺点：所有子类的实例共享一份数据，不能向父类传参。  </p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"rain"</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"running"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">subType</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//将子类的原型赋值为父类的一个实例</span>
+subType<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> sub1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">subType</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> sub2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">subType</span><span class="token punctuation">(</span><span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sub1<span class="token punctuation">.</span>name<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//rain</span>
+sub1<span class="token punctuation">.</span>hobbies<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"playing"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//["reading", "running", "playing"]</span>
+sub2<span class="token punctuation">.</span>name<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//rain</span>
+sub2<span class="token punctuation">.</span>hobbies<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//["reading", "running", "playing"]</span>
+
+</code></pre>
+<h3 id="2-构造函数继承"><a href="#2-构造函数继承" class="headerlink" title="2.构造函数继承"></a>2.构造函数继承</h3><p>操作：在子类的函数中使用call来调用父类的构造函数<br>特点：子类中每个实例都有一份父类构造函数中数据<br>缺点：</p>
+<ol>
+<li>只能继承构造函数内的数据，无法继承原型链中的数据</li>
+<li>无法实现构造函数的复用</li>
+<li>每个新实例都有父类构造函数的副本</li>
+</ol>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"rain"</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"running"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+superType<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>showName <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">subType</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  superType<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//将父类的构造函数在子类中调用</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> sub1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">subType</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> sub2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">subType</span><span class="token punctuation">(</span><span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sub1<span class="token punctuation">.</span>hobbies<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"playing"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sub1<span class="token punctuation">.</span>hobbies<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//["reading", "running", "playing"]</span>
+sub2<span class="token punctuation">.</span>hobbies<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//["reading", "running"]</span>
+sub1<span class="token punctuation">.</span><span class="token function">showName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//报错，因为没有继承父类的原型链</span>
+</code></pre>
+<h3 id="3-组合式继承"><a href="#3-组合式继承" class="headerlink" title="3.组合式继承"></a>3.组合式继承</h3><p>操作：将子类的原型赋值为父类的一个实例，在子类的构造函数中使用call调用父类的构造函数<br>特点：每个子类都有一份独立的数据，也可以继承父类的原型链。<br>缺点：要调用两次父类的构造函数，子类原型中，即那个父类的实例中的数据是多余的。因为子类的实例中有相同的属性，会将原型中的同名属性屏蔽。  </p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"rain"</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"running"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+superType<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>showName <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">subType</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  superType<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//将父类的构造函数在子类中调用</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+subType<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+subType<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> subType<span class="token punctuation">;</span>
+</code></pre>
+<h3 id="4-原型式继承"><a href="#4-原型式继承" class="headerlink" title="4.原型式继承"></a>4.原型式继承</h3><p>操作：构建一个空函数，令空函数的原型为目标对象，返回空函数的实例。object.create()就是这个原理。<br>特点：类似于复制一个对象，用函数来包装。<br>缺点： </p>
+<ol>
+<li>所有实例都会继承原型上的属性</li>
+<li>无法实现复用。  </li>
+</ol>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">object</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  f<span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> sup <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">object</span><span class="token punctuation">(</span>sup<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h3 id="5-寄生式继承"><a href="#5-寄生式继承" class="headerlink" title="5.寄生式继承"></a>5.寄生式继承</h3><p>操作：寄生式继承模式，是在原型式继承的基础上，添加别的属性或方法。添加的属性在实例中。<br>优点：没有创建自定义类型，因为只是套了个壳子返回对象。这个函数就成了新的对象。<br>缺点：做不到函数复用。每次使用寄生函数新增实例时，都会为实例赋予一个新的函数。  </p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//父类</span>
+<span class="token keyword">function</span> <span class="token function">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"rain"</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"running"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//父类原型添加的方法</span>
+superType<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>showName <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//原型式继承工具函数</span>
+<span class="token keyword">function</span> <span class="token function">object</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  f<span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//寄生式继承增强方法</span>
+<span class="token keyword">function</span> <span class="token function">paraObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> sup <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sub <span class="token operator">=</span> <span class="token function">object</span><span class="token punctuation">(</span>sup<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  sub<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+  sub<span class="token punctuation">.</span>showAge <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"my age is "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> sub<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">paraObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>age<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//18</span>
+a<span class="token punctuation">.</span><span class="token function">showAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//my age is 18</span>
+
+</code></pre>
+<h3 id="6-寄生组合式继承"><a href="#6-寄生组合式继承" class="headerlink" title="6.寄生组合式继承"></a>6.寄生组合式继承</h3><p>其实就是组合式继承的改良版。组合式继承是子类是构造函数的原型是父类的一个实例。而寄生式则是：先使用类似Object.create()的方法获得继承了父类原型的一个实例，构造函数指向父类的构造函数，再将其作为子类构造函数的原型。  </p>
+<p>这样就解决了组合式继承的问题：子类构造函数的原型是父类的一个实例，原型中的数据会被子类实例中同名数据屏蔽。  </p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">superType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"rain"</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"running"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+superType<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>showName <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">subType</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  superType<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//将父类的构造函数在子类中调用</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//原型式继承工具函数</span>
+<span class="token keyword">function</span> <span class="token function">object</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  f<span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">inheritPrototype</span><span class="token punctuation">(</span>subType<span class="token punctuation">,</span> superType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> prototype <span class="token operator">=</span> <span class="token function">object</span><span class="token punctuation">(</span>superType<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//获得一个干净的父类原型</span>
+  prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> subType<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将原型的构造函数设置为子类</span>
+  subType<span class="token punctuation">.</span>prototype <span class="token operator">=</span> prototype<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//子类的原型设置为父类的原型</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>开发中比较常用的是组合式继承和寄生组合式继承。最好的继承方式是寄生组合式继承。<br>因为js的原型链特性，对于所谓的”继承“，其实就是需要考虑函数的复用，组合。前面几种的继承模式有不同的缺陷，添加某些操作修复缺陷后，就变为了一种新的继承方式。  </p>
+<p>2019.12.16  大雪<br>written by LRQ  </p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff;
+        background-color: #22AB38;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff;
+        background-color: #019FE8;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a class="reward-link btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs">
+                        <li class="tab wechat-tab waves-effect waves-light"><a class="active" href="#wechat">微信</a></li>
+                        <li class="tab alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                    </ul>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#reward .reward-link').on('click', function () {
+            $('#rewardModal').openModal();
+        });
+
+        $('#rewardModal .close').on('click', function () {
+            $('#rewardModal').closeModal();
+        });
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/12/16/JS的六种继承模式/" class="b-link-green">JS的六种继承模式</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/12/16/JS的六种继承模式/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="JS的六种继承模式">
+                        
+                        <span class="card-title">JS的六种继承模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">前言JS中的六种模式，基本的东西应该掌握。  
+1.原型链继承操作：将子类的原型赋值为父类的一个实例。优点：子类的实例可以继承父类的原型链缺点：所有子类的实例共享一份数据，不能向父类传参。  
+function superType() {
+</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/js/" target="_blank">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/12/15/js中reduce的多种使用/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="js数组使用reduce实现数组扁平化、map、filter、去重">
+                        
+                        <span class="card-title">js数组使用reduce实现数组扁平化、map、filter、去重</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">本来是要实现一个数组扁平化的，结果搜到一篇博客有reduce实现的方法，也使用reduce实现了map、filter、数组去重这些方法，在这里复现一下。
+数组扁平化给出如下数组:var arr = [1,[2,[3,[4]]]], 输入的数</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            刘瑞
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/js/" target="_blank">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+    
+
+</main>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://lrqlrq.github.io/" target="_blank"> LRQ </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>的主题搭建.
+        </div>
+        <div class="col s12 m4 l4 social-link"><a href="https://github.com/LRQLRQ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:lrq2222222222@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 651577562" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+</body>
+</html>
