@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>关于抢票——自己动手，丰衣足食</title>
+      <link href="/2019/12/19/30%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E6%8A%A2%E7%A5%A8%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2019/12/19/30%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E6%8A%A2%E7%A5%A8%E4%BB%BB%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>因为放假回家前打算去玩一趟，去玩的票已经买好了，回家的票16号刚放出来，就没得了。因为不是首末站，中间站比较难买，所以得一直操心着。用那些抢票软件太烦了，总是让人邀好友助力，上次想去秦皇岛玩，我看有80%的成功率，就没怎么找人助力，一直到最后都没买到票，真是服了。记起来以前github上有大佬写过抢票的脚本，还是自己动手，丰衣足食吧。<br>话不多说，进入正文——  </p><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><ol><li><p>服务器一台<br>服务器可以使用阿里云或者腾讯云，学生的话10块钱一个月，挺好用的，我的就是阿里云（ubuntu 18）的。  </p></li><li><p>自己的电脑连接服务器<br>然后用自己的电脑ssh连接到服务器，windows可以用xshell，输入root和密码，端口号22就行。mac用户可以使用iterm，写个脚本连接到服务器，具体自行百度。  </p></li><li>github搜索12306，下载点赞数最多的那个仓库<br>在github下载这个仓库<code>https://github.com/testerSunshine/12306</code>，建议直接使用自己的电脑下载代码，然后上传到服务器。（Windows建议使用Fileize，mac建议使用Cyberduck）</li></ol><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>其实大佬项目的README已经写的很清楚了，我只是把我踩过的坑整理一下。  </p><ol><li>进入到项目，下载相关的依赖。  </li><li>修改相应的配置文件。</li><li>筛选cdn，启动服务</li></ol><p>在修改配置文件的时候，要设置提醒邮箱。当抢到票后会通过邮箱通知。  </p><pre class=" language-js"><code class="language-js">EMAIL_CONF <span class="token operator">=</span> <span class="token punctuation">{</span>    <span class="token string">"IS_MAIL"</span><span class="token punctuation">:</span> True<span class="token punctuation">,</span>    <span class="token string">"email"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的A邮箱，用于发送邮件</span>    <span class="token string">"notice_email_list"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的B邮箱，用于接受邮件</span>    <span class="token string">"username"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//A邮箱如果是QQ邮箱，这里填QQ号</span>    <span class="token string">"password"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//填授权码，具体操作百度</span>    <span class="token string">"host"</span><span class="token punctuation">:</span> <span class="token string">"smtp.qq.com"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//QQ邮箱就是这个，如果是163邮箱就是smtp.163.com</span><span class="token punctuation">}</span></code></pre><p>依赖安装好后运行如下命令即可：  </p><pre class=" language-python"><code class="language-python">python3 run<span class="token punctuation">.</span>py c  <span class="token comment" spellcheck="true"># 筛选cdn</span>python3 run<span class="token punctuation">.</span>py r  <span class="token comment" spellcheck="true"># 启动任务</span></code></pre><h4 id="ubuntu18遇到的错误"><a href="#ubuntu18遇到的错误" class="headerlink" title="ubuntu18遇到的错误"></a>ubuntu18遇到的错误</h4><p>可能是有一些cv的库没装好，运行脚本启动任务的时候报错了，查了github的issue有个答案很work。<br>ubuntu 18.04 在执行run的时候有个报错，报错信息如下<br><code>ImportError: libSM.so.6: cannot open shared object file:</code><br>需要安装python-qt4<br>apt install python-qt4  </p><p>确实很管用。运行之后等一会就好了，刚开始会先记录一些验证码。  </p><p><img src="https://github.com/LRQLRQ/picture/blob/master/train_tickets.png?raw=true" alt="avatar"></p><p>2019.12.19<br>written by LRQ<br>(这次的博客很没有营养，但是用了大佬的轮子很开心哈哈)</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> stuff </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>JS的六种继承模式</title>
       <link href="/2019/12/16/JS%E7%9A%84%E5%85%AD%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%A8%A1%E5%BC%8F/"/>
       <url>/2019/12/16/JS%E7%9A%84%E5%85%AD%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%A8%A1%E5%BC%8F/</url>
