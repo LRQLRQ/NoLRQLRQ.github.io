@@ -3,11 +3,28 @@
   
     
     <entry>
+      <title>采集天气每日一句发送邮件</title>
+      <link href="/2019/12/23/%E9%87%87%E9%9B%86%E5%A4%A9%E6%B0%94%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
+      <url>/2019/12/23/%E9%87%87%E9%9B%86%E5%A4%A9%E6%B0%94%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>爬取墨迹天气、一个、有道词典的每日一句，通过server酱发送给相应的微信，发送邮件给相应的用户。<br>微信效果图如下：<br><img src="https://github.com/LRQLRQ/picture/blob/master/wechatRobotPic?raw=true" alt="微信效果图"><br>邮件效果图如下：<br><img src="https://raw.githubusercontent.com/LRQLRQ/picture/master/emailRobotPic.png" alt="邮件效果图"></p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>去年刚开始接触node，在网上找到一个每天定时给女朋友发消息的代码，开始用了一段时间，也没好好看代码。当时只是觉得能写出这种功能应该很NB。最近看了很多基础的知识，对前端有了更多的认识，js也了解的更深入了，就自己动手做了一个。花了一天半吧，还是很有激情的，哈哈。</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol><li><code>git clone</code>这份代码，或者下载到本地。</li><li>进入根目录，然后<code>npm install</code></li><li>修改<code>config.js</code>,设置收件人的相关信息（收件人的邮箱，server酱的码，以及额外要说的话）。</li><li>修改<code>sendEmail.js</code>,修改发件人的邮箱，授权码，修改发送邮件的主题等。</li><li>设置相应的server酱的码。（只需要中间的那串）详细访问<a href="http://sc.ftqq.com/3.version" target="_blank" rel="noopener">server酱官网</a>。</li></ol><h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><p>整体上还是比较顺利的，这次有意识的将代码块分隔开，尽量把每一个功能都单独分隔成一个模块。  </p><hr><p>爬网站用的是<code>cheerio</code>这个库，和jquery的用法差不多。主要用css选择器选择相应的dom元素，在这里暴露出我css比较薄弱的弱点，获得相应的内容可能比较粗暴。以后对css选择器用多了应该会有更优雅的读取方式。  </p><hr><p>发送请求使用的<code>axios</code>这个库，以前只会用<code>jquery</code>的<code>ajax</code>，想要达到同步的效果只会在<code>success</code>的回调内嵌套<code>ajax</code>请求。这次将每个功能分隔开，每个函数返回了一个<code>promise</code>，使用<code>Promise.all[]</code>之后，在then里面写相应的逻辑，避免了回调嵌套。</p><hr><p>发送邮件使用的<code>nodeemail</code>这个包，找了一份demo就能用，暂时还没深入的研究。这个异步用的是<code>async</code>和<code>await</code>,以后要研究一下。<br>输入：发件人邮箱、授权码、发件人邮箱、主题、内容（html格式）<br>就可以发送  </p><hr><p>读取的内容是markdown格式，需要将markdown转化为html格式，使用了<code>showdown</code>这个包。</p><hr><p>使用了定时任务的功能，引入了<code>node-schedule</code>这个包。在这里还出了一个小bug。<br>操作：定时给女朋友和我发送邮件，爬取不同地区的墨迹天气的信息，分别发送不同的邮箱。<br>bug内容：我收到的天气内容是女朋友所在地的。<br>原因分析：发送邮件是一个异步任务，而定时时间到了之后，爬取的数据放到了同一个全局变量里面。感觉就类似多线程对公共资源的非法访问。我的地区的天气信息被女朋友的覆盖了。<br>解决方案：将words变为每个函数的私有变量。  </p><hr><h3 id="有待优化"><a href="#有待优化" class="headerlink" title="有待优化"></a>有待优化</h3><ol><li>各个模块分成不同的文件，<code>index.js</code>内容变少一些</li><li>请求one和有道词典每日一句的接口只需要一次就可以，有空了再改改逻辑优化。</li></ol><h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>果然还是在开发过程中学东西比较快，做出有意思的东西也比较有成就感，想到什么就查什么，面向github编程。但是这样还是有点浅，<s>待有空时</s>（不如现在就花20分钟看一下）再深入了解一下原理。<br>偶然间看到了有道词典的每日一句，觉得加上这个逼格很高，但是网页版的有道词典没有这个功能，只有APP才有，还专门下载了charles，连接手机和Mac，用手机打开有道词典，抓取手机的包，才找到那个接口。一波三折也是很快乐。  </p><p>2019.12.23  晴<br>written by Rain  </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> node </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>关于抢票——自己动手，丰衣足食</title>
       <link href="/2019/12/19/30%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E6%8A%A2%E7%A5%A8%E4%BB%BB%E5%8A%A1/"/>
       <url>/2019/12/19/30%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E6%8A%A2%E7%A5%A8%E4%BB%BB%E5%8A%A1/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>因为放假回家前打算去玩一趟，去玩的票已经买好了，回家的票16号刚放出来，就没得了。因为不是首末站，中间站比较难买，所以得一直操心着。用那些抢票软件太烦了，总是让人邀好友助力，上次想去秦皇岛玩，我看有80%的成功率，就没怎么找人助力，一直到最后都没买到票，真是服了。记起来以前github上有大佬写过抢票的脚本，还是自己动手，丰衣足食吧。<br>话不多说，进入正文——  </p><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><ol><li><p>服务器一台<br>服务器可以使用阿里云或者腾讯云，学生的话10块钱一个月，挺好用的，我的就是阿里云（ubuntu 18）的。  </p></li><li><p>自己的电脑连接服务器<br>然后用自己的电脑ssh连接到服务器，windows可以用xshell，输入root和密码，端口号22就行。mac用户可以使用iterm，写个脚本连接到服务器，具体自行百度。  </p></li><li>github搜索12306，下载点赞数最多的那个仓库<br>在github下载这个仓库<code>https://github.com/testerSunshine/12306</code>，建议直接使用自己的电脑下载代码，然后上传到服务器。（Windows建议使用Fileize，mac建议使用Cyberduck）</li></ol><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>其实大佬项目的README已经写的很清楚了，我只是把我踩过的坑整理一下。  </p><ol><li>进入到项目，下载相关的依赖。  </li><li>修改相应的配置文件。</li><li>筛选cdn，启动服务</li></ol><p>在修改配置文件的时候，要设置提醒邮箱。当抢到票后会通过邮箱通知。  </p><pre class=" language-js"><code class="language-js">EMAIL_CONF <span class="token operator">=</span> <span class="token punctuation">{</span>    <span class="token string">"IS_MAIL"</span><span class="token punctuation">:</span> True<span class="token punctuation">,</span>    <span class="token string">"email"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的A邮箱，用于发送邮件</span>    <span class="token string">"notice_email_list"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的B邮箱，用于接受邮件</span>    <span class="token string">"username"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//A邮箱如果是QQ邮箱，这里填QQ号</span>    <span class="token string">"password"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//填授权码，具体操作百度</span>    <span class="token string">"host"</span><span class="token punctuation">:</span> <span class="token string">"smtp.qq.com"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//QQ邮箱就是这个，如果是163邮箱就是smtp.163.com</span><span class="token punctuation">}</span></code></pre><p>依赖安装好后运行如下命令即可：  </p><pre class=" language-python"><code class="language-python">python3 run<span class="token punctuation">.</span>py c  <span class="token comment" spellcheck="true"># 筛选cdn</span>python3 run<span class="token punctuation">.</span>py r  <span class="token comment" spellcheck="true"># 启动任务</span></code></pre><h4 id="ubuntu18遇到的错误"><a href="#ubuntu18遇到的错误" class="headerlink" title="ubuntu18遇到的错误"></a>ubuntu18遇到的错误</h4><p>可能是有一些cv的库没装好，运行脚本启动任务的时候报错了，查了github的issue有个答案很work。<br>ubuntu 18.04 在执行run的时候有个报错，报错信息如下<br><code>ImportError: libSM.so.6: cannot open shared object file:</code><br>需要安装python-qt4<br>apt install python-qt4  </p><p>确实很管用。运行之后等一会就好了，刚开始会先记录一些验证码。  </p><p><img src="https://github.com/LRQLRQ/picture/blob/master/train_tickets.png?raw=true" alt="avatar"></p><p>2019.12.19<br>written by LRQ<br>(这次的博客很没有营养，但是用了大佬的轮子很开心哈哈)</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>因为放假回家前打算去玩一趟，去玩的票已经买好了，回家的票16号刚放出来，就没得了。因为不是首末站，中间站比较难买，所以得一直操心着。用那些抢票软件太烦了，总是让人邀好友助力，上次想去秦皇岛玩，我看有80%的成功率，就没怎么找人助力，一直到最后都没买到票，真是服了。记起来以前github上有大佬写过抢票的脚本，还是自己动手，丰衣足食吧。<br>话不多说，进入正文——  </p><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><ol><li><p>服务器一台<br>服务器可以使用阿里云或者腾讯云，学生的话10块钱一个月，挺好用的，我的就是阿里云（ubuntu 18）的。  </p></li><li><p>自己的电脑连接服务器<br>然后用自己的电脑ssh连接到服务器，windows可以用xshell，输入root和密码，端口号22就行。mac用户可以使用iterm，写个脚本连接到服务器，具体自行百度。  </p></li><li>github搜索12306，下载点赞数最多的那个仓库<br>在github下载这个仓库<code>https://github.com/testerSunshine/12306</code>，建议直接使用自己的电脑下载代码，然后上传到服务器。（Windows建议使用Fileize，mac建议使用Cyberduck）</li></ol><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>其实大佬项目的README已经写的很清楚了，我只是把我踩过的坑整理一下。  </p><ol><li>进入到项目，下载相关的依赖。  </li><li>修改相应的配置文件。</li><li>筛选cdn，启动服务</li></ol><p>在修改配置文件的时候，要设置提醒邮箱。当抢到票后会通过邮箱通知。  </p><pre class=" language-js"><code class="language-js">EMAIL_CONF <span class="token operator">=</span> <span class="token punctuation">{</span>    <span class="token string">"IS_MAIL"</span><span class="token punctuation">:</span> True<span class="token punctuation">,</span>    <span class="token string">"email"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的A邮箱，用于发送邮件</span>    <span class="token string">"notice_email_list"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//自己的B邮箱，用于接受邮件</span>    <span class="token string">"username"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//A邮箱如果是QQ邮箱，这里填QQ号</span>    <span class="token string">"password"</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//填授权码，具体操作百度</span>    <span class="token string">"host"</span><span class="token punctuation">:</span> <span class="token string">"smtp.qq.com"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//QQ邮箱就是这个，如果是163邮箱就是smtp.163.com</span><span class="token punctuation">}</span></code></pre><p>依赖安装好后运行如下命令即可：  </p><pre class=" language-python"><code class="language-python">python3 run<span class="token punctuation">.</span>py c  <span class="token comment" spellcheck="true"># 筛选cdn</span>python3 run<span class="token punctuation">.</span>py r  <span class="token comment" spellcheck="true"># 启动任务</span></code></pre><h4 id="ubuntu18遇到的错误"><a href="#ubuntu18遇到的错误" class="headerlink" title="ubuntu18遇到的错误"></a>ubuntu18遇到的错误</h4><p>可能是有一些cv的库没装好，运行脚本启动任务的时候报错了，查了github的issue有个答案很work。<br>ubuntu 18.04 在执行run的时候有个报错，报错信息如下<br><code>ImportError: libSM.so.6: cannot open shared object file:</code><br>需要安装python-qt4<br>apt install python-qt4  </p><p>确实很管用。运行之后等一会就好了，刚开始会先记录一些验证码。  </p><p><img src="https://github.com/LRQLRQ/picture/blob/master/train_tickets.png?raw=true" alt="avatar">  </p><p>这是室友抢到候补的图片:<br><img src="https://github.com/LRQLRQ/picture/blob/master/jjTicket.png?raw=true" alt="成功的图片"></p><p>2019.12.19<br>written by LRQ<br>(这次的博客有点没有营养，但是用了大佬的轮子很开心哈哈)</p>]]></content>
       
       
       
@@ -518,23 +535,6 @@
     </entry>
     
     <entry>
-      <title>npm是干什么的</title>
-      <link href="/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
-      <url>/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p><p>在这里抄一下npm的实现思路：</p><ol><li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li><li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li><li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li><li>下载完之后的代码就在node_modules里面，可以使用了。</li></ol><h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> npm 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>RPC框架--远程过程调用</title>
       <link href="/2019/09/23/RPC%E6%A1%86%E6%9E%B6--%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8/"/>
       <url>/2019/09/23/RPC%E6%A1%86%E6%9E%B6--%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8/</url>
@@ -546,6 +546,23 @@
         <tags>
             
             <tag> rpc netty </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>npm是干什么的</title>
+      <link href="/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
+      <url>/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p><p>在这里抄一下npm的实现思路：</p><ol><li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li><li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li><li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li><li>下载完之后的代码就在node_modules里面，可以使用了。</li></ol><h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> npm 前端 </tag>
             
         </tags>
       

@@ -5,14 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue中v-bind动态改变样式及Vue.set()方法使用, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="需求及问题描述现在用v-for将后端传来的图片显示在页面上了，想实现这样一个功能：
-
-点击某张图片后该图片添加边框 
-同时该图片右侧增加标记，提示已经点击。 
-边框是只有正在操作的图片才有，标记是只要点击过就有。
-
-解决方案这里因为是在fo">
+    <meta name="keywords" content="采集天气每日一句发送邮件, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="爬取墨迹天气、一个、有道词典的每日一句，通过server酱发送给相应的微信，发送邮件给相应的用户。微信效果图如下：邮件效果图如下：
+前言去年刚开始接触node，在网上找到一个每天定时给女朋友发消息的代码，开始用了一段时间，也没好好看代码。当">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Vue中v-bind动态改变样式及Vue.set()方法使用 | 欢迎来到，瑞卿的窝。</title>
+    <title>采集天气每日一句发送邮件 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -251,13 +246,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Vue中v-bind动态改变样式及Vue.set()方法使用
+                        采集天气每日一句发送邮件
                     </div>
                 </div>
             </div>
@@ -277,8 +272,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/前端-vue/" target="_blank">
-                    <span class="chip bg-color">前端 vue</span>
+                <a href="/tags/node/" target="_blank">
+                    <span class="chip bg-color">node</span>
                 </a>
                 
             </div>
@@ -287,42 +282,40 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
+                    <i class="fa fa-clock-o fa-fw"></i>2019-12-23
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="需求及问题描述"><a href="#需求及问题描述" class="headerlink" title="需求及问题描述"></a>需求及问题描述</h3><p>现在用v-for将后端传来的图片显示在页面上了，想实现这样一个功能：</p>
-<ol>
-<li>点击某张图片后该图片添加边框 </li>
-<li>同时该图片右侧增加标记，提示已经点击。 </li>
-<li>边框是只有正在操作的图片才有，标记是只要点击过就有。</li>
+                <p>爬取墨迹天气、一个、有道词典的每日一句，通过server酱发送给相应的微信，发送邮件给相应的用户。<br>微信效果图如下：<br><img src="https://github.com/LRQLRQ/picture/blob/master/wechatRobotPic?raw=true" alt="微信效果图"><br>邮件效果图如下：<br><img src="https://raw.githubusercontent.com/LRQLRQ/picture/master/emailRobotPic.png" alt="邮件效果图"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>去年刚开始接触node，在网上找到一个每天定时给女朋友发消息的代码，开始用了一段时间，也没好好看代码。当时只是觉得能写出这种功能应该很NB。最近看了很多基础的知识，对前端有了更多的认识，js也了解的更深入了，就自己动手做了一个。花了一天半吧，还是很有激情的，哈哈。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li><code>git clone</code>这份代码，或者下载到本地。</li>
+<li>进入根目录，然后<code>npm install</code></li>
+<li>修改<code>config.js</code>,设置收件人的相关信息（收件人的邮箱，server酱的码，以及额外要说的话）。</li>
+<li>修改<code>sendEmail.js</code>,修改发件人的邮箱，授权码，修改发送邮件的主题等。</li>
+<li>设置相应的server酱的码。（只需要中间的那串）详细访问<a href="http://sc.ftqq.com/3.version" target="_blank" rel="noopener">server酱官网</a>。</li>
 </ol>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>这里因为是在for循环里面，每一张图片自带了index这个属性。</p>
-<h4 id="第一个需求"><a href="#第一个需求" class="headerlink" title="第一个需求"></a>第一个需求</h4><p>对于第一个需求，首先在html中使用v-bind绑定class属性，然后设置点击事件，点击之后设置某标志位为当前点击的index，使用三目表达式来判断当前的class中的index是不是点击的index，进而实现显示边框的效果。<br>下面是html代码</p>
-<pre><code>&lt;a :class=&quot;clickActive==index? &#39;active&#39;:&#39;&#39; &quot;  @click=&quot;clickPic(index)&quot;&gt;
-</code></pre><p>下面是js代码</p>
-<pre><code>clickPic: function(index) {
-    this.clickActive = index;     //将全局变量设置为当前点击的下标
-}
-</code></pre><p>其中clickActive是全局变量，用来表示当前点击图片的下标。active是一个类，需要在css中定义这个类的样式。<br>至此第一个需求完成。</p>
-<h4 id="第二个需求"><a href="#第二个需求" class="headerlink" title="第二个需求"></a>第二个需求</h4><p>想要达到一个”记忆”的效果，肯定要设置一个全局的东西，将点击过的东西记录下来。本来是设置了一个数组，点击了某个图片后，在clickPic函数中给数组中设置true。代码如下</p>
-<pre><code>clickPic: function(index) {
-    this.clickActive = index;     //将全局变量设置为当前点击的下标
-    this.clickActives[index] = true;    //将点击过的图片index记录
-}
-</code></pre><p>然后在显示图片旁边加上标记,代码如下：</p>
-<pre><code>&lt;span v-show=&quot;clickActives[index]==true&quot;&gt;已点击&lt;/span&gt;
-</code></pre><p>逻辑上没什么问题，但是一直不能成功，在Chrome上看元素也是没有显示，display:none 这样。查了查，试了试别的方法，发现数组布尔值无法监听，看到有一种方法是将数组内设为对象数组，改动对象的属性之后就可以监听到变化。尝试以后发现确实可以，然后思考了一下。</p>
-<h4 id="总结陈词"><a href="#总结陈词" class="headerlink" title="总结陈词"></a>总结陈词</h4><p>归根结底是没有监听到的原因，对于数组中直接放布尔值vue无法监听到，加入将数组内的元素变为对象，实质上还是监听的对象。想要实现监听数组，就需要使用<strong>Vue.set(arr, index, item)</strong>这个方法,代码如下:</p>
-<pre><code>clickPic: function(index) {
-    this.clickActive = index;     //将全局变量设置为当前点击的下标
-    Vue.set(this.clickActives, index, true);   //使用vue.set给设置布尔值并监听
-}
-</code></pre><p>至此，功能实现。</p>
-<p>下面是效果图<br><img src="https://github.com/LRQLRQ/picture/blob/master/vueSet.png?raw=true" alt="avatar"></p>
+<h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><p>整体上还是比较顺利的，这次有意识的将代码块分隔开，尽量把每一个功能都单独分隔成一个模块。  </p>
+<hr>
+<p>爬网站用的是<code>cheerio</code>这个库，和jquery的用法差不多。主要用css选择器选择相应的dom元素，在这里暴露出我css比较薄弱的弱点，获得相应的内容可能比较粗暴。以后对css选择器用多了应该会有更优雅的读取方式。  </p>
+<hr>
+<p>发送请求使用的<code>axios</code>这个库，以前只会用<code>jquery</code>的<code>ajax</code>，想要达到同步的效果只会在<code>success</code>的回调内嵌套<code>ajax</code>请求。这次将每个功能分隔开，每个函数返回了一个<code>promise</code>，使用<code>Promise.all[]</code>之后，在then里面写相应的逻辑，避免了回调嵌套。</p>
+<hr>
+<p>发送邮件使用的<code>nodeemail</code>这个包，找了一份demo就能用，暂时还没深入的研究。这个异步用的是<code>async</code>和<code>await</code>,以后要研究一下。<br>输入：发件人邮箱、授权码、发件人邮箱、主题、内容（html格式）<br>就可以发送  </p>
+<hr>
+<p>读取的内容是markdown格式，需要将markdown转化为html格式，使用了<code>showdown</code>这个包。</p>
+<hr>
+<p>使用了定时任务的功能，引入了<code>node-schedule</code>这个包。在这里还出了一个小bug。<br>操作：定时给女朋友和我发送邮件，爬取不同地区的墨迹天气的信息，分别发送不同的邮箱。<br>bug内容：我收到的天气内容是女朋友所在地的。<br>原因分析：发送邮件是一个异步任务，而定时时间到了之后，爬取的数据放到了同一个全局变量里面。感觉就类似多线程对公共资源的非法访问。我的地区的天气信息被女朋友的覆盖了。<br>解决方案：将words变为每个函数的私有变量。  </p>
+<hr>
+<h3 id="有待优化"><a href="#有待优化" class="headerlink" title="有待优化"></a>有待优化</h3><ol>
+<li>各个模块分成不同的文件，<code>index.js</code>内容变少一些</li>
+<li>请求one和有道词典每日一句的接口只需要一次就可以，有空了再改改逻辑优化。</li>
+</ol>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>果然还是在开发过程中学东西比较快，做出有意思的东西也比较有成就感，想到什么就查什么，面向github编程。但是这样还是有点浅，<s>待有空时</s>（不如现在就花20分钟看一下）再深入了解一下原理。<br>偶然间看到了有道词典的每日一句，觉得加上这个逼格很高，但是网页版的有道词典没有这个功能，只有APP才有，还专门下载了charles，连接手机和Mac，用手机打开有道词典，抓取手机的包，才找到那个接口。一波三折也是很快乐。  </p>
+<p>2019.12.23  晴<br>written by Rain  </p>
 
             </div>
             <hr>
@@ -461,7 +454,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/09/23/Vue的bind和set方法使用/" class="b-link-green">Vue中v-bind动态改变样式及Vue.set()方法使用</a>
+                    <a href="/2019/12/23/采集天气每日一句发送邮件/" class="b-link-green">采集天气每日一句发送邮件</a>
                 </p>
             </div>
         </div>
@@ -481,25 +474,24 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
-                <a href="/2019/09/23/你不知道的JavaScript/">
+                <a href="/2019/12/23/采集天气每日一句发送邮件/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="你不知道的JavaScript(1)">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="采集天气每日一句发送邮件">
                         
-                        <span class="card-title">你不知道的JavaScript(1)</span>
+                        <span class="card-title">采集天气每日一句发送邮件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.作用域javascript是一门编译语言，与传统的编译语言不同，它不是提前编译的，编译结果也不能在分布式系统中移植。
-编译的三个步骤1. 分词，词法分析将字符串分解为有意义的代码块，这些代码块被称为词法单元。
-2. 解析将词法单元流转换</div>
+                    <div class="summary">爬取墨迹天气、一个、有道词典的每日一句，通过server酱发送给相应的微信，发送邮件给相应的用户。微信效果图如下：邮件效果图如下：
+前言去年刚开始接触node，在网上找到一个每天定时给女朋友发消息的代码，开始用了一段时间，也没好好看代码。当</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -508,11 +500,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/前端/" target="_blank">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/node/" target="_blank">
+                        <span class="chip bg-color">node</span>
                     </a>
                     
                 </div>
@@ -524,21 +517,20 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/23/RPC框架--远程过程调用/">
+                <a href="/2019/12/19/30分钟部署抢票任务/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="RPC框架--远程过程调用">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="关于抢票——自己动手，丰衣足食">
                         
-                        <span class="card-title">RPC框架--远程过程调用</span>
+                        <span class="card-title">关于抢票——自己动手，丰衣足食</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">首先了解什么叫RPC，为什么要RPC，RPC是指远程过程调用，也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。
-比</div>
+                    <div class="summary">前言因为放假回家前打算去玩一趟，去玩的票已经买好了，回家的票16号刚放出来，就没得了。因为不是首末站，中间站比较难买，所以得一直操心着。用那些抢票软件太烦了，总是让人邀好友助力，上次想去秦皇岛玩，我看有80%的成功率，就没怎么找人助力，一直</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-19
                             </span>
                         <span class="publish-author">
                             
@@ -551,8 +543,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rpc-netty/" target="_blank">
-                        <span class="chip bg-color">rpc netty</span>
+                    <a href="/tags/stuff/" target="_blank">
+                        <span class="chip bg-color">stuff</span>
                     </a>
                     
                 </div>
