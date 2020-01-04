@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>git的一些回顾,及git flow思想</title>
+      <link href="/2020/01/04/git%E5%9B%9E%E9%A1%BE%E5%8F%8Agit%20flow%E6%80%9D%E6%83%B3/"/>
+      <url>/2020/01/04/git%E5%9B%9E%E9%A1%BE%E5%8F%8Agit%20flow%E6%80%9D%E6%83%B3/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>研一进了项目组就开始用git，用了很久也只是用一些基本的 <code>git pull</code>、 <code>git add .</code> 、 <code>git commit -m &quot;&quot;</code> 、 <code>git push</code>，感觉这些命令就够日常开发工作了。最近重新整理了git，看了一下git pro这本书，懂了一些git的底层原理。在这里记录一下重新对git的一些认识。此外，这篇文章还会简单介绍一种<code>git flow</code>的开发理念。</p><h3 id="每一次commit-提交-，就是一个版本"><a href="#每一次commit-提交-，就是一个版本" class="headerlink" title="每一次commit(提交)，就是一个版本"></a>每一次commit(提交)，就是一个版本</h3><p>在git仓库中，有三个区域，这是我自己的理解哈，可能用语不是那么专业。——工作区、暂存区、和仓库区。  </p><p><img src="https://git-scm.com/book/en/v2/images/areas.png" alt="git area"><br>工作区就是你的当前项目工作空间。当开发者进行了一些修改，执行<code>git add file</code>之后，修改后的文件就会进入暂存区。</p><p>开发到一定程度，某个功能开发完毕后，执行<code>git commit</code>后，就会从暂存区移动到仓库区。实际上每次commit就是提交一个版本，git会对所有修改过的文件进行<code>SHA-1</code>算法，压缩成一个40个字符的字符串，每次提交完成后控制台会返回一串字符，实际上就是这个字符串的前七位。然后将文件的快照存储起来。  </p><p>每个分支实际上就是一个指针，指向某个版本，也就是某次提交的指针。理论上只要知道某次提交后返回的那串字符，就可以找到那个版本。(只要你本地没删底层的东西)  </p><h3 id="git的merge-合并-与rebase-变基"><a href="#git的merge-合并-与rebase-变基" class="headerlink" title="git的merge(合并)与rebase(变基)"></a>git的merge(合并)与rebase(变基)</h3><p>使用git最核心的还是版本控制，vcs。允许开发者设置不同的分支来进行开发。每个分支可能是有不同的功能。当功能开发完毕后，需要合并到主干上，就需要用到这两个命令——merge和rebase。  </p><ol><li>merge<br>比如当前开发者在master上执行下列命令  </li></ol><pre class=" language-shell"><code class="language-shell">git checkout -b devecho "this is my test in dev" >> READMEgit add .git commit -m 'change README in dev branch'git checkout mastertouch main.jsgit add .git commit -m 'add new file main.js'git merge dev</code></pre><p>以上操作会先建立一个dev分支，在其上修改之后，完成了新功能，想要在master分支上添加新功能。就可以使用merge，将在dev分支添加的功能融合到master中。<br>注意<strong>merge是三方的融合，不只是dev和master的融合</strong>。git会先找到dev的祖先，也就是从master中新建的那个版本A，然后融合修改后的dev分支、A版本、修改后的master版本。最后生成一个新版本B，并让HEAD指针指向B。（HEAD指针总是指向当前的分支）<br><img src="https://git-scm.com/book/en/v2/images/basic-merging-2.png" alt="git merge"></p><ol start="2"><li>rebase<br>rebase的功能叫做变基，顾名思义，是要改变其基石，也就是之前的指针。功能上是融合A和B两个分支，实际上是丢弃（比如说）B版本上进行的一些提交，把这些提交当做补丁，在A版本上重新提交一次。但是这是两批不同的提交，所以说是会丢弃。<br>代码如下</li></ol><pre class=" language-shell"><code class="language-shell">git checkout -b testRebaseecho "this is rebase magic" >> READMEgit add .git commit -m 'add sth in README'git rebase msatergit checkout mastergit merge testRebase</code></pre><p><img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" alt="git rebae"></p><p>如果使用rebase，必须在远程仓库没有的版本（commit后的提交）进行，否则使用了rebase之后会将这些版本，比如A版本丢弃，其他协同开发者的项目可能就是基于A版本的。某人使用rebase后，A版本的内容变基到了别的分支上，内容是一模一样的，但是版本却不同了。其余的开发者就会造成巨大的混乱。<br>这里引用一下git pro的原文：<em>不要对在你的仓库外有副本的分支执行变基。如果你遵循这条金科玉律，就不会出差错。 否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</em> 哈哈，虽然搞笑，但是也能看出来乱用rebase的混乱。  </p><h3 id="git-flow思想"><a href="#git-flow思想" class="headerlink" title="git flow思想"></a>git flow思想</h3><p>git flow刚开始我以为是一个软件，也确实下载到了。后来才意识到这是一种思想。使用了git flow之后，越来越觉得以前在项目组开发的时候使用git是多随意，完全就是在master，或者某个特定的分支上进行开发，然后pull、push。实际上这样很不利于项目的维护。下面介绍一下git flow思想。  </p><p>git flow中，项目存在两个长期分支：master和develop。任何时候在master中拿到的都是稳定的版本。正常的开发都是在develop版本上开发，所以develop分支普遍会超前master很多。<br>其次，项目会分为几种短期版本：功能版本(feature branch)、补丁版本(hotfix branch)、预发版本(release branch)，一旦开发完成，他们就会合并到master或者develop中，然后被删除。  </p><p><img src="https://gitbook.tw/images/tw/gitflow/why-need-git-flow/flow.png" alt="git flow"></p><p>2020.01.04 晴<br>written by Rain</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>采集天气每日一句发送邮件</title>
       <link href="/2019/12/23/%E9%87%87%E9%9B%86%E5%A4%A9%E6%B0%94%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"/>
       <url>/2019/12/23/%E9%87%87%E9%9B%86%E5%A4%A9%E6%B0%94%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</url>
