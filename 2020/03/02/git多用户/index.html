@@ -283,7 +283,7 @@ git config user.name  ">
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2020-02-14
+                    <i class="fa fa-clock-o fa-fw"></i>2020-03-02
                 </span>
             </div>
         </div>
@@ -301,19 +301,19 @@ git config user.email  //查看邮箱
 <li>在<code>~/.ssh/</code>目录下，新建config文件</li>
 <li>生成相应的秘钥<pre><code>ssh-keygen -t rsa -C &quot;rain@163.com&quot;   //这里要填你github相应的邮箱
 </code></pre></li>
-<li>在文件内填写Host和IdentityFile配置如下<br><code>`</code><br>HostName git-github<br>Host github.com <a href="http://www.github.com" target="_blank" rel="noopener">www.github.com</a><br>User LRQ<br>IdentityFile ~/.ssh/id_rsa</li>
+<li>在文件内填写Host和IdentityFile配置如下</li>
 </ol>
-<p>Host gongsi.com<br>IdentityFile ~/.ssh/gongsi_id_rsa</p>
-<pre><code>
-Host是仓库网站的别名，随意取  
-HostName是仓库网站的域名  
-User是仓库网站上的用户名  
-IdentityFile是私钥的绝对路径  
+<pre><code>HostName git-github
+Host github.com www.github.com
+User LRQ
+IdentityFile ~/.ssh/id_rsa
 
-### 文件夹递归处理问题
-至此就结束了。  
-今天还遇到一个问题，干脆也写出来。在使用npm安装包的时候，有时候会出现没有access访问权限，是因为默认的新建的文件夹都是没有写权限的，给文件夹加上写权限即可
-</code></pre><p>chmod -R 755 /folder<br><code>`</code><br>-R就是目录下的所有文件</p>
+Host gongsi.com
+IdentityFile ~/.ssh/gongsi_id_rsa
+</code></pre><p>Host是仓库网站的别名，随意取<br>HostName是仓库网站的域名<br>User是仓库网站上的用户名<br>IdentityFile是私钥的绝对路径  </p>
+<h3 id="文件夹递归处理问题"><a href="#文件夹递归处理问题" class="headerlink" title="文件夹递归处理问题"></a>文件夹递归处理问题</h3><p>至此就结束了。<br>今天还遇到一个问题，干脆也写出来。在使用npm安装包的时候，有时候会出现没有access访问权限，是因为默认的新建的文件夹都是没有写权限的，给文件夹加上写权限即可</p>
+<pre><code>chmod -R 755 /folder
+</code></pre><p>-R就是目录下的所有文件</p>
 <hr>
 <p>2020.2.14<br>written by Rain</p>
 
@@ -454,7 +454,7 @@ IdentityFile是私钥的绝对路径
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/02/14/git多用户/" class="b-link-green">git多用户</a>
+                    <a href="/2020/03/02/git多用户/" class="b-link-green">git多用户</a>
                 </p>
             </div>
         </div>
@@ -476,7 +476,7 @@ IdentityFile是私钥的绝对路径
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
-                <a href="/2020/02/14/git多用户/">
+                <a href="/2020/03/02/git多用户/">
                     <div class="card-image">
                         
                         
@@ -491,7 +491,7 @@ IdentityFile是私钥的绝对路径
 git config user.name  </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-02
                             </span>
                         <span class="publish-author">
                             
