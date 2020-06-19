@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>45初探贪心</title>
+      <link href="/2020/06/19/45%E8%B4%AA%E5%BF%83/"/>
+      <url>/2020/06/19/45%E8%B4%AA%E5%BF%83/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>贪心算法</strong></p><p>第45题</p><p>给一个数组，从头跳到尾，数组内的值代表当前能跳的步数。</p><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> jump <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token keyword">let</span> maxPosition <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 未到边界前，下一步能到的最远位置</span>  <span class="token keyword">let</span> end <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 当前能跳的边界    </span>  <span class="token keyword">let</span> steps <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>nums<span class="token punctuation">.</span>length<span class="token number">-1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    maxPosition <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>maxPosition<span class="token punctuation">,</span> i<span class="token operator">+</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">===</span>end<span class="token punctuation">)</span> <span class="token punctuation">{</span>                end <span class="token operator">=</span> maxPosition<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 到边界后，更新下一步的边界为能跳到的最远位置</span>      steps <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>  <span class="token punctuation">}</span>  <span class="token keyword">return</span> steps<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>每次都跳能跳的最远位置，贪心算法，一直到最后。</p><p>这里有一处巧妙的地方，for循环中的判断条件，是小于<code>nums.length-1</code>的,也就是说<code>i</code>是永远到不了数组中最后那个位置的，而最后一次的<code>end</code>必然会大于等于数组最后的位置，所以<code>step</code>就少一次增加。因为在太初之时，盘古开天辟地的时候，我们给<code>end</code>赋值为0，也就是说第一次刚进入程序执行的时候<code>step</code>就已经加一了，这里需要注意一哈。</p><hr><p>2020.6.19<br>written by Rain.  </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>最长有效括号（动态规划，栈，巧妙解）</title>
       <link href="/2020/05/04/%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%8C%E6%A0%88%EF%BC%8C%E5%B7%A7%E5%A6%99%E8%A7%A3%EF%BC%89/"/>
       <url>/2020/05/04/%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%8C%E6%A0%88%EF%BC%8C%E5%B7%A7%E5%A6%99%E8%A7%A3%EF%BC%89/</url>
