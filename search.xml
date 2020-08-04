@@ -3,23 +3,6 @@
   
     
     <entry>
-      <title>函数柯里化</title>
-      <link href="/2020/08/04/%E6%9F%AF%E9%87%8C%E5%8C%96/"/>
-      <url>/2020/08/04/%E6%9F%AF%E9%87%8C%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>柯里化的作用，是将一个有多个输入参数的函数，转换为只有一个输入参数的函数，并返回函数：以同样的方法，处理剩余的参数。  </p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">if</span><span class="token punctuation">(</span>fn<span class="token punctuation">.</span>length <span class="token operator">></span> args<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 传入参数还未到达</span>    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 返回函数</span>      <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 递归调用自己</span>    <span class="token punctuation">}</span>  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>    <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 符合条件，返回最终函数</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">// demo</span><span class="token keyword">const</span> add <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a <span class="token operator">+</span> b <span class="token operator">+</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ①</span><span class="token keyword">const</span> curryAdd <span class="token operator">=</span> <span class="token function">curry</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// ②</span><span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span><span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span><span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span></code></pre><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>看上面的demo代码，第①步，传入的函数有三个参数，而对函数柯里化后，curryAdd传入的参数可以每次传一个，一共传三次；也可以第一次传两个，第二次传一个；只要传递参数总长度是add的总长度即可。<br>第②步，对函数柯里化后，实际上curryAdd的值是一个函数，如下</p><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>此处的<code>...args</code>是空的，什么都没有，因为curry传入的参数只有一个add函数。<br>当调用到<code>curryAdd(1)(2)(3)</code>时，返回值分别是以下函数</p><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>到第三个函数就会返回，此时参数的长度已经和add函数的输入参数对齐，此时调用add函数，返回结果。</p><h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>以前也见过柯里化的一些东西，静不下心去分析。最近看了一些源码，觉得这种函数式编程在js中还是比较常见的。最近看到一篇文章，讲koa的洋葱圈模型，redux的实现，都是类似这种一层包一层的函数，将这些联系起来觉得还好理解一些。  </p><p>written by rain.<br>20.08.04</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> javascript </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>45初探贪心</title>
       <link href="/2020/06/19/45%E8%B4%AA%E5%BF%83/"/>
       <url>/2020/06/19/45%E8%B4%AA%E5%BF%83/</url>
@@ -620,23 +603,6 @@
     </entry>
     
     <entry>
-      <title>npm是干什么的</title>
-      <link href="/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
-      <url>/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p><p>在这里抄一下npm的实现思路：</p><ol><li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li><li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li><li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li><li>下载完之后的代码就在node_modules里面，可以使用了。</li></ol><h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> npm 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>RPC框架--远程过程调用</title>
       <link href="/2019/09/23/RPC%E6%A1%86%E6%9E%B6--%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8/"/>
       <url>/2019/09/23/RPC%E6%A1%86%E6%9E%B6--%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8/</url>
@@ -648,6 +614,23 @@
         <tags>
             
             <tag> rpc netty </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>npm是干什么的</title>
+      <link href="/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
+      <url>/2019/09/23/npm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="npm-一个和pip一样的东西"><a href="#npm-一个和pip一样的东西" class="headerlink" title="npm,一个和pip一样的东西"></a>npm,一个和pip一样的东西</h2><p>一直在别人的博客里看到npm，今天查了一下，终于知道这是什么了,npm全名是Node Package Manager，是一个包管理器。因为前端js的文件每天都有无数个贡献者贡献代码，如果没有这么一个npm，包管理工具的话，那我们想要找到需要的代码，那得费一百牛二百虎之力。在社区中，大家把自己开发好的前端模块发给npm的作者，然后npm的作者把接收到的代码放到服务器上。当我们下好的npm之后，只需要输入命令，就可以方便快捷的下载好需要的代码，下载到node_modules目录中。</p><p>在这里抄一下npm的实现思路：</p><ol><li>买一个服务器当做代码仓库，把所有需要共享的代码放到服务器里。</li><li>发邮件给jQuery，Bootstrap作者，使用npm publish把代码提交到registry上，分别取名jquery、bootstrap。</li><li>社区里的其他人如果想使用这些代码，就吧jquery、bootstrap写到package.json里，然后运行npm install，npm就会帮他们自动下载</li><li>下载完之后的代码就在node_modules里面，可以使用了。</li></ol><h3 id="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"><a href="#这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。" class="headerlink" title="这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。"></a>这些可以使用的代码叫做“包”，（package）这就是NPM名字的由来，包管理器。</h3><p>都是从这里学习的↓↓↓↓↓<br>原文地址：<br><a href="https://blog.csdn.net/qq_37696120/article/details/80507178" target="_blank" rel="noopener">https://blog.csdn.net/qq_37696120/article/details/80507178</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> npm 前端 </tag>
             
         </tags>
       
