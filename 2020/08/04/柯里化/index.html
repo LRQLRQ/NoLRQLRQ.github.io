@@ -5,9 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode第4题, 欢迎来到，瑞卿的窝。">
-    <meta name="description" content="2.27
-第4题题目要求如下：给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)我的思路是：分别求出两个数组的中位数，合并后的中位数也">
+    <meta name="keywords" content="函数柯里化, 欢迎来到，瑞卿的窝。">
+    <meta name="description" content="概念柯里化的作用，是将一个有多个输入参数的函数，转换为只有一个输入参数的函数，并返回函数：以同样的方法，处理剩余的参数。  
+代码function curry(fn, ...args) {
+  if(fn.length &gt; args.len">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode第4题 | 欢迎来到，瑞卿的窝。</title>
+    <title>函数柯里化 | 欢迎来到，瑞卿的窝。</title>
     <link rel="icon" type="image/png" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -246,13 +247,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        LeetCode第4题
+                        函数柯里化
                     </div>
                 </div>
             </div>
@@ -272,8 +273,8 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/algorithm/" target="_blank">
-                    <span class="chip bg-color">algorithm</span>
+                <a href="/tags/javascript/" target="_blank">
+                    <span class="chip bg-color">javascript</span>
                 </a>
                 
             </div>
@@ -282,95 +283,56 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-09-23
+                    <i class="fa fa-clock-o fa-fw"></i>2020-08-04
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>2.27</p>
-<h4 id="第4题题目要求如下："><a href="#第4题题目要求如下：" class="headerlink" title="第4题题目要求如下："></a>第4题题目要求如下：</h4><p>给出两个已经排好序的数组，nums1和nums2，要求输出两个数组合并后的中位数。要求时间复杂度不能超过 log(m+n) (假设两个数组长度分别为m和n)<br>我的思路是：分别求出两个数组的中位数，合并后的中位数也一定在这两个中位数之间。就一步一步的逼近，当走过总长度的四分之一后，就达到了中位数。但是我被其中的奇数偶数困扰太多，越写情况越麻烦，最后筋疲力尽。</p>
-<p>然后看讨论区，有个人写的比较简单的解：使用shift方法，依次将两个数组头部中比较小的元素弹出，只要弹出总长度一半的次数，剩下的就是中位数了。为了应对奇数偶数的问题，设置一个缓冲变量记录上一次的值，如果总长度是奇数则剩下的就是中位数；如果总长度是偶数则对当前变量与缓冲变量求和即可。<br>感觉其实我的思路和这个差不多，但是一开始想的太局限了，陷入细节，越来越麻烦。如果跳出去的话就能更好些一点。<br>今日份感慨：<strong>算法===抽象，业务逻辑===具体</strong>，算法就像诗，业务逻辑写的越多就像屎。</p>
-<p>下面贴出代码：</p>
-<pre><code>var findMedianSortedArrays = function(nums1, nums2) {
-    const totalLength = nums1.length + nums2.length;    //计算出总共的长度
-    let mid = Math.floor(totalLength/2) + 1;            //算出中位数所在的位置，进行这么多次数
-    let last = null, preLast = null;                    //用两个变量作为缓冲，用于应对奇数偶数长度
-    while (mid--) {        
-        preLast = last;            //保存上次的值
-        last = ((nums2.length === 0 || nums1[0] &lt; nums2[0]) ? nums1 : nums2).shift();    //从两个数组头开始计算，把小的数字弹出去
-    }
-    console.log(totalLength % 2 ? last : (last + preLast)/2 );
-    return totalLength % 2 ? last : (last + preLast)/2         //如果有奇数个数字，则返回当前的值；如果有偶数个数字，则返回当前与上次值的均值
-};
+                <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>柯里化的作用，是将一个有多个输入参数的函数，转换为只有一个输入参数的函数，并返回函数：以同样的方法，处理剩余的参数。  </p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>fn<span class="token punctuation">.</span>length <span class="token operator">></span> args<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 传入参数还未到达</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 返回函数</span>
+      <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 递归调用自己</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 符合条件，返回最终函数</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-</code></pre><p>鞭策一下自己吧<br>然后是我的屎：</p>
-<pre><code>var findMedianSortedArrays = function(nums1, nums2) {
-    var start1 = parseInt((nums1.length-1)/2);
-    var start2 = parseInt((nums2.length-1)/2);
-    var step1 = 0;
-    var step2 = 0;
-    var length = nums1.length + nums2.length;
 
-    while(nums1[start1] &lt; nums2[start2] &amp;&amp; (step1+step2)&lt;(parseInt(length/4+1) )){
-        if(start1&lt;nums1.length-1){
-            start1++;
-            step1++;
-        }
-        if(start2&gt;0){
-            start2--;
-            step2++;
-        }
-    }
-    while(nums1[start1] &gt; nums2[start2] &amp;&amp; (step1+step2)&lt;(parseInt(length/4+1))){
-        if(start1&gt;0 ){
-            start1--;
-            step1++;
-        }
-        if(start2&lt;nums2.length-1){
-            start2++;
-            step2++;
-        }
-    }
-    if(nums1[start1] &lt; nums2[start2]){
-       if(length%2===1){   //如果总共是有奇数个，且数组1中位数小于数组2
-            console.log(step1&gt;step2?nums1[start1]:nums2[start2]);
-            return step1&gt;step2?nums1[start1]:nums2[start2];
-        } else{             //如果总数是有偶数个
-            if(step1&gt;step2){
-                console.log((nums1[start1]+nums1[start1-1])/2);
-                return (nums1[start1]+nums1[start1-1])/2;
-            } else if(step1===step2){
-                console.log((nums1[step1]+nums2[step2])/2);
-                return (nums1[step1]+nums2[step2])/2;
-            } else{
-                console.log((nums2[start2]+nums2[start2-1])/2);
-                return (nums2[start2]+nums2[start2-1])/2;
-            }
-        }
-    }
-
-    if(nums1[start1] &gt; nums2[start2]){
-        if(length%2===1 ){   //如果总共是有奇数个，且数组1中位数大于数组2
-            console.log(step1&gt;step2?nums1[start1]:nums2[start2]);
-            return step1&gt;step2?nums1[start1]:nums2[start2];
-        } else{             //如果总数是有偶数个
-            if(step1&gt;step2){
-                console.log((nums1[start1]+nums1[start1-1])/2);
-                return (nums1[start1]+nums1[start1+1])/2;
-            } else if(step1===step2){
-                console.log((nums1[step1]+nums2[step2])/2);
-                return (nums1[step1]+nums2[step2])/2;
-            } else{
-                console.log((nums2[start2]+nums2[start2-1])/2);
-                return (nums2[start2]+nums2[start2+1])/2;
-            }
-        }
-    }
-};
-
+<span class="token comment" spellcheck="true">// demo</span>
+<span class="token keyword">const</span> add <span class="token operator">=</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a <span class="token operator">+</span> b <span class="token operator">+</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ①</span>
+<span class="token keyword">const</span> curryAdd <span class="token operator">=</span> <span class="token function">curry</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// ②</span>
+<span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span>
+<span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span>
+<span class="token function">curryAdd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 6</span>
 </code></pre>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>看上面的demo代码，第①步，传入的函数有三个参数，而对函数柯里化后，curryAdd传入的参数可以每次传一个，一共传三次；也可以第一次传两个，第二次传一个；只要传递参数总长度是add的总长度即可。<br>第②步，对函数柯里化后，实际上curryAdd的值是一个函数，如下</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此处的<code>...args</code>是空的，什么都没有，因为curry传入的参数只有一个add函数。<br>当调用到<code>curryAdd(1)(2)(3)</code>时，返回值分别是以下函数</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">...</span>arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">curry</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">...</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>到第三个函数就会返回，此时参数的长度已经和add函数的输入参数对齐，此时调用add函数，返回结果。</p>
+<h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>以前也见过柯里化的一些东西，静不下心去分析。最近看了一些源码，觉得这种函数式编程在js中还是比较常见的。最近看到一篇文章，讲koa的洋葱圈模型，redux的实现，都是类似这种一层包一层的函数，将这些联系起来觉得还好理解一些。  </p>
+<p>written by rain.<br>20.08.04</p>
+
             </div>
             <hr>
 
@@ -508,7 +470,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://lrqlrq.github.io" class="b-link-green">欢迎来到，瑞卿的窝。</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/09/23/leetcode第4题/" class="b-link-green">LeetCode第4题</a>
+                    <a href="/2020/08/04/柯里化/" class="b-link-green">函数柯里化</a>
                 </p>
             </div>
         </div>
@@ -528,24 +490,25 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
-                <a href="/2019/09/23/RPC框架--远程过程调用/">
+                <a href="/2020/08/04/柯里化/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="RPC框架--远程过程调用">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="函数柯里化">
                         
-                        <span class="card-title">RPC框架--远程过程调用</span>
+                        <span class="card-title">函数柯里化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">首先了解什么叫RPC，为什么要RPC，RPC是指远程过程调用，也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。
-比</div>
+                    <div class="summary">概念柯里化的作用，是将一个有多个输入参数的函数，转换为只有一个输入参数的函数，并返回函数：以同样的方法，处理剩余的参数。  
+代码function curry(fn, ...args) {
+  if(fn.length > args.len</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -554,11 +517,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rpc-netty/" target="_blank">
-                        <span class="chip bg-color">rpc netty</span>
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
                     </a>
                     
                 </div>
@@ -570,21 +534,25 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/09/23/leetcode第3题/">
+                <a href="/2020/06/19/45贪心/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="LeetCode第3题">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="45初探贪心">
                         
-                        <span class="card-title">LeetCode第3题</span>
+                        <span class="card-title">45初探贪心</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">2018.2.26
-题目要求：输入一个字符串，输出其中连续的不重复的最长的子字符串的长度。第一次用了滑动窗口的思想解题思路：将输入的字符串使用split方法分割成数组，然后使用pop方法将数组尾的字符弹出。再构造一个移动窗口的数组–temp</div>
+                    <div class="summary">贪心算法
+第45题
+给一个数组，从头跳到尾，数组内的值代表当前能跳的步数。
+const jump = function(nums) {
+    let maxPosition = 0;    // 未到边界前，下一步能到的最远位置
+  le</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-19
                             </span>
                         <span class="publish-author">
                             
@@ -597,8 +565,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/algorithm/" target="_blank">
-                        <span class="chip bg-color">algorithm</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
